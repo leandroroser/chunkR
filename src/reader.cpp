@@ -7,7 +7,6 @@
 #include <fstream>
 #include "reader.h"
 using namespace Rcpp;
-using namespace std;
 
 //StringVector NULLstringv(0);
 //const StringVector empty_stringv(0);
@@ -56,12 +55,12 @@ reader::~reader() {
 
 void reader::set_header()
 {
-  ifs.open(path, ios::binary);
+  ifs.open(path, std::ios::binary);
   try
   {
     if(ifs.fail())
     {
-      ostringstream msg;
+      std::ostringstream msg;
       msg  << "Input file opening failed.\n";
       throw(msg.str());
     }
@@ -73,7 +72,7 @@ void reader::set_header()
   if(header)
   {
     std::getline(ifs, *line);
-    stringstream headss(*line);
+    std::stringstream headss(*line);
     while(std::getline(headss, *element, sep))
     {
       cnames.push_back(*element);
@@ -85,7 +84,7 @@ void reader::set_header()
   // Read first line only to set number of columns
   bool is_name = true;
   std::getline(ifs, *line);
-  stringstream ss(*line);
+  std::stringstream ss(*line);
   while(std::getline(ss, *element, sep))
   {
     if(is_name && has_row_names)
@@ -102,12 +101,12 @@ void reader::set_header()
     
     if(number_in_header != n_col)
     {
-      ostringstream msg;
+      std::ostringstream msg;
       msg << "Error: Number of strings in header (" << number_in_header << ") "
           << "has not " << n_col << " elements";
       throw(msg.str());
     }
-  } catch(string& m)
+  } catch(std::string& m)
   {
     Rcout << m;
   }
@@ -128,10 +127,10 @@ void reader::next_chunk()
   {
 
   
-  ifs.open(path, ios::binary);
+  ifs.open(path, std::ios::binary);
   if(ifs.fail())
   {
-    ostringstream msg;
+    std::ostringstream msg;
     msg  << "Input file opening failed.\n";
     throw(msg.str());
   }
@@ -145,7 +144,7 @@ void reader::next_chunk()
   {
     bool is_name = true;
     
-    stringstream ss(*line);
+    std::stringstream ss(*line);
     while(std::getline(ss, *element, sep))
     {
       if(is_name && has_row_names)

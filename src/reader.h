@@ -1,12 +1,9 @@
-
-
 #ifndef READER_H_
 #define READER_H_
 
 #include <Rcpp.h>
 #include <iostream>
 #include <fstream>
-using namespace std;
 using namespace Rcpp;
 
 
@@ -24,7 +21,7 @@ public:
   unsigned int get_completed();
   
 private:
-  const string path;
+  const std::string path;
   const char sep;
   bool header;
   const bool has_row_names;
@@ -35,7 +32,7 @@ private:
   std::vector<std::string> rnames;
   std::vector<std::string> cnames;
   
-  ifstream ifs;
+  std::ifstream ifs;
   unsigned int pointer_position;
   
   std::string* line;
