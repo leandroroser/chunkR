@@ -17,7 +17,16 @@ next_chunk(my_reader_object)
 # get the chunk
 get_data(my_reader_object)
 
-#read another chunk
+# read another chunk
 next_chunk(my_reader_object)
-get_data(my_reader_object)
+
+# store the chunk as a character matrix in R
+this_data <- get_data(my_reader_object)
+
+# select only numeric columns
+this_data <- this_data[, 1:4]
+
+# convert into numeric
+mode(this_data)<-"numeric"
+
 ```
