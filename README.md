@@ -8,7 +8,7 @@ This package allows to read long data tables by chunks in R, using a fast C++ ba
 data(iris)
 write.table(iris, "iris.txt", quote = FALSE)
 
-# create object passing the file path of the input file
+# create object passing the path of the input file
 my_reader_object <- reader("iris.txt", chunksize = 30)
 
 # read a chunk
