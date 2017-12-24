@@ -28,12 +28,13 @@ namespace _reader {
 reader::reader(std::string path, char sep, bool header, bool has_row_names,
 		unsigned int chunksize) :
 		path(path), sep(sep), header(header), has_row_names(has_row_names), chunksize(
-				chunksize), n_row(0), n_col(0), rnames(
-				[&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), cnames(
-				[] {std::vector<std::string> out; return out;}()), ifs(
-				[&path] {std::ifstream out; return out;}()), pointer_position(
-				0), line(new std::string), element(new std::string), lines_completed(
-				0), temp(auto_vector), data_chunk(empty_stringm) {
+		chunksize), n_row(0), n_col(0), rnames(
+		[&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()),
+		cnames([] {std::vector<std::string> out; return out;}()), 
+		ifs([&path] {std::ifstream out; return out;}()),
+		pointer_position(0), line(new std::string), element(new std::string), 
+		lines_completed(0), temp(auto_vector), data_chunk(empty_stringm) {
+  
 	Rcout << "New reader object\n";
 	Rcout << "Path: " << path << std::endl;
 	set_header();
