@@ -1,4 +1,4 @@
-##reader
+## reader
 
 This package allows to read long data tables by chunks in R, using C++ infrastructure. The program reads each chunk and stores it in a structure that is accessible via R functions. In each cycle, a file pointer that indicates the position of the next chunk is updated.
 
