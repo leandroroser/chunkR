@@ -1,10 +1,12 @@
+// [[Rcpp::interfaces(cpp)]]
+
 #include <Rcpp.h>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <fstream>
-#include "reader.h"
+#include <reader.h>
 using namespace Rcpp;
 
 //StringVector NULLstringv(0);
@@ -25,6 +27,7 @@ namespace _reader {
 //' @param has_rown_names Row names present (Logical)
 //' @param chunksize Size of chunk (Logical)
 
+
 reader::reader(std::string path, char sep, bool header, bool has_row_names,
 		unsigned int chunksize) :
 		path(path), sep(sep), header(header), has_row_names(has_row_names), chunksize(
@@ -43,6 +46,7 @@ reader::reader(std::string path, char sep, bool header, bool has_row_names,
 //' destructor 
 //' @description header destructor
 
+
 reader::~reader() {
 	delete line;
 	delete element;
@@ -50,6 +54,7 @@ reader::~reader() {
 
 //' set_header 
 //' @description set file header
+
 
 void reader::set_header() {
 	ifs.open(path, std::ios::binary);
@@ -105,6 +110,7 @@ void reader::set_header() {
 
 //' next_chunk
 //' @description read next chunk
+
 
 void reader::next_chunk() {
 
@@ -182,6 +188,7 @@ void reader::next_chunk() {
 //' get_header
 //' @description get table header
 
+
 StringVector reader::get_header() {
 	StringVector out(cnames.size());
 	out = cnames;
@@ -191,12 +198,14 @@ StringVector reader::get_header() {
 //' get_data
 //' @description get data chunk stored in object
 
+
 StringMatrix reader::get_data() {
 	return data_chunk;
 }
 
 //' get_completed
 //' @description get the number of lines read
+
 
 unsigned int reader::get_completed() {
 	return lines_completed;

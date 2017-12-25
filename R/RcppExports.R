@@ -74,3 +74,7 @@ NULL
 #' @description reader module
 NULL
 
+# Register entry points for exported C++ functions
+methods::setLoadAction(function(ns) {
+    .Call('_reader_RcppExport_registerCCallable', PACKAGE = 'reader')
+})
