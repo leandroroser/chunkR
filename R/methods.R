@@ -43,9 +43,9 @@ setMethod("$", "reader", function (x, name) {
 #' @description reader constructor
 #' @export
 
-setGeneric("reader", function(path_, sep_ = " ", header_ = TRUE,
-                              has_row_names_ = TRUE, chunksize_ = 10L) {
-  new("reader", path_, sep_, header_, has_row_names_, chunksize_)
+setGeneric("reader", function(path, sep = " ", header = TRUE,
+                              has_row_names = TRUE, chunksize = 1000L) {
+  new("reader", path, sep, header, has_row_names, chunksize)
 })
 
 

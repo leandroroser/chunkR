@@ -15,7 +15,7 @@ public:
 			unsigned int chunksize);
 	virtual ~reader();
 	void set_header();
-	void next_chunk();
+	bool next_chunk();
 	StringVector get_header();
 	StringMatrix get_data();
 	unsigned int get_completed();

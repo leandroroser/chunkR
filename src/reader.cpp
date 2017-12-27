@@ -112,7 +112,7 @@ void reader::set_header() {
 //' @description read next chunk
 
 
-void reader::next_chunk() {
+bool reader::next_chunk() {
 
 	if (!ifs.eof()) {
 
@@ -176,11 +176,19 @@ void reader::next_chunk() {
 		temp.clear();
 		ifs.close();
 
+		if(output.nrow() == 0)
+		{
+		  StringMatrix temp(0);
+		  output = temp;
+		  return false;
+		}
 		data_chunk = output;
+		return true;
 
 	} else {
-		StringMatrix output(0, 0);
+		StringMatrix output(0);
 		data_chunk = output;
+		return false;
 	}
 
 }

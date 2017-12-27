@@ -33,8 +33,7 @@ RcppExport bool reader__set_header(SEXP ptr) {
 // [[Rcpp::export]]
 RcppExport bool reader__next_chunk(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
-	data->next_chunk();
-	return true;
+	return data->next_chunk();
 }
 
 //' @param x A single integer.
