@@ -29,4 +29,28 @@ this_data <- this_data[, 1:4]
 # convert into numeric
 mode(this_data)<-"numeric"
 
+#---Second example---#
+
+# create a large table
+
+write.table(matrix(sample(c("a", "t", "c", "g"), 1000000, replace = TRUE), 100000, 1000), "test.txt")
+
+# create a reader object, reading in chunks of 10000 lines
+my_reader_object_2 <- reader("test.txt", chunksize = 10000)
+
+# create a loop to read all the file and make something with it
+
+lines <- 0
+while(next_chunk(my_reader_object_2))
+{
+data <- get_data(my_reader_object_2)
+
+# do something with data
+lines <- lines + nrow(data)
+cat("Processed ", lines, "lines\n")
+}
+
+
+
+
 ```
