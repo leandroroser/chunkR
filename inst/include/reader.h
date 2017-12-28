@@ -11,20 +11,20 @@ namespace _reader {
 class reader {
 
 public:
-	reader(std::string path, char sep, bool header, bool has_row_names,
+	reader(std::string path, char sep, bool has_colnames, bool has_rownames,
 			unsigned int chunksize);
 	virtual ~reader();
-	void set_header();
+	void set_colnames();
 	bool next_chunk();
-	StringVector get_header();
+	StringVector get_colnames();
 	StringMatrix get_data();
 	unsigned int get_completed();
 
 private:
 	const std::string path;
 	const char sep;
-	bool header;
-	const bool has_row_names;
+	bool has_colnames;
+	const bool has_rownames;
 	unsigned const int chunksize;
 
 	unsigned int n_row;

@@ -8,11 +8,11 @@ setClass( "reader", representation( pointer = "externalptr" ) )
 #' reader initializer
 #' @keywords internal
 
-setMethod( "initialize", "reader", function(.Object,path_, sep_, header_,
-                                            has_row_names_, chunksize_) {
+setMethod( "initialize", "reader", function(.Object,path_, sep_, has_colnames_,
+                                            has_rownames_, chunksize_) {
   path_ <- normalizePath(path_)
-  .Object@pointer  <- .Call(reader_method("new"), path_, sep_, header_,
-                            has_row_names_, chunksize_)
+  .Object@pointer  <- .Call(reader_method("new"), path_, sep_, has_colnames_,
+                            has_rownames_, chunksize_)
   .Object
 } )
 
@@ -43,20 +43,20 @@ setMethod("$", "reader", function (x, name) {
 #' @description reader constructor
 #' @export
 
-setGeneric("reader", function(path, sep = " ", header = TRUE,
-                              has_row_names = TRUE, chunksize = 1000L) {
-  new("reader", path, sep, header, has_row_names, chunksize)
+setGeneric("reader", function(path, sep = " ", has_colnames = TRUE,
+                              has_rownames = TRUE, chunksize = 1000L) {
+  new("reader", path, sep, has_colnames, has_rownames, chunksize)
 })
 
 
-## set_header
+## set_colnames
 ## @description 
 ## @param
 ## @export
 
-#setGeneric("set_header", function(obj) standardGeneric("set_header"))
-#setMethod("set_header", "reader", function(obj) {
-#  .Call(reader_method("set_header"), obj@pointer)
+#setGeneric("set_colnames", function(obj) standardGeneric("set_colnames"))
+#setMethod("set_colnames", "reader", function(obj) {
+#  .Call(reader_method("set_colnames"), obj@pointer)
 #})
 
 
@@ -70,14 +70,14 @@ setMethod("next_chunk", "reader", function(obj) {
   .Call(reader_method("next_chunk"), obj@pointer)
 })
 
-#' get_header
-#' @description get file header
+#' get_colnames
+#' @description get file has_colnames
 #' @param obj reader object
 #' @export
 
-setGeneric("get_header", function(obj) standardGeneric("get_header"))
-setMethod("get_header", "reader", function(obj) {
-  .Call(reader_method("get_header"), obj@pointer)
+setGeneric("get_colnames", function(obj) standardGeneric("get_colnames"))
+setMethod("get_colnames", "reader", function(obj) {
+  .Call(reader_method("get_colnames"), obj@pointer)
 })
 
 

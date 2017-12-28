@@ -6,25 +6,25 @@ using namespace Rcpp;
 //' @param x A single integer.
 //' @export
 // [[Rcpp::export]]
-RcppExport SEXP reader__new(SEXP path_, SEXP sep_, SEXP header_,
-		SEXP has_row_names_, SEXP chunksize_) {
+RcppExport SEXP reader__new(SEXP path_, SEXP sep_, SEXP has_colnames_,
+		SEXP has_rownames_, SEXP chunksize_) {
 
 	std::string path = Rcpp::as < std::string > (path_);
 	char sep = Rcpp::as<char>(sep_);
-	bool header = Rcpp::as<bool>(header_);
-	bool has_row_names = Rcpp::as<bool>(has_row_names_);
+	bool has_colnames = Rcpp::as<bool>(has_colnames_);
+	bool has_rownames = Rcpp::as<bool>(has_rownames_);
 	unsigned int chunksize = Rcpp::as<unsigned int>(chunksize_);
 	Rcpp::XPtr<reader> ptr(
-			new reader(path, sep, header, has_row_names, chunksize), true);
+			new reader(path, sep, has_colnames, has_rownames, chunksize), true);
 	return ptr;
 }
 
 //' @param x A single integer.
 //' @export
 // [[Rcpp::export]]
-RcppExport bool reader__set_header(SEXP ptr) {
+RcppExport bool reader__set_colnames(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
-	data->set_header();
+	data->set_colnames();
 	return true;
 }
 
@@ -39,9 +39,9 @@ RcppExport bool reader__next_chunk(SEXP ptr) {
 //' @param x A single integer.
 //' @export
 // [[Rcpp::export]]
-RcppExport StringVector reader__get_header(SEXP ptr) {
+RcppExport StringVector reader__get_colnames(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
-	return data->get_header();
+	return data->get_colnames();
 }
 
 //' @param x A single integer.

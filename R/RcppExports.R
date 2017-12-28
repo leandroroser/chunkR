@@ -3,14 +3,14 @@
 
 #' @param x A single integer.
 #' @export
-reader__new <- function(path_, sep_, header_, has_row_names_, chunksize_) {
-    .Call(`_reader_reader__new`, path_, sep_, header_, has_row_names_, chunksize_)
+reader__new <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_) {
+    .Call(`_reader_reader__new`, path_, sep_, has_colnames_, has_rownames_, chunksize_)
 }
 
 #' @param x A single integer.
 #' @export
-reader__set_header <- function(ptr) {
-    .Call(`_reader_reader__set_header`, ptr)
+reader__set_colnames <- function(ptr) {
+    .Call(`_reader_reader__set_colnames`, ptr)
 }
 
 #' @param x A single integer.
@@ -21,8 +21,8 @@ reader__next_chunk <- function(ptr) {
 
 #' @param x A single integer.
 #' @export
-reader__get_header <- function(ptr) {
-    .Call(`_reader_reader__get_header`, ptr)
+reader__get_colnames <- function(ptr) {
+    .Call(`_reader_reader__get_colnames`, ptr)
 }
 
 #' @param x A single integer.
@@ -41,25 +41,25 @@ reader__get_completed <- function(ptr) {
 #' @description reader object constructor
 #' @param path Input file path 
 #' @param sep Character separating cells 
-#' @param header Header present (Logical)
+#' @param has_colnames has_colnames present (Logical)
 #' @param has_rown_names Row names present (Logical)
 #' @param chunksize Size of chunk (Logical)
 NULL
 
 #' destructor 
-#' @description header destructor
+#' @description has_colnames destructor
 NULL
 
-#' set_header 
-#' @description set file header
+#' set_colnames 
+#' @description set file has_colnames
 NULL
 
 #' next_chunk
 #' @description read next chunk
 NULL
 
-#' get_header
-#' @description get table header
+#' get_colnames
+#' @description get table has_colnames
 NULL
 
 #' get_data
