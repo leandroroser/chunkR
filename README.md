@@ -29,6 +29,15 @@ this_data <- this_data[, 1:4]
 # convert into numeric
 mode(this_data)<-"numeric"
 
+# Matrix data can be converted to data frame with the C++ method as_dataframe. 
+# , which is much faster than the native function "as.data.frame"
+this_data_as_df <- as_dataframe(my_reader_chunk)
+
+# The package also provides a fast generic C++ function for conversion from
+# matrix (any R type) to dataframe
+this_data_as_df2 <- matrix2df(this_data)
+
+
 #---Second example---#
 
 # create a large table
@@ -43,9 +52,12 @@ my_reader_object_2 <- reader("test.txt", chunksize = 10000)
 lines <- 0
 while(next_chunk(my_reader_object_2))
 {
-data <- get_data(my_reader_object_2)
+data <- get_data(my_reader_object_2) 
 
-# do something with data
+
+# do something with data, e.g., convert to data frame first
+data <- matrix2df(data)
+
 lines <- lines + nrow(data)
 cat("Processed ", lines, "lines\n")
 }
