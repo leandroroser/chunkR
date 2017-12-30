@@ -19,6 +19,7 @@ public:
 	StringVector get_colnames();
 	StringMatrix get_data();
 	unsigned int get_completed();
+	DataFrame as_dataframe();
 
 private:
 	const std::string path;

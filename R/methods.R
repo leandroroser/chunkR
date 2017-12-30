@@ -100,3 +100,15 @@ setGeneric("get_completed", function(obj) standardGeneric("get_completed"))
 setMethod("get_completed", "reader", function(obj) {
   .Call(reader_method("get_completed"), obj@pointer)
 })
+
+
+#' as_dataframe
+#' @description as_dataframe
+#' @param obj reader object
+#' @export
+
+setGeneric("as_dataframe", function(obj) standardGeneric("as_dataframe"))
+setMethod("as_dataframe", "reader", function(obj) {
+  .Call(reader_method("as_dataframe"), obj@pointer)
+})
+

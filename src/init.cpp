@@ -3,8 +3,6 @@
 using namespace _reader;
 using namespace Rcpp;
 
-//' @param x A single integer.
-//' @export
 // [[Rcpp::export]]
 RcppExport SEXP reader__new(SEXP path_, SEXP sep_, SEXP has_colnames_,
 		SEXP has_rownames_, SEXP chunksize_) {
@@ -19,8 +17,6 @@ RcppExport SEXP reader__new(SEXP path_, SEXP sep_, SEXP has_colnames_,
 	return ptr;
 }
 
-//' @param x A single integer.
-//' @export
 // [[Rcpp::export]]
 RcppExport bool reader__set_colnames(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
@@ -28,34 +24,34 @@ RcppExport bool reader__set_colnames(SEXP ptr) {
 	return true;
 }
 
-//' @param x A single integer.
-//' @export
 // [[Rcpp::export]]
 RcppExport bool reader__next_chunk(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
 	return data->next_chunk();
 }
 
-//' @param x A single integer.
-//' @export
+
 // [[Rcpp::export]]
 RcppExport StringVector reader__get_colnames(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
 	return data->get_colnames();
 }
 
-//' @param x A single integer.
-//' @export
+
 // [[Rcpp::export]]
 RcppExport StringMatrix reader__get_data(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
 	return data->get_data();
 }
 
-//' @param x A single integer.
-//' @export
 // [[Rcpp::export]]
 RcppExport unsigned int reader__get_completed(SEXP ptr) {
 	Rcpp::XPtr<reader> data(ptr);
 	return data->get_completed();
+}
+
+// [[Rcpp::export]]
+RcppExport DataFrame reader__as_dataframe(SEXP ptr) {
+  Rcpp::XPtr<reader> data(ptr);
+  return data->as_dataframe();
 }

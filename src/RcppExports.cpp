@@ -8,6 +8,17 @@
 
 using namespace Rcpp;
 
+// matrix2df
+DataFrame matrix2df(SEXP x);
+RcppExport SEXP _reader_matrix2df(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(matrix2df(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // reader__new
 RcppExport SEXP reader__new(SEXP path_, SEXP sep_, SEXP has_colnames_, SEXP has_rownames_, SEXP chunksize_);
 RcppExport SEXP _reader_reader__new(SEXP path_SEXP, SEXP sep_SEXP, SEXP has_colnames_SEXP, SEXP has_rownames_SEXP, SEXP chunksize_SEXP) {
@@ -78,6 +89,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// reader__as_dataframe
+RcppExport DataFrame reader__as_dataframe(SEXP ptr);
+RcppExport SEXP _reader_reader__as_dataframe(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(reader__as_dataframe(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 // validate (ensure exported C++ functions exist before calling them)
 static int _reader_RcppExport_validate(const char* sig) { 
@@ -96,12 +118,14 @@ RcppExport SEXP _reader_RcppExport_registerCCallable() {
 RcppExport SEXP _rcpp_module_boot_reader_module();
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_reader_matrix2df", (DL_FUNC) &_reader_matrix2df, 1},
     {"_reader_reader__new", (DL_FUNC) &_reader_reader__new, 5},
     {"_reader_reader__set_colnames", (DL_FUNC) &_reader_reader__set_colnames, 1},
     {"_reader_reader__next_chunk", (DL_FUNC) &_reader_reader__next_chunk, 1},
     {"_reader_reader__get_colnames", (DL_FUNC) &_reader_reader__get_colnames, 1},
     {"_reader_reader__get_data", (DL_FUNC) &_reader_reader__get_data, 1},
     {"_reader_reader__get_completed", (DL_FUNC) &_reader_reader__get_completed, 1},
+    {"_reader_reader__as_dataframe", (DL_FUNC) &_reader_reader__as_dataframe, 1},
     {"_rcpp_module_boot_reader_module", (DL_FUNC) &_rcpp_module_boot_reader_module, 0},
     {"_reader_RcppExport_registerCCallable", (DL_FUNC) &_reader_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}
