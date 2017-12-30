@@ -27,17 +27,16 @@ namespace _reader {
 //' @param has_rown_names Row names present (Logical)
 //' @param chunksize Size of chunk (Logical)
 
-
 reader::reader(std::string path, char sep, bool has_colnames, bool has_rownames,
 		unsigned int chunksize) :
-		path(path), sep(sep), has_colnames(has_colnames), has_rownames(has_rownames), chunksize(
-		chunksize), n_row(0), n_col(0), rnames(
-		[&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()),
-		cnames([] {std::vector<std::string> out; return out;}()), 
-		ifs([&path] {std::ifstream out; return out;}()),
-		pointer_position(0), line(new std::string), element(new std::string), 
-		lines_completed(0), temp(auto_vector), data_chunk(empty_stringm) {
-  
+		path(path), sep(sep), has_colnames(has_colnames), has_rownames(
+				has_rownames), chunksize(chunksize), n_row(0), n_col(0), rnames(
+				[&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), cnames(
+				[] {std::vector<std::string> out; return out;}()), ifs(
+				[&path] {std::ifstream out; return out;}()), pointer_position(
+				0), line(new std::string), element(new std::string), lines_completed(
+				0), temp(auto_vector), data_chunk(empty_stringm) {
+
 	Rcout << "New reader object\n";
 	Rcout << "Path: " << path << std::endl;
 	set_colnames();
@@ -45,7 +44,6 @@ reader::reader(std::string path, char sep, bool has_colnames, bool has_rownames,
 
 //' destructor 
 //' @description has_colnames destructor
-
 
 reader::~reader() {
 	delete line;
@@ -55,9 +53,8 @@ reader::~reader() {
 //' set_colnames 
 //' @description set file has_colnames
 
-
 void reader::set_colnames() {
-  
+
 	ifs.open(path, std::ios::binary);
 	try {
 		if (ifs.fail()) {
@@ -69,8 +66,7 @@ void reader::set_colnames() {
 		Rcout << stopmsg;
 	}
 
-	if(has_colnames) 
-	{
+	if (has_colnames) {
 		std::getline(ifs, *line);
 		std::stringstream headss(*line);
 		while (std::getline(headss, *element, sep)) {
@@ -92,29 +88,28 @@ void reader::set_colnames() {
 	}
 
 	// check consistency between column number determined and # elements in has_colnames
-	if(has_colnames)
-	{
-	try {
-		int number_in_has_colnames = cnames.size();
+	if (has_colnames) {
+		try {
+			int number_in_has_colnames = cnames.size();
 
-		if (number_in_has_colnames != n_col) {
-			std::ostringstream msg;
-			msg << "Error: Number of strings in has_colnames (" << number_in_has_colnames
-					<< ") " << "has not " << n_col << " elements";
-			throw(msg.str());
+			if (number_in_has_colnames != n_col) {
+				std::ostringstream msg;
+				msg << "Error: Number of strings in has_colnames ("
+						<< number_in_has_colnames << ") " << "has not " << n_col
+						<< " elements";
+				throw(msg.str());
+			}
+		} catch (std::string& m) {
+			Rcout << m;
 		}
-	} catch (std::string& m) {
-		Rcout << m;
 	}
-	}
-	
+
 	ifs.close();
 	// si no hay has_colnames, creaar uno default.
 }
 
 //' next_chunk
 //' @description read next chunk
-
 
 bool reader::next_chunk() {
 
@@ -180,11 +175,10 @@ bool reader::next_chunk() {
 		temp.clear();
 		ifs.close();
 
-		if(output.nrow() == 0)
-		{
-		  StringMatrix temp(0);
-		  output = temp;
-		  return false;
+		if (output.nrow() == 0) {
+			StringMatrix temp(0);
+			output = temp;
+			return false;
 		}
 		data_chunk = output;
 		return true;
@@ -200,23 +194,19 @@ bool reader::next_chunk() {
 //' Matrix to DataFrame
 //' @description get table has_colnames
 
-DataFrame reader::as_dataframe()
-{
-  List output(n_col);
-  for(int i = 0; i < n_col; ++i)
-  {
-    output[i] = data_chunk(_, i);
-  }
-  output.attr("row.names") = rownames(data_chunk);
-  output.attr("names") = colnames(data_chunk);
-  output.attr("class") = "data.frame";
-  return output;
+DataFrame reader::as_dataframe() {
+	List output(n_col);
+	for (int i = 0; i < n_col; ++i) {
+		output[i] = data_chunk(_, i);
+	}
+	output.attr("row.names") = rownames(data_chunk);
+	output.attr("names") = colnames(data_chunk);
+	output.attr("class") = "data.frame";
+	return output;
 }
-
 
 //' get_colnames
 //' @description get table has_colnames
-
 
 StringVector reader::get_colnames() {
 	StringVector out(cnames.size());
@@ -227,14 +217,12 @@ StringVector reader::get_colnames() {
 //' get_data
 //' @description get data chunk stored in object
 
-
 StringMatrix reader::get_data() {
 	return data_chunk;
 }
 
 //' get_completed
 //' @description get the number of lines read
-
 
 unsigned int reader::get_completed() {
 	return lines_completed;
@@ -248,11 +236,11 @@ RCPP_MODULE(reader_module)
 	class_<reader>("reader")
 	.constructor<std::string, char, bool, bool, unsigned int>()
 	.method("set_colnames", &reader::set_colnames)
-  .method("get_colnames", &reader::get_colnames)
+	.method("get_colnames", &reader::get_colnames)
 	.method("next_chunk", &reader::next_chunk)
-  .method("get_data", &reader::get_data)
-  .method("get_completed", &reader::get_completed)
-  .method("as_dataframe", &reader::as_dataframe)
+	.method("get_data", &reader::get_data)
+	.method("get_completed", &reader::get_completed)
+	.method("as_dataframe", &reader::as_dataframe)
 	;
 }
 
