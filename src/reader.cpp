@@ -158,7 +158,7 @@ bool reader::next_chunk() {
 		StringMatrix output(lines_read_chunk, n_col);
 		int k = 0;
 		for (int i = 0; i < lines_read_chunk; ++i) {
-			for (int j = 0; j < n_col; ++j) {
+			for (size_t j = 0; j < n_col; ++j) {
 				output(i, j) = temp[k++];
 			}
 		}

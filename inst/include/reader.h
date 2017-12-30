@@ -27,8 +27,8 @@ private:
 	const bool has_rownames;
 	unsigned const int chunksize;
 
-	unsigned int n_row;
-	unsigned int n_col;
+	size_t n_row;
+	size_t n_col;
 	std::vector<std::string> rnames;
 	std::vector<std::string> cnames;
 
@@ -37,7 +37,7 @@ private:
 
 	std::string* line;
 	std::string* element;
-	unsigned int lines_completed;
+	size_t lines_completed;
 	std::vector<std::string> temp;
 	StringMatrix data_chunk;
 
