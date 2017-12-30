@@ -158,7 +158,7 @@ bool reader::next_chunk() {
 		StringMatrix output(lines_read_chunk, n_col);
 		int k = 0;
 		for (int i = 0; i < lines_read_chunk; ++i) {
-			for (int j = 0; j < n_col; ++j) {
+			for (size_t j = 0; j < n_col; ++j) {
 				output(i, j) = temp[k++];
 			}
 		}
@@ -196,6 +196,23 @@ bool reader::next_chunk() {
 	}
 
 }
+
+//' Matrix to DataFrame
+//' @description get table has_colnames
+
+DataFrame reader::as_dataframe()
+{
+  List output(n_col);
+  for(int i = 0; i < n_col; ++i)
+  {
+    output[i] = data_chunk(_, i);
+  }
+  output.attr("row.names") = rownames(data_chunk);
+  output.attr("names") = colnames(data_chunk);
+  output.attr("class") = "data.frame";
+  return output;
+}
+
 
 //' get_colnames
 //' @description get table has_colnames
@@ -235,6 +252,7 @@ RCPP_MODULE(reader_module)
 	.method("next_chunk", &reader::next_chunk)
   .method("get_data", &reader::get_data)
   .method("get_completed", &reader::get_completed)
+  .method("as_dataframe", &reader::as_dataframe)
 	;
 }
 
