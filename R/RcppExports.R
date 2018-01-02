@@ -62,6 +62,16 @@ NULL
 #' @description get table has_colnames
 NULL
 
+#' Set generic rownames
+#' @description get table has_colnames
+#' 
+NULL
+
+#' Set generic colnames
+#' @description get table has_colnames
+#' 
+NULL
+
 #' get_colnames
 #' @description get table has_colnames
 NULL

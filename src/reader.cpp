@@ -104,6 +104,10 @@ void reader::set_colnames() {
 		}
 	}
 
+	if (!has_colnames) {
+	  cnames = set_generic_colnames("C", 1, n_col);
+	}
+	
 	ifs.close();
 	// si no hay has_colnames, creaar uno default.
 }
@@ -126,7 +130,8 @@ bool reader::next_chunk() {
 
 		// for first line read before
 		int lines_read_chunk = 0;
-
+    int initial_lines  = lines_completed;
+	
 		while (std::getline(ifs, *line)) {
 			bool is_name = true;
 
@@ -162,24 +167,26 @@ bool reader::next_chunk() {
 		cnames_rcpp = cnames;
 		colnames(output) = cnames_rcpp;
 
+		// set rownames
+		StringVector rnames_rcpp;
 		if (has_rownames) {
-			StringVector rnames_rcpp;
-			rnames_rcpp = rnames;
-			rownames(output) = rnames_rcpp;
+		  rnames_rcpp = rnames;
+		  rnames.clear();
 		} else {
-			//ROWNAMES DEFAULT
+		  rnames_rcpp = set_generic_rownames("R", initial_lines + 1, lines_read_chunk);
 		}
+		rownames(output) = rnames_rcpp;
 
 		//cnames.clear();
-		rnames.clear();
 		temp.clear();
 		ifs.close();
 
 		if (output.nrow() == 0) {
-			StringMatrix temp(0);
-			output = temp;
-			return false;
+		  StringMatrix output(0);
+		  data_chunk = output;
+		  return false;
 		}
+		
 		data_chunk = output;
 		return true;
 
@@ -203,6 +210,38 @@ DataFrame reader::as_dataframe() {
 	output.attr("names") = colnames(data_chunk);
 	output.attr("class") = "data.frame";
 	return output;
+}
+
+//' Set generic rownames
+//' @description get table has_colnames
+//' 
+std::vector<std::string> reader::set_generic_rownames(std::string what, int start_from, int n_row) {
+  std::ostringstream os;
+  std::vector<std::string> output;
+  output.reserve(n_row);
+  for (int i = start_from; i < start_from + n_row; ++i) {
+    os << what << "_" << i;
+    output.push_back(os.str());
+    os.str("");
+    os.clear();
+  }
+  return output;
+}
+
+//' Set generic colnames
+//' @description get table has_colnames
+//' 
+std::vector<std::string> reader::set_generic_colnames(std::string what,  int start_from, int n_col) {
+  std::ostringstream os;
+  std::vector<std::string> output;
+  output.reserve(n_col);
+  for (int i = start_from; i < start_from + n_col; ++i) {
+    os << what << "_" << i;
+    output.push_back(os.str());
+    os.str("");
+    os.clear();
+  }
+  return output;
 }
 
 //' get_colnames

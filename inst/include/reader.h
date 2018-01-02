@@ -20,6 +20,8 @@ public:
 	StringMatrix get_data();
 	unsigned int get_completed();
 	DataFrame as_dataframe();
+	std::vector<std::string> set_generic_rownames(std::string what, int start_from, int n_row);
+	std::vector<std::string> set_generic_colnames(std::string what, int start_from, int n_col);
 
 private:
 	const std::string path;
