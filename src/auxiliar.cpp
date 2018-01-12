@@ -7,7 +7,7 @@ template<int RTYPE>
 DataFrame matrix2df_(Matrix<RTYPE> x) {
 	size_t n_col = x.ncol();
 	List output(n_col);
-	for (int i = 0; i < n_col; ++i) {
+	for (size_t i = 0; i < n_col; ++i) {
 		output[i] = x(_, i);
 	}
 	output.attr("row.names") = rownames(x);

@@ -1,4 +1,5 @@
 // [[Rcpp::interfaces(cpp)]]
+// [[Rcpp::plugins("cpp11")]]
 
 #include <Rcpp.h>
 #include <iostream>
@@ -23,7 +24,7 @@ namespace _chunkR {
 //' @keywords internal
 
 reader::reader(std::string path, char sep, bool has_colnames, bool has_rownames,
-		unsigned int chunksize) :
+		size_t chunksize) :
 		path(path), sep(sep), has_colnames(has_colnames), has_rownames(
 				has_rownames), chunksize(chunksize), n_row(0), n_col(0), rnames(
 				[&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), cnames(
@@ -85,7 +86,7 @@ void reader::set_colnames() {
 	// check consistency between column number determined and # elements in has_colnames
 	if (has_colnames) {
 		try {
-			int number_in_has_colnames = cnames.size();
+			size_t number_in_has_colnames = cnames.size();
 
 			if (number_in_has_colnames != n_col) {
 				std::ostringstream msg;
@@ -124,8 +125,8 @@ bool reader::next_chunk() {
 		ifs.seekg(pointer_position);
 
 		// for first line read before
-		int lines_read_chunk = 0;
-    int initial_lines  = lines_completed;
+		size_t lines_read_chunk = 0;
+    size_t initial_lines  = lines_completed;
 	
 		while (std::getline(ifs, *line)) {
 			bool is_name = true;
@@ -152,7 +153,7 @@ bool reader::next_chunk() {
 		// create output
 		StringMatrix output(lines_read_chunk, n_col);
 		int k = 0;
-		for (int i = 0; i < lines_read_chunk; ++i) {
+		for (size_t i = 0; i < lines_read_chunk; ++i) {
 			for (size_t j = 0; j < n_col; ++j) {
 				output(i, j) = temp[k++];
 			}
@@ -198,7 +199,7 @@ bool reader::next_chunk() {
 
 DataFrame reader::get_dataframe() {
 	List output(n_col);
-	for (int i = 0; i < n_col; ++i) {
+	for (size_t i = 0; i < n_col; ++i) {
 		output[i] = data_chunk(_, i);
 	}
 	output.attr("row.names") = rownames(data_chunk);
@@ -209,11 +210,11 @@ DataFrame reader::get_dataframe() {
 
 // reader__set_generic_rownames
 
-std::vector<std::string> reader::set_generic_rownames(std::string what, int start_from, int n_row) {
+std::vector<std::string> reader::set_generic_rownames(std::string what, size_t start_from, size_t n_row) {
   std::ostringstream os;
   std::vector<std::string> output;
   output.reserve(n_row);
-  for (int i = start_from; i < start_from + n_row; ++i) {
+  for (size_t i = start_from; i < start_from + n_row; ++i) {
     os << what << "_" << i;
     output.push_back(os.str());
     os.str("");
@@ -224,11 +225,11 @@ std::vector<std::string> reader::set_generic_rownames(std::string what, int star
 
 // set_generic_colnames
 
-std::vector<std::string> reader::set_generic_colnames(std::string what,  int start_from, int n_col) {
+std::vector<std::string> reader::set_generic_colnames(std::string what,  size_t start_from, size_t n_col) {
   std::ostringstream os;
   std::vector<std::string> output;
   output.reserve(n_col);
-  for (int i = start_from; i < start_from + n_col; ++i) {
+  for (size_t i = start_from; i < start_from + n_col; ++i) {
     os << what << "_" << i;
     output.push_back(os.str());
     os.str("");
@@ -256,7 +257,7 @@ StringMatrix reader::get_matrix() {
 //' reader__get_completed
 //' @keywords internal
 
-unsigned int reader::get_completed() {
+size_t reader::get_completed() {
 	return lines_completed;
 }
 
