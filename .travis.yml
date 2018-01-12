@@ -15,8 +15,7 @@ warnings_are_errors: true
 
 env:
   global:
-    r_build_args: '--no-build-vignettes --no-manual --no-resave-data'
-    r_check_args: '--no-build-vignettes --no-manual --as-cran --timings'
+    r_check_args: '--no-build-vignettes --no-manual --no-resave-data --as-cran --timings'
     r_check_time: 'TRUE'
     r_check_tests: 'TRUE'
     r_check_timings: '0'
