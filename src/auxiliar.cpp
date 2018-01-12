@@ -1,8 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Matrix to DataFrame
-//' @description get table has_colnames
+// Matrix to DataFrame
 
 template<int RTYPE>
 DataFrame matrix2df_(Matrix<RTYPE> x) {
@@ -16,6 +15,11 @@ DataFrame matrix2df_(Matrix<RTYPE> x) {
 	output.attr("class") = "data.frame";
 	return output;
 }
+
+//' matrix2df
+//' @name matrix2df
+//' @description conversion from matrix to DataFrame
+//' @param x matrix
 
 // [[Rcpp::export]]
 DataFrame matrix2df(SEXP x) {

@@ -6,7 +6,7 @@
 #include <fstream>
 using namespace Rcpp;
 
-namespace _reader {
+namespace _chunkR {
 
 class reader {
 
@@ -17,9 +17,9 @@ public:
 	void set_colnames();
 	bool next_chunk();
 	StringVector get_colnames();
-	StringMatrix get_data();
+	StringMatrix get_matrix();
 	unsigned int get_completed();
-	DataFrame as_dataframe();
+	DataFrame get_dataframe();
 	std::vector<std::string> set_generic_rownames(std::string what, int start_from, int n_row);
 	std::vector<std::string> set_generic_colnames(std::string what, int start_from, int n_col);
 

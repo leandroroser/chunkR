@@ -6,7 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
-#include <reader.h>
+#include <chunkR.h>
 using namespace Rcpp;
 
 //StringVector NULLstringv(0);
@@ -17,15 +17,10 @@ const StringMatrix empty_stringm = NULLstringm;
 std::vector<std::string> autovector;
 #define auto_vector autovector
 
-namespace _reader {
+namespace _chunkR {
 
-//' reader
-//' @description reader object constructor
-//' @param path Input file path 
-//' @param sep Character separating cells 
-//' @param has_colnames has_colnames present (Logical)
-//' @param has_rown_names Row names present (Logical)
-//' @param chunksize Size of chunk (Logical)
+//' reader__reader
+//' @keywords internal
 
 reader::reader(std::string path, char sep, bool has_colnames, bool has_rownames,
 		unsigned int chunksize) :
@@ -42,16 +37,16 @@ reader::reader(std::string path, char sep, bool has_colnames, bool has_rownames,
 	set_colnames();
 }
 
-//' destructor 
-//' @description has_colnames destructor
+//' reader__destructor 
+//' @keywords internal
 
 reader::~reader() {
 	delete line;
 	delete element;
 }
 
-//' set_colnames 
-//' @description set file has_colnames
+//' reader__set_colnames 
+//' @keywords internal
 
 void reader::set_colnames() {
 
@@ -112,8 +107,8 @@ void reader::set_colnames() {
 	// si no hay has_colnames, creaar uno default.
 }
 
-//' next_chunk
-//' @description read next chunk
+//' reader__next_chunk
+//' @keywords internal
 
 bool reader::next_chunk() {
 
@@ -198,10 +193,10 @@ bool reader::next_chunk() {
 
 }
 
-//' Matrix to DataFrame
-//' @description get table has_colnames
+//' reader__get_dataframe
+//' @keywords internal
 
-DataFrame reader::as_dataframe() {
+DataFrame reader::get_dataframe() {
 	List output(n_col);
 	for (int i = 0; i < n_col; ++i) {
 		output[i] = data_chunk(_, i);
@@ -212,9 +207,8 @@ DataFrame reader::as_dataframe() {
 	return output;
 }
 
-//' Set generic rownames
-//' @description get table has_colnames
-//' 
+// reader__set_generic_rownames
+
 std::vector<std::string> reader::set_generic_rownames(std::string what, int start_from, int n_row) {
   std::ostringstream os;
   std::vector<std::string> output;
@@ -228,9 +222,8 @@ std::vector<std::string> reader::set_generic_rownames(std::string what, int star
   return output;
 }
 
-//' Set generic colnames
-//' @description get table has_colnames
-//' 
+// set_generic_colnames
+
 std::vector<std::string> reader::set_generic_colnames(std::string what,  int start_from, int n_col) {
   std::ostringstream os;
   std::vector<std::string> output;
@@ -244,8 +237,8 @@ std::vector<std::string> reader::set_generic_colnames(std::string what,  int sta
   return output;
 }
 
-//' get_colnames
-//' @description get table has_colnames
+//' reader__get_colnames
+//' @keywords internal
 
 StringVector reader::get_colnames() {
 	StringVector out(cnames.size());
@@ -253,22 +246,21 @@ StringVector reader::get_colnames() {
 	return out;
 }
 
-//' get_data
-//' @description get data chunk stored in object
+//' reader__get_matrix
+//' @keywords internal
 
-StringMatrix reader::get_data() {
+StringMatrix reader::get_matrix() {
 	return data_chunk;
 }
 
-//' get_completed
-//' @description get the number of lines read
+//' reader__get_completed
+//' @keywords internal
 
 unsigned int reader::get_completed() {
 	return lines_completed;
 }
 
-//' reader_module
-//' @description reader module
+// reader_module
 
 RCPP_MODULE(reader_module)
 {
@@ -277,10 +269,10 @@ RCPP_MODULE(reader_module)
 	.method("set_colnames", &reader::set_colnames)
 	.method("get_colnames", &reader::get_colnames)
 	.method("next_chunk", &reader::next_chunk)
-	.method("get_data", &reader::get_data)
+	.method("get_matrix", &reader::get_matrix)
 	.method("get_completed", &reader::get_completed)
-	.method("as_dataframe", &reader::as_dataframe)
+	.method("get_dataframe", &reader::get_dataframe)
 	;
 }
 
-} /* namespace _reader */
+} /* namespace _chunkR */

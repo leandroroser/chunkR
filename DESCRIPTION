@@ -1,18 +1,20 @@
-Package: reader
+Package: chunkR
 Type: Package
-Title: Read data tables in chunks
+Title: Read Tables in Chunks
 Version: 1.0
-Date: 2017-12-15
+Date: 2018-01-12
 Authors@R: c(person(given = "Leandro", family = "Roser", role = c("aut", "cre"), email = "learoser@gmail.com"))
 Maintainer: Leandro Roser <learoser@gmail.com>
-Description: Read data tables in chunks.
+Description: Read external data tables in chunks using a C++ backend.
 License: GPL (>= 2)
 LazyLoad: yes
-Depends: R (>= 3.0)
+Depends: R (>= 3.0), methods
 Imports: Rcpp (>= 0.12.14)
 LinkingTo: Rcpp
-Collate: 'ZZZ.R' 'methods.R' 'RcppExports.R' 
+Collate: 'ZZZ.R' 'RcppExports.R' 'classes.R' 'constructors.R' 'methods.R'
 RoxygenNote: 6.0.1
 NeedsCompilation: yes
 Packaged: 2017-11-21 08:12:58 UTC; leandro
 Author: Leandro Roser [aut, cre]
+Suggests: testthat
+RcppModules: reader

@@ -1,6 +1,6 @@
 #include <Rcpp.h>
-#include <reader.h>
-using namespace _reader;
+#include <chunkR.h>
+using namespace _chunkR;
 using namespace Rcpp;
 
 // [[Rcpp::export]]
@@ -38,9 +38,9 @@ RcppExport StringVector reader__get_colnames(SEXP ptr) {
 }
 
 // [[Rcpp::export]]
-RcppExport StringMatrix reader__get_data(SEXP ptr) {
+RcppExport StringMatrix reader__get_matrix(SEXP ptr) {
 	Rcpp::XPtr < reader > data(ptr);
-	return data->get_data();
+	return data->get_matrix();
 }
 
 // [[Rcpp::export]]
@@ -50,7 +50,7 @@ RcppExport unsigned int reader__get_completed(SEXP ptr) {
 }
 
 // [[Rcpp::export]]
-RcppExport DataFrame reader__as_dataframe(SEXP ptr) {
+RcppExport DataFrame reader__get_dataframe(SEXP ptr) {
 	Rcpp::XPtr < reader > data(ptr);
-	return data->as_dataframe();
+	return data->get_dataframe();
 }
