@@ -28,8 +28,7 @@ reader::reader(const std::string path, char sep, bool has_colnames, bool has_row
 		path(path), sep(sep), has_colnames(has_colnames), has_rownames(
 				has_rownames), chunksize(chunksize), n_row(0), n_col(0), rnames(
 				[&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), cnames(
-				[] {std::vector<std::string> out; return out;}()), ifs(
-				[&path] {std::ifstream out; return out;}()), pointer_position(
+				[] {std::vector<std::string> out; return out;}()), pointer_position(
 				0), line(new std::string), element(new std::string), lines_completed(
 				0), temp(auto_vector), data_chunk(empty_stringm) {
 
