@@ -6,7 +6,7 @@ This package allows to read long data tables by chunks in R, using a fast C++ ba
 
 ```diff
 library(devtools)
-'install_github("leandroroser/chunkR")
+install_github("leandroroser/chunkR")
 ```
 
 ### Example
