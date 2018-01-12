@@ -11,7 +11,7 @@ namespace _chunkR {
 class reader {
 
 public:
-	reader(std::string path, char sep, bool has_colnames, bool has_rownames,
+	reader(const std::string path, char sep, bool has_colnames, bool has_rownames,
 			size_t chunksize);
 	virtual ~reader();
 	void set_colnames();

@@ -23,7 +23,7 @@ namespace _chunkR {
 //' reader__reader
 //' @keywords internal
 
-reader::reader(std::string path, char sep, bool has_colnames, bool has_rownames,
+reader::reader(const std::string path, char sep, bool has_colnames, bool has_rownames,
 		size_t chunksize) :
 		path(path), sep(sep), has_colnames(has_colnames), has_rownames(
 				has_rownames), chunksize(chunksize), n_row(0), n_col(0), rnames(
