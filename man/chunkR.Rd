@@ -80,7 +80,7 @@ write.table(iris, tmp, quote = FALSE, sep = ",")
 my_reader_object <- reader(tmp, chunksize = 30, sep = ",")
 # the file can  then be processed as with tab delimiters
 
-
+ \dontrun{
 #--- Example with a large table --- #
 
 # create a large table, and write it in a temporal directory
@@ -108,4 +108,5 @@ while(next_chunk(my_reader_object_2))
 
 # remove the temporal file
 file.remove(my_table)
+}
 }
