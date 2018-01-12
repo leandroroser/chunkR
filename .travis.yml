@@ -13,6 +13,14 @@ sudo: false
 # To CRAN, warnings <are> errors.
 warnings_are_errors: true
 
+env:
+  global:
+    r_build_args: --no-build-vignettes --no-manual --no-resave-data
+    r_check_args: --no-build-vignettes --no-manual --as-cran --timings
+    r_check_time: TRUE
+    r_check_tests: TRUE
+    r_check_timings: 0
+
 os:
 - linux
 - osx
@@ -26,6 +34,7 @@ before_install:
 after_success:
 #- Rscript -e 'covr::codecov()'
 - if [[ "$TRAVIS_OS_NAME" = 'linux' ]]; then R CMD INSTALL *tar.gz; fi
+
 
 notifications:
   email:
