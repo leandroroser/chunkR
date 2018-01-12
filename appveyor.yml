@@ -22,24 +22,8 @@ environment:
     # Default GCC_PATH appears to be gcc-4.6.3 which is now unsupported as from Rtools.exe v3.4
    R_CHECK_ARGS: --no-manual
     # R_CHECK_ARGS specified in order to turn off --as-cran as that can be slow
+   WARNINGS_ARE_ERRORS: 1
   
-build_script:
-  # The following configuration will use the development version of Bioconductor.  This
-  # is because under the hood, r-appveyor relies on r-travis, and r-travis sets an
-  # environment variable , BIOC_USE_DEVEL=${BIOC_USE_DEVEL:-"TRUE"}
-  #
-  # This is configurable, but devel is the default.  Here's the source:
-  #     https://github.com/craigcitro/r-travis/blob/master/scripts/travis-tool.sh#L11
-  #
-  # Notice: We'll need to decide on a workflow, if we want to provide CI builds of
-  # release versions in AppVeyor .
-  - travis-tool.sh install_bioc BiocInstaller GenomeInfoDbData
-  - travis-tool.sh install_deps
-  - set _R_CHECK_FORCE_SUGGESTS_=false
-
-test_script:
-  - travis-tool.sh run_tests
-
 on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip

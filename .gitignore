@@ -7,6 +7,7 @@
 
 # RStudio files
 .Rproj.user/
+chunkR.Rproj
 
 # produced vignettes
 vignettes/*.html

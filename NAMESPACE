@@ -1,6 +1,7 @@
 useDynLib(chunkR, .registration=TRUE)
 export(reader)
 export(matrix2df)
+export(chunkR_devel)
 exportMethods(next_chunk)
 exportMethods(get_colnames)
 exportMethods(get_matrix)
