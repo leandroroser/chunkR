@@ -1,7 +1,7 @@
 Package: chunkR
 Type: Package
 Title: Read Tables in Chunks
-Version: 1.0
+Version: 1.0.0
 Date: 2018-01-12
 Authors@R: c(person(given = "Leandro", family = "Roser", role = c("aut", "cre"), email = "learoser@gmail.com"))
 Maintainer: Leandro Roser <learoser@gmail.com>
@@ -14,7 +14,7 @@ LinkingTo: Rcpp
 Collate: 'ZZZ.R' 'auxiliar.R' 'RcppExports.R' 'classes.R' 'constructors.R' 'methods.R'
 RoxygenNote: 6.0.1
 NeedsCompilation: yes
-Packaged: 2017-11-21 08:12:58 UTC; leandro
+Packaged: 2018-01-11 08:12:58 UTC; leandro
 Author: Leandro Roser [aut, cre]
 Suggests: testthat
 RcppModules: reader

@@ -1,19 +1,39 @@
-## chunkR 1.0.0  [![Build Status](https://travis-ci.org/leandroroser/chunkR.svg?branch=master)](https://travis-ci.org/leandroroser/chunkR.svg?branch=master) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true)](https://ci.appveyor.com/project/leandroroser/chunkR) [![R](https://img.shields.io/badge/R%3E%3D-3.0-red.svg)]() 
+\name{chunkR-package}
+\alias{chunkR-package}
+\alias{chunkR}
+\docType{package}
+\title{
+ Read Tables in Chunks
+}
+\description{
+  Read external data tables in chunks using a C++ backend.
+}
 
-This package allows to read long data tables by chunks in R, using a fast C++ backend. The data is interpreted in R as a character matrix. The program reads each chunk using a file pointer with the next_chunk() function (that return TRUE), and stores it in a structure that is accessible via the get_data() function. In each cycle, a file pointer that indicates the position of the next chunk is updated. After reading all the file, the next_chunk() function returns FALSE and the get_data() function an empty matrix.
+\details{
+ This package allows to read long data tables by chunks in R, using a fast C++ backend. The data is interpreted in R as a character matrix. 
+ 
+The objects of class "reader" are the central elements of the chunkR package. These objects can store a data chunk and other information required for the process of reading a file in pieces via C++. A reader object is created with the \code{\link{reader}} function, that requires the path to a file, and other arguments, as the size of the chunk. A series of methods are defined to manipulate the object:
 
-### Installation:
+- \code{\link{next_chunk}} function to read the next chunk
 
-```diff
-library(devtools)
-install_github("leandroroser/chunkR")
-```
 
-### Example
+- \code{\link{get_matrix}} and \code{\link{get_dataframe}} functions to retrieve the data
 
-```diff
 
-data(iris)
+The functions \code{\link{get_completed}} and \code{\link{get_colnames}} allow to get the number of rows already read, and the column names of the table.
+
+The program reads each chunk using a file pointer with the \code{\link{next_chunk}} function (that return TRUE), and stores it in a structure that is accessible via the \code{\link{get_matrix}} or the \code{\link{get_dataframe}} functions. In each cycle, a file pointer that indicates the position of the next chunk is updated. After reading all the file, the \code{\link{next_chunk}} function returns FALSE and the \code{\link{get_matrix}} and the \code{\link{get_dataframe}} functions an empty matrix/dataframe.
+ 
+}
+\author{
+Leandro Roser
+ 
+ Maintainer: Leandro Roser <learoser@gmail.com>
+}
+
+\keyword{ package }
+\examples{
+  data(iris)
 
 # write iris as tab delimited file. Note that quote is set to FALSE
 
@@ -88,5 +108,4 @@ while(next_chunk(my_reader_object_2))
 
 # remove the temporal file
 file.remove(my_table)
-
-```
+}
