@@ -51,7 +51,7 @@ artifacts:
     name: Bits
 
   - path: '\*_*.zip'
-name: Bits
+    name: Bits
     
 notifications:
 
