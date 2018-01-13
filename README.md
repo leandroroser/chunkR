@@ -20,7 +20,7 @@ install_github("leandroroser/chunkR")
  tmp_path <- file.path(tempdir(),"iris.txt")
  write.table(iris, tmp_path, quote = FALSE)
  
- # create object passing the path of the input file
+ # create a reader object passing the path of the input file
  my_reader_object <- reader(tmp_path, chunksize = 30)
  
  # read a chunk
