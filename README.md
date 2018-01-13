@@ -61,14 +61,14 @@ install_github("leandroroser/chunkR")
  
  write.table(iris, tmp_path_csv, quote = FALSE, sep = ",")
  
-#  # read the csv indicating the value of the sep parameter
+ # read the csv indicating the value of the sep parameter
  my_reader_object <- reader(tmp_path_csv, chunksize = 30, sep = ",")
  # the file can  then be processed as with tab delimiters
  
  # remove temporal file
  file.remove(tmp_path_csv)
  
- \dontrun{
+ 
  #--- Example with a large table ---#
  
  # create a large table, and write it in a temporal directory
@@ -96,6 +96,6 @@ install_github("leandroroser/chunkR")
  
  # remove the temporal file
  file.remove(my_table)
- }
+
 
 ```
