@@ -20,7 +20,7 @@ install_github("leandroroser/chunkR")
  tmp_path <- file.path(tempdir(),"iris.txt")
  write.table(iris, tmp_path, quote = FALSE)
  
- # create a reader object passing the path of the input file
+ # create a 'reader' object passing the path of the input file
  my_reader_object <- reader(tmp_path, chunksize = 30)
  
  # read a chunk
@@ -74,7 +74,7 @@ install_github("leandroroser/chunkR")
  # create a large table, and write it in a temporal directory
  
  my_table <- tempfile()
- write.table(matrix(sample(c("a", "t", "c", "g"), 1000000, replace = TRUE), 100000, 1000),     my_table)
+ write.table(matrix(sample(c("a", "t", "c", "g"), 1000000, replace = TRUE), 100000, 1000), my_table)
  
  # create a reader object, reading in chunks of 10000 lines
  my_reader_object_2 <- reader(my_table, chunksize = 10000)

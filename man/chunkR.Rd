@@ -41,7 +41,7 @@ Leandro Roser
  tmp_path <- file.path(tempdir(),"iris.txt")
  write.table(iris, tmp_path, quote = FALSE)
  
- # create object passing the path of the input file
+ # create a 'reader' object passing the path of the input file
  my_reader_object <- reader(tmp_path, chunksize = 30)
  
  # read a chunk
@@ -82,7 +82,7 @@ Leandro Roser
  
  write.table(iris, tmp_path_csv, quote = FALSE, sep = ",")
  
-#  # read the csv indicating the value of the sep parameter
+ # read the csv indicating the value of the sep parameter
  my_reader_object <- reader(tmp_path_csv, chunksize = 30, sep = ",")
  # the file can  then be processed as with tab delimiters
  
