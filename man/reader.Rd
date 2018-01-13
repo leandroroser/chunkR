@@ -41,10 +41,11 @@ data(iris)
 
 # write iris as tab delimited file. Note that quote is set to FALSE
 
-write.table(iris, "iris.txt", quote = FALSE)
+tmp_path <- file.path(tempdir(),"iris.txt")
+write.table(iris, tmp_path, quote = FALSE)
 
 # create object passing the path of the input file
-my_reader_object <- reader("iris.txt", chunksize = 30)
+my_reader_object <- reader(tmp_path, chunksize = 30)
 
 # read a chunk
 next_chunk(my_reader_object)
@@ -76,14 +77,19 @@ this_data_as_df <- get_dataframe(my_reader_object)
 # matrix (any R type) to dataframe
 this_data_as_df2 <- matrix2df(this_data)
 
+# remove temporal file
+file.remove(tmp_path)
 
 #--- read a csv file ---#
- tmp <- tempfile()
+tmp_path_csv <- file.path(tempdir(),"iris.txt")
 
-write.table(iris, tmp, quote = FALSE, sep = ",")
+write.table(iris, tmp_path_csv, quote = FALSE, sep = ",")
 
-my_reader_object <- reader(tmp, chunksize = 30, sep = ",")
+my_reader_object <- reader(tmp_path_csv, chunksize = 30, sep = ",")
 # the file can  then be processed as with tab delimiters
+
+# remove temporal file
+file.remove(tmp_path_csv)
 
 \dontrun{
 #--- Example with a large table ---#

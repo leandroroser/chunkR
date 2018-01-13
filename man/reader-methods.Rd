@@ -56,14 +56,7 @@ In addition, this information can be retrieved from reader objects:
 \item{\bold{get_completed}}{: get the number of rows already read}
 \item{\bold{get_colnames}}{: get column names of the reader object}
 }
-
-next_chunk
-
-get_matrix
-
-get_dataframe
-
-get_completed
-
-get_colnames
+}
+\details{
+See \code{\link{reader}} for examples.
 }

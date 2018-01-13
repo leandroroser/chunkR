@@ -25,6 +25,9 @@ setMethod( "initialize", "reader", function(.Object, path_, sep_, has_colnames_,
 #' \item{\bold{get_completed}}{: get the number of rows already read}
 #' \item{\bold{get_colnames}}{: get column names of the reader object}
 #' }
+#' 
+#' @details See \code{\link{reader}} for examples.
+#' 
 #' @param obj object of class reader
 #' @rdname reader-methods
 NULL
@@ -32,6 +35,7 @@ NULL
 
 #' next_chunk
 #' @name next_chunk
+#' @description NULL
 #' @rdname reader-methods
 #' @export
 setGeneric("next_chunk", function(obj) standardGeneric("next_chunk"))
@@ -48,6 +52,7 @@ setMethod("next_chunk", "reader", function(obj) {
 #' get_matrix
 #' @name get_matrix
 #' @rdname reader-methods
+#' @description NULL
 #' @export
 
 setGeneric("get_matrix", function(obj) standardGeneric("get_matrix"))
@@ -62,6 +67,7 @@ setMethod("get_matrix", "reader", function(obj) {
 
 #' get_dataframe
 #' @name get_dataframe
+#' @description NULL
 #' @rdname reader-methods
 #' @export
 
@@ -77,6 +83,7 @@ setMethod("get_dataframe", "reader", function(obj) {
 
 #' get_completed
 #' @name get_completed
+#' @description NULL
 #' @rdname reader-methods
 #' @export
 
@@ -93,6 +100,7 @@ setMethod("get_completed", "reader", function(obj) {
 #' get_colnames
 #' @name get_colnames
 #' @rdname reader-methods
+#' @description NULL
 #' @export
 
 setGeneric("get_colnames", function(obj) standardGeneric("get_colnames"))
