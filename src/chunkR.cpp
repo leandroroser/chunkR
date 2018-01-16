@@ -103,7 +103,7 @@ void reader::set_colnames() {
   }
   
   ifs.close();
-  // si no hay has_colnames, creaar uno default.
+  // si no hay has_colnames, crear uno default.
 }
 
 //' reader__next_chunk
