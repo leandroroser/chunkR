@@ -13,9 +13,19 @@
 \alias{get_dataframe,reader-method}
 \alias{get_dataframe,}
 \alias{reader-methods}
+\alias{get_table}
+\alias{get_table,reader-method}
+\alias{get_dataframe,}
+\alias{reader-methods}
+\alias{get_matrix2dataframe,reader-method}
+\alias{get_dataframe,}
+\alias{reader-methods}
 \alias{get_completed}
 \alias{get_completed,reader-method}
 \alias{get_completed,reader-methods}
+\alias{get_type}
+\alias{get_type,reader-method}
+\alias{get_type,reader-methods}
 \alias{get_colnames}
 \alias{get_colnames,reader-method}
 \title{Manipulation methods for reader objects}
@@ -32,9 +42,19 @@ get_dataframe(obj)
 
 \S4method{get_dataframe}{reader}(obj)
 
+get_table(obj)
+
+\S4method{get_table}{reader}(obj)
+
+\S4method{get_matrix2dataframe}{reader}(obj)
+
 get_completed(obj)
 
 \S4method{get_completed}{reader}(obj)
+
+get_type(obj)
+
+\S4method{get_type}{reader}(obj)
 
 get_colnames(obj)
 
@@ -47,8 +67,7 @@ get_colnames(obj)
 Reader objects can be manipulated with the following methods:
 \enumerate{
 \item{\bold{next_chunk}}{: allows to read the next chunk of a reader object}
-\item{\bold{get_matrix}}{: retrieve the current data chunk contained in the object, as matrix}
-\item{\bold{get_dataframe}}{: retrieves the current data chunk, as a data frame} 
+\item{\bold{get_table}}{: retrieve the current data chunk contained in the object}
 }
 
 In addition, this information can be retrieved from reader objects:
@@ -56,7 +75,10 @@ In addition, this information can be retrieved from reader objects:
 \item{\bold{get_completed}}{: get the number of rows already read}
 \item{\bold{get_colnames}}{: get column names of the reader object}
 }
+
+get_matrix
 }
 \details{
 See \code{\link{reader}} for examples.
 }
+\keyword{internal}

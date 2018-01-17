@@ -4,9 +4,16 @@
 #' @keywords internal
 
 setMethod( "initialize", "reader", function(.Object, path_, sep_, has_colnames_,
-                                            has_rownames_, chunksize_) {
+                                            has_rownames_, chunksize_, data_format_, 
+                                            columns_classes_) {
   path_ <- normalizePath(path_)
-  .Object@pointer  <- reader__new(path_, sep_, has_colnames_, has_rownames_, chunksize_)
+  if(data_format_ == "matrix") {
+  .Object@pointer  <- reader__new_matrix(path_, sep_, has_colnames_, has_rownames_,
+                                  chunksize_)
+  } else {
+    .Object@pointer  <- reader__new_data_frame(path_, sep_, has_colnames_, has_rownames_,
+                                           chunksize_, columns_classes_)
+  }
   .Object
 } )
 
@@ -16,8 +23,7 @@ setMethod( "initialize", "reader", function(.Object, path_, sep_, has_colnames_,
 #' @description Reader objects can be manipulated with the following methods:
 #' \enumerate{
 #' \item{\bold{next_chunk}}{: allows to read the next chunk of a reader object}
-#' \item{\bold{get_matrix}}{: retrieve the current data chunk contained in the object, as matrix}
-#' \item{\bold{get_dataframe}}{: retrieves the current data chunk, as a data frame} 
+#' \item{\bold{get_table}}{: retrieve the current data chunk contained in the object}
 #' }
 #' 
 #' In addition, this information can be retrieved from reader objects:
@@ -52,8 +58,7 @@ setMethod("next_chunk", "reader", function(obj) {
 #' get_matrix
 #' @name get_matrix
 #' @rdname reader-methods
-#' @description NULL
-#' @export
+#' @keywords internal
 
 setGeneric("get_matrix", function(obj) standardGeneric("get_matrix"))
 
@@ -69,7 +74,7 @@ setMethod("get_matrix", "reader", function(obj) {
 #' @name get_dataframe
 #' @description NULL
 #' @rdname reader-methods
-#' @export
+#' @keywords internal
 
 setGeneric("get_dataframe", function(obj) standardGeneric("get_dataframe"))
 
@@ -79,6 +84,36 @@ setGeneric("get_dataframe", function(obj) standardGeneric("get_dataframe"))
 
 setMethod("get_dataframe", "reader", function(obj) {
   reader__get_dataframe(obj@pointer)
+})
+
+#' get_table
+#' @name get_table
+#' @description NULL
+#' @rdname reader-methods
+#' @export
+setGeneric("get_table", function(obj) standardGeneric("get_table"))
+
+
+#' @aliases get_dataframe, reader-methods
+#' @rdname reader-methods
+
+setMethod("get_table", "reader", function(obj) {
+  what_is <- get_type(obj) 
+  if(what_is == "data.frame") {
+  reader__get_dataframe(obj@pointer)
+  } else {
+  reader__get_matrix(obj@pointer)
+  }
+})
+
+setGeneric("get_matrix2dataframe", function(obj) standardGeneric("get_matrix2dataframe"))
+
+
+#' @aliases get_dataframe, reader-methods
+#' @rdname reader-methods
+
+setMethod("get_matrix2dataframe", "reader", function(obj) {
+  reader__get_matrix2dataframe(obj@pointer)
 })
 
 #' get_completed
@@ -97,6 +132,22 @@ setMethod("get_completed", "reader", function(obj) {
   reader__get_completed(obj@pointer)
 })
 
+
+#' get_type
+#' @name get_type
+#' @description NULL
+#' @rdname reader-methods
+#' @export
+
+setGeneric("get_type", function(obj) standardGeneric("get_type"))
+
+
+#' @aliases get_type,reader-methods
+#' @rdname reader-methods
+
+setMethod("get_type", "reader", function(obj) {
+  reader__get_type(obj@pointer)
+})
 #' get_colnames
 #' @name get_colnames
 #' @rdname reader-methods

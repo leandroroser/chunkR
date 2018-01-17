@@ -15,18 +15,6 @@ matrix2df <- function(x) {
 #' @keywords internal
 NULL
 
-#' reader__destructor 
-#' @keywords internal
-NULL
-
-#' reader__set_colnames 
-#' @keywords internal
-NULL
-
-#' reader__next_chunk
-#' @keywords internal
-NULL
-
 #' reader__get_dataframe
 #' @keywords internal
 NULL
@@ -35,7 +23,7 @@ NULL
 #' @keywords internal
 NULL
 
-#' reader__get_matrix
+#' reader__get_completed
 #' @keywords internal
 NULL
 
@@ -43,8 +31,18 @@ NULL
 #' @keywords internal
 NULL
 
-reader__new <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_) {
-    .Call(`_chunkR_reader__new`, path_, sep_, has_colnames_, has_rownames_, chunksize_)
+#' validate_string
+#' @description Validate the input of a chunkR object. Useful for dispatching
+#' @param SEXP* args objects passed to the function
+#' @param nargs Number of arguments
+NULL
+
+reader__new_data_frame <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_) {
+    .Call(`_chunkR_reader__new_data_frame`, path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_)
+}
+
+reader__new_matrix <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_) {
+    .Call(`_chunkR_reader__new_matrix`, path_, sep_, has_colnames_, has_rownames_, chunksize_)
 }
 
 reader__set_colnames <- function(ptr) {
@@ -63,12 +61,20 @@ reader__get_matrix <- function(ptr) {
     .Call(`_chunkR_reader__get_matrix`, ptr)
 }
 
+reader__get_dataframe <- function(ptr) {
+    .Call(`_chunkR_reader__get_dataframe`, ptr)
+}
+
+reader__get_matrix2dataframe <- function(ptr) {
+    .Call(`_chunkR_reader__get_matrix2dataframe`, ptr)
+}
+
 reader__get_completed <- function(ptr) {
     .Call(`_chunkR_reader__get_completed`, ptr)
 }
 
-reader__get_dataframe <- function(ptr) {
-    .Call(`_chunkR_reader__get_dataframe`, ptr)
+reader__get_type <- function(ptr) {
+    .Call(`_chunkR_reader__get_type`, ptr)
 }
 
 # Register entry points for exported C++ functions

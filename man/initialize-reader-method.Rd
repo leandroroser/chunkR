@@ -6,7 +6,7 @@
 \title{reader initializer}
 \usage{
 \S4method{initialize}{reader}(.Object, path_, sep_, has_colnames_,
-  has_rownames_, chunksize_)
+  has_rownames_, chunksize_, data_format_, columns_classes_)
 }
 \description{
 reader initializer
