@@ -1,0 +1,6 @@
+chunkR 1.1.0 (Release date: 2019-01-30)
+==============
+Changes:
+
+* Added functionality to read data frames
+* Improvement of the interface and correction of bugs
