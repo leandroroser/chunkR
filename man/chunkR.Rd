@@ -79,7 +79,7 @@ data(iris)
  ## Four types can be passed : "character", "numeric" (aka "double"), "integer", "logical"
  
  # create a 'reader' object passing the path of the input file.
- my_reader_object3 <- reader("iris.txt", chunksize = 120, 
+ my_reader_object3 <- reader(tmp_path, chunksize = 120, 
                               columns_classes = c("numeric", "numeric", 
                               "numeric","numeric", "character"))
  
