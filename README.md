@@ -83,11 +83,8 @@ install_github("leandroroser/chunkR")
  # store the chunk as a character matrix in R
  this_data <- get_table(my_reader_object4)
  
- # Matrix data can be converted to data frame with the C++ method get_dataframe. 
- # , which is much faster than the native function "as.data.frame"
- this_data_as_df <- get_dataframe(my_reader_object4)
  
- # The package also provides a fast generic C++ function for conversion from
+ # The package provides a fast generic C++ function for conversion from
  # matrix (any R type) to dataframe
  this_data_as_df2 <- matrix2df(this_data)
  
