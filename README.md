@@ -1,4 +1,8 @@
 
+<img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right" alt = "chunkR icon">
+<br/>
+
+# chunkR 1.1.0 
 | [Linux][lin-link] | [Windows][win-link] | [R][R-link]          |
 | :---------------: | :-----------------: | :-------------------:|
 | ![lin-badge]      | ![win-badge]        | ![R-badge]           |
@@ -10,12 +14,6 @@
 [win-link]: https://ci.appveyor.com/project/leandroroser/chunkR "AppVeyor build status"
 [R-badge]: https://img.shields.io/badge/R%3E%3D-3.0-red.svg "R site"
 [R-link]:  https://cran.r-project.org/web/packages/chunkR/index.html "R site"
-
-
-<img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right" alt = "chunkR icon">
-
-# chunkR 1.1.0
-
 
 
 <br/>
