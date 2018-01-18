@@ -1,5 +1,6 @@
 
-# chunkR 1.1.0  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="middle" margin-left="100px" alt = "chunkR icon"> 
+chunkR 1.1.0  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="200px" align="right"  alt = "chunkR icon"> 
+======================================================
 
 
 | [Linux][lin-link] | [Windows][win-link] | [R][R-link]          |
