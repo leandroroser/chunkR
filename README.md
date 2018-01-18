@@ -2,7 +2,7 @@
 | :---------------: | :-----------------: | :-------------------:|
 | ![lin-badge]      | ![win-badge]        | ![R-badge]           |
 
-## chunkR 1.1.0 <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right'" alt = "dbR6 icon">
+<div><h1> chunkR 1.1.0 </h1> <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right'" alt = "dbR6 icon"> </div>
 
 <br/>
 
