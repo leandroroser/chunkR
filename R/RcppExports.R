@@ -11,12 +11,49 @@ matrix2df <- function(x) {
     .Call(`_chunkR_matrix2df`, x)
 }
 
-#' reader__reader
+#' reader, matrix-constructor
 #' @keywords internal
 NULL
 
-#' reader__get_dataframe
+#' reader, dataframe-constructor
 #' @keywords internal
+NULL
+
+#' reader__destructor 
+#' @keywords internal
+NULL
+
+#' reader__next_chunk
+#' @keywords internal
+NULL
+
+#' reader__next_chunk_matrix
+#' @keywords internal
+NULL
+
+#' reader__next_chunk_df
+#' @keywords internal
+NULL
+
+#' reader__set_colnames 
+#' @keywords internal
+NULL
+
+#' set_generic_rownames
+#' @keywords internal
+NULL
+
+#' set_generic_colnames
+#' @keywords internal
+NULL
+
+#'get_matrix
+#'@keywords internal
+NULL
+
+#'get_dataframe
+#'@keywords internal
+#'
 NULL
 
 #' reader__get_colnames
@@ -27,14 +64,18 @@ NULL
 #' @keywords internal
 NULL
 
-#' reader__get_completed
+#' reader__get_type
 #' @keywords internal
 NULL
 
-#' validate_string
-#' @description Validate the input of a chunkR object. Useful for dispatching
-#' @param SEXP* args objects passed to the function
-#' @param nargs Number of arguments
+#' mixed_list
+#' @keywords internal
+NULL
+
+#' validatos
+NULL
+
+#' reader_module
 NULL
 
 reader__new_data_frame <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_) {
@@ -45,16 +86,12 @@ reader__new_matrix <- function(path_, sep_, has_colnames_, has_rownames_, chunks
     .Call(`_chunkR_reader__new_matrix`, path_, sep_, has_colnames_, has_rownames_, chunksize_)
 }
 
-reader__set_colnames <- function(ptr) {
-    .Call(`_chunkR_reader__set_colnames`, ptr)
-}
-
 reader__next_chunk <- function(ptr) {
     .Call(`_chunkR_reader__next_chunk`, ptr)
 }
 
-reader__get_colnames <- function(ptr) {
-    .Call(`_chunkR_reader__get_colnames`, ptr)
+reader__set_colnames <- function(ptr) {
+    .Call(`_chunkR_reader__set_colnames`, ptr)
 }
 
 reader__get_matrix <- function(ptr) {
@@ -65,8 +102,8 @@ reader__get_dataframe <- function(ptr) {
     .Call(`_chunkR_reader__get_dataframe`, ptr)
 }
 
-reader__get_matrix2dataframe <- function(ptr) {
-    .Call(`_chunkR_reader__get_matrix2dataframe`, ptr)
+reader__get_colnames <- function(ptr) {
+    .Call(`_chunkR_reader__get_colnames`, ptr)
 }
 
 reader__get_completed <- function(ptr) {

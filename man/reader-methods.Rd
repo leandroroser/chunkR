@@ -6,47 +6,31 @@
 \alias{next_chunk}
 \alias{next_chunk,reader-method}
 \alias{next_chunk,reader-methods}
-\alias{get_matrix}
-\alias{get_matrix,reader-method}
-\alias{get_matrix,reader-methods}
-\alias{get_dataframe}
-\alias{get_dataframe,reader-method}
-\alias{get_dataframe,}
-\alias{reader-methods}
 \alias{get_table}
 \alias{get_table,reader-method}
 \alias{get_dataframe,}
 \alias{reader-methods}
-\alias{get_matrix2dataframe,reader-method}
-\alias{get_dataframe,}
-\alias{reader-methods}
+\alias{get_colnames}
+\alias{get_colnames,reader-method}
 \alias{get_completed}
 \alias{get_completed,reader-method}
 \alias{get_completed,reader-methods}
 \alias{get_type}
 \alias{get_type,reader-method}
 \alias{get_type,reader-methods}
-\alias{get_colnames}
-\alias{get_colnames,reader-method}
 \title{Manipulation methods for reader objects}
 \usage{
 next_chunk(obj)
 
 \S4method{next_chunk}{reader}(obj)
 
-get_matrix(obj)
-
-\S4method{get_matrix}{reader}(obj)
-
-get_dataframe(obj)
-
-\S4method{get_dataframe}{reader}(obj)
-
 get_table(obj)
 
 \S4method{get_table}{reader}(obj)
 
-\S4method{get_matrix2dataframe}{reader}(obj)
+get_colnames(obj)
+
+\S4method{get_colnames}{reader}(obj)
 
 get_completed(obj)
 
@@ -55,10 +39,6 @@ get_completed(obj)
 get_type(obj)
 
 \S4method{get_type}{reader}(obj)
-
-get_colnames(obj)
-
-\S4method{get_colnames}{reader}(obj)
 }
 \arguments{
 \item{obj}{object of class reader}
@@ -75,10 +55,7 @@ In addition, this information can be retrieved from reader objects:
 \item{\bold{get_completed}}{: get the number of rows already read}
 \item{\bold{get_colnames}}{: get column names of the reader object}
 }
-
-get_matrix
 }
 \details{
 See \code{\link{reader}} for examples.
 }
-\keyword{internal}

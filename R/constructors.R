@@ -200,10 +200,12 @@ setGeneric("reader", function(path, sep = " ", has_colnames = TRUE,
   
   
   if(autodetect) {
-    x <- read.table(path, nrows = scan_rows, header = has_colnames, row.names = ifelse(has_rownames, 1, NULL), 
+    x <- read.table(path, nrows = scan_rows, header = has_colnames, 
+                    row.names = ifelse(has_rownames, 1, NULL), 
                     stringsAsFactors = FALSE, sep = sep)
     x <- lapply(as.list(x), typeof)
     columns_classes <- unname(unlist(x))
   }
-  new("reader", path, sep, has_colnames, has_rownames, chunksize, data_format, columns_classes)
+  new("reader", path, sep, has_colnames, has_rownames, chunksize, 
+      data_format, columns_classes)
 })

@@ -11,6 +11,7 @@ namespace _chunkR {
 class reader {
 
 public:
+  // constructors & destructor-----
   // matrix constructor
   reader(const std::string path, char sep, bool has_colnames, bool has_rownames,
          size_t chunksize, StringVector column_types);
@@ -18,19 +19,26 @@ public:
 	reader(const std::string path, char sep, bool has_colnames, bool has_rownames,
 			size_t chunksize);
 	virtual ~reader();
-	inline List mixed_list(std::vector<int> x,  int howmuch);
-	void set_colnames();
+	
+	// next chunk ------------------
 	bool next_chunk();
 	bool next_chunk_matrix();
 	bool next_chunk_df();
-	StringVector get_colnames();
-	size_t get_completed();
-	StringMatrix get_matrix();
-	DataFrame get_dataframe();
-	DataFrame get_matrix2dataframe();
-	const std::string get_type();
+	
+  // setters ---------------------
+	void set_colnames();
 	std::vector<std::string> set_generic_rownames(std::string what, size_t start_from, size_t n_row);
 	std::vector<std::string> set_generic_colnames(std::string what, size_t start_from, size_t n_col);
+	
+	// getters --------------------
+	StringMatrix get_matrix();
+	DataFrame get_dataframe();
+	StringVector get_colnames();
+	size_t get_completed();
+	const std::string get_type();	
+	
+	// auxiliary ------------------
+	inline List mixed_list(std::vector<int> x,  int howmuch);
 
 private:
 	const std::string path;
@@ -47,14 +55,13 @@ private:
 	std::vector<std::string> cnames;
 	size_t n_lines;
 	
-	std::ifstream ifs;
+	std::ifstream line_container;
 	size_t pointer_position;
 
 	std::string* line;
 	std::string* element;
 	size_t lines_completed;
-	std::vector<std::string> temp;
-	bool shorter_table;
+	std::vector<std::string> word;
   
 	struct chunkInfo {
 	  StringMatrix m;

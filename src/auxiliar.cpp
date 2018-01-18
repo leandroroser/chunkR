@@ -10,12 +10,12 @@ DataFrame matrix2df_(Matrix<RTYPE> x) {
   size_t n_col = x.ncol();
   StringVector rnames;
   StringVector cnames;
- 
+  
   List output(n_col);
   for (size_t i = 0; i < n_col; ++i) {
     output[i] = x(_, i);
   }
-
+  
   if(Rf_isNull(rownames(x))) {
     std::ostringstream os;
     for (size_t i = 1; i <= n_row; ++i) {
