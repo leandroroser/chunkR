@@ -1,12 +1,12 @@
-| [Linux][lin-link] | [Windows][win-link] | [R][R-link]          |
-| :---------------: | :-----------------: | :-------------------:|
-| ![lin-badge]      | ![win-badge]        | ![R-badge]           |
+
 <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right" alt = "chunkR icon">
-<br/>
 <br/>
 
 # chunkR 1.1.0 
 
+| [Linux][lin-link] | [Windows][win-link] | [R][R-link]          |
+| :---------------: | :-----------------: | :-------------------:|
+| ![lin-badge]      | ![win-badge]        | ![R-badge]           |
 
 [lin-badge]: https://travis-ci.org/leandroroser/EcoGenetics-devel.svg?branch=master "Travis build status"
 [lin-link]:  https://travis-ci.org/leandroroser/chunkR.svg?branch=master "Travis build status"
