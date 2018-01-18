@@ -1,3 +1,5 @@
+<div stype "display: inline-block; vertical-align: middle;"><h1> chunkR 1.1.0 </h1> <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right'" alt = "dbR6 icon"> </div>
+
 | [Linux][lin-link] | [Windows][win-link] | [R][R-link]          |
 | :---------------: | :-----------------: | :-------------------:|
 | ![lin-badge]      | ![win-badge]        | ![R-badge]           |
@@ -11,8 +13,6 @@
 [R-link]:  https://cran.r-project.org/web/packages/chunkR/index.html "R site"
 
 <br/>
-
-<div stype "display: inline-block; vertical-align: middle;"><h1> chunkR 1.1.0 </h1> <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right'" alt = "dbR6 icon"> </div>
 
 This package allows to read long data tables by chunks in R, using a fast C++ backend. The program can read dataframe (with column type detection) or matrix data. The program reads each chunk with the next_chunk() function (that return TRUE), and makes it accessible via the get_table() function. After reading all the file, the next_chunk() function returns FALSE and the get_data() function an empty dataframe/matrix.
 
