@@ -2,7 +2,7 @@
 | :---------------: | :-----------------: | :-------------------:|
 | ![lin-badge]      | ![win-badge]        | ![R-badge]           |
 
-## chunkR 1.1.0 <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="left" alt = "dbR6 icon">
+## chunkR 1.1.0 <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right" alt = "dbR6 icon">
 
 [lin-badge]: https://travis-ci.org/leandroroser/EcoGenetics-devel.svg?branch=master "Travis build status"
 [lin-link]:  https://travis-ci.org/leandroroser/chunkR.svg?branch=master "Travis build status"
