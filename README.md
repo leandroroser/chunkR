@@ -1,7 +1,20 @@
 ## chunkR 1.1.0 <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="right" alt = "dbR6 icon">
   
+<br/>
 
-[![Build Status](https://travis-ci.org/leandroroser/chunkR.svg?branch=master)](https://travis-ci.org/leandroroser/chunkR.svg?branch=master) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true)](https://ci.appveyor.com/project/leandroroser/chunkR) [![R](https://img.shields.io/badge/R%3E%3D-3.0-red.svg)](https://img.shields.io/badge/R%3E%3D-3.0-red.svg) 
+| [Linux][lin-link] | [Windows][win-link] | [R][R-link]          |
+| :---------------: | :-----------------: | :-------------------:|
+| ![lin-badge]      | ![win-badge]        | ![R-badge]           |
+
+
+[lin-badge]: https://travis-ci.org/leandroroser/EcoGenetics-devel.svg?branch=master "Travis build status"
+[lin-link]:  https://travis-ci.org/leandroroser/chunkR.svg?branch=master "Travis build status"
+[win-badge]: https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true "AppVeyor build status"
+[win-link]: https://ci.appveyor.com/project/leandroroser/chunkR "AppVeyor build status"
+[R-badge]: https://img.shields.io/badge/R%3E%3D-3.0-red.svg "R site"
+[R-link]:  https://cran.r-project.org/web/packages/chunkR/index.html "R site"
+
+<br/>
 
 This package allows to read long data tables by chunks in R, using a fast C++ backend. The program can read dataframe (with column type detection) or matrix data. The program reads each chunk with the next_chunk() function (that return TRUE), and makes it accessible via the get_table() function. After reading all the file, the next_chunk() function returns FALSE and the get_data() function an empty dataframe/matrix.
 
