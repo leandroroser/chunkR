@@ -1,5 +1,5 @@
 
-<img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="center" alt = "chunkR icon">
+<img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="250px" align="middle" alt = "chunkR icon">
 <br/>
 
 # chunkR 1.1.0 
