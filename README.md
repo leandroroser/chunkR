@@ -1,4 +1,4 @@
-<br/> chunkR 1.1.0 <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/blank.png" width="300px" align="right"  alt = "blank"/>  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="230px" align="right"  alt = "chunkR icon"/> 
+<br/> chunkR 1.1.0 <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/blank.png" height = "100px" width="100px" align="right"  alt = "blank"/>  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="230px" align="right"  alt = "chunkR icon"/> 
 ======================================================
 
 
