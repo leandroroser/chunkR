@@ -73,9 +73,9 @@
 #' # remove temporal file
 #' file.remove(tmp_path_csv)
 #' 
-#' #----------------------------------------------------#
-#' #--- Reading a dataframe passing the column types ---#
-#' #----------------------------------------------------#
+#' #-------------------------------------------------------#
+#' #--- Reading a dataframe using column types argument ---#
+#' #-------------------------------------------------------#
 #' 
 #' ## Four types can be passed : "character", "numeric" (aka "double"), "integer", "logical"
 #' 
