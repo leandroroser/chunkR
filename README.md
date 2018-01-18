@@ -1,5 +1,6 @@
-chunkR 1.1.0  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="200px" align="right"  alt = "chunkR icon"> 
+chunkR 1.1.0  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="200px" align="right"  alt = "chunkR icon"/> 
 ======================================================
+
 
 [![Build Status](https://travis-ci.org/leandroroser/chunkR.svg?branch=master)](https://travis-ci.org/leandroroser/chunkR.svg?branch=master) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true)](https://ci.appveyor.com/project/leandroroser/chunkR) [![R](https://img.shields.io/badge/R%3E%3D-3.0-red.svg)](https://img.shields.io/badge/R%3E%3D-3.0-red.svg) 
 
