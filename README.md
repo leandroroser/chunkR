@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/leandroroser/chunkR.svg?branch=master)](https://travis-ci.org/leandroroser/chunkR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true)](https://ci.appveyor.com/project/leandroroser/chunkR) [![R](https://www.r-pkg.org/badges/version/chunkR)](https://CRAN.R-project.org/package=chunkR) [![Coverage status](https://codecov.io/gh/leandroroser/chunkR/branch/master/graph/badge.svg)](https://codecov.io/github/leandroroser/chunkR?branch=master)
 
 <br/><br/><br/><br/><br/><br/>
-This package allows to read long data tables by chunks in R, using a fast C++ backend. The program can read data frame (with column type detection) or matrix data. The program reads each chunk with the next_chunk() function (that return TRUE), and makes it accessible via the get_table() function. After reading all the file, the next_chunk() function returns FALSE and the get_data() function an empty data frame/matrix.
+This package allows to read long data tables in chunks, using a fast C++ backend. ChunkR can read data frames (with column type detection) or matrices. The program reads each chunk with the next_chunk() function (that returns TRUE), and makes them accessible via the get_table() function. After reading all the file, the next_chunk() function returns FALSE and the get_data() function an empty data frame/matrix.
 
 Installation
 ------------
@@ -117,7 +117,7 @@ out <- data.frame(numeric_data = runif(1000000),
                   bool_data = sample(c(TRUE, FALSE), 1000000, replace = TRUE))
 
 
-write.table(out, tmp_path)
+write.table(out, tmp_path, quote = FALSE)
 
 # create a chunker object, reading in chunks of 10000 lines
 my_chunker_object5 <- chunker(tmp_path, chunksize = 10000)
@@ -136,7 +136,7 @@ file.remove(tmp_path)
 
 my_table <- tempfile()
 write.table(matrix(sample(c("a", "t", "c", "g"), 1000000, replace = TRUE), 
-100000, 1000), my_table)
+100000, 1000), my_table, quote = FALSE)
 
 # create a chunker object, reading in chunks of 10000 lines
 my_chunker_object6 <- chunker(my_table, chunksize = 10000, data_format= "matrix")

@@ -130,7 +130,7 @@ out <- data.frame(numeric_data = runif(1000000),
                   bool_data = sample(c(TRUE, FALSE), 1000000, replace = TRUE))
 
 
-write.table(out, tmp_path)
+write.table(out, tmp_path, quote = FALSE)
 
 # create a chunker object, reading in chunks of 10000 lines
 my_chunker_object5 <- chunker(tmp_path, chunksize = 10000)
@@ -149,7 +149,7 @@ file.remove(tmp_path)
 
 my_table <- tempfile()
 write.table(matrix(sample(c("a", "t", "c", "g"), 1000000, replace = TRUE), 
-100000, 1000), my_table)
+100000, 1000), my_table, quote = FALSE)
 
 # create a chunker object, reading in chunks of 10000 lines
 my_chunker_object6 <- chunker(my_table, chunksize = 10000, data_format= "matrix")
