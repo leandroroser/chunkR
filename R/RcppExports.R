@@ -72,12 +72,6 @@ NULL
 #' @keywords internal
 NULL
 
-#' validatos
-NULL
-
-#' chunker_module
-NULL
-
 chunker__new_data_frame <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_) {
     .Call(`_chunkR_chunker__new_data_frame`, path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_)
 }

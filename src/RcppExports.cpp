@@ -142,8 +142,6 @@ RcppExport SEXP _chunkR_RcppExport_registerCCallable() {
     return R_NilValue;
 }
 
-RcppExport SEXP _rcpp_module_boot_chunker_module();
-
 static const R_CallMethodDef CallEntries[] = {
     {"_chunkR_matrix2df", (DL_FUNC) &_chunkR_matrix2df, 1},
     {"_chunkR_chunker__new_data_frame", (DL_FUNC) &_chunkR_chunker__new_data_frame, 6},
@@ -155,7 +153,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_chunkR_chunker__get_colnames", (DL_FUNC) &_chunkR_chunker__get_colnames, 1},
     {"_chunkR_chunker__get_completed", (DL_FUNC) &_chunkR_chunker__get_completed, 1},
     {"_chunkR_chunker__get_type", (DL_FUNC) &_chunkR_chunker__get_type, 1},
-    {"_rcpp_module_boot_chunker_module", (DL_FUNC) &_rcpp_module_boot_chunker_module, 0},
     {"_chunkR_RcppExport_registerCCallable", (DL_FUNC) &_chunkR_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}
 };

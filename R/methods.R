@@ -135,10 +135,10 @@ setMethod("get_type", "chunker", function(obj) {
 
 
 #-------------
-# Add documentation to matrix2df
+# Add documentation for matrix2df
 
 #' matrix2df
-#' @description conversion from matrix to DataFrame
-#' @param x matrix
+#' @description conversion from matrix to data frame
+#' @param x A matrix
 #' @export
 NULL

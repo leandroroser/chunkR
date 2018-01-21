@@ -19,4 +19,3 @@ Author: Leandro Roser [aut, cre]
 Suggests: 
     testthat,
     covr
-RcppModules: chunker

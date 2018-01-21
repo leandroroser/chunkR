@@ -493,37 +493,38 @@ inline List chunker::mixed_list(std::vector<int> x,  int howmuch) {
   return output;
 }
 
-//--------------------------------------------
-// MODULE
-//--------------------------------------------
 
-//' validatos
-
-bool validate_C1(SEXP* args, int nargs) {
-  if( nargs != 6 ) return false;
-  return true;
-}
-
-bool validate_C2(SEXP* args, int nargs) {
-  if( nargs != 5 ) return false;
-  return true;
-}
-
-//' chunker_module
-
-RCPP_MODULE(chunker_module) {
-  class_<chunker>("chunker")
-  .constructor<std::string, char, bool, bool, size_t, StringVector >("data.frame constructor", &validate_C1)
-  .constructor<std::string, char, bool, bool, size_t>("matrix constructor", &validate_C2)
-  .method("get_colnames", &chunker::get_colnames)
-  .method("next_chunk", &chunker::next_chunk)
-  .method("get_matrix", &chunker::get_matrix)
-  .method("get_dataframe", &chunker::get_dataframe)
-  //.method("get_matrix2dataframe", &chunker::get_matrix2dataframe) DEPRECATED IN chunkR 1.1.0
-  .method("get_completed", &chunker::get_completed)
-  .method("get_type", &chunker::get_completed)
-  ;
-}
+// //--------------------------------------------
+// // MODULE
+// //--------------------------------------------
+// 
+// //' validatos
+// 
+// bool validate_C1(SEXP* args, int nargs) {
+//   if( nargs != 6 ) return false;
+//   return true;
+// }
+// 
+// bool validate_C2(SEXP* args, int nargs) {
+//   if( nargs != 5 ) return false;
+//   return true;
+// }
+// 
+// //' chunker_module
+// 
+// RCPP_MODULE(chunker_module) {
+//   class_<chunker>("chunker")
+//   .constructor<std::string, char, bool, bool, size_t, StringVector >("data.frame constructor", &validate_C1)
+//   .constructor<std::string, char, bool, bool, size_t>("matrix constructor", &validate_C2)
+//   .method("get_colnames", &chunker::get_colnames)
+//   .method("next_chunk", &chunker::next_chunk)
+//   .method("get_matrix", &chunker::get_matrix)
+//   .method("get_dataframe", &chunker::get_dataframe)
+//   //.method("get_matrix2dataframe", &chunker::get_matrix2dataframe) DEPRECATED IN chunkR 1.1.0
+//   .method("get_completed", &chunker::get_completed)
+//   .method("get_type", &chunker::get_completed)
+//   ;
+// }
 
 //--------------------------------------------
 // DEPRECATED
