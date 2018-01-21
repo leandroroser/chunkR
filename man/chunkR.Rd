@@ -6,13 +6,12 @@
  Read Tables in Chunks
 }
 \description{
-  Read external data tables in chunks using a C++ backend.
+  Read external data tables chunk by chunk using a C++ backend and a simple R interface.
 }
 
 \details{
- This package allows to read long data tables by chunks in R, using a fast C++ backend. 
- 
-The objects of class "chunker" are the central elements of the chunkR package. These objects can store a data chunk and other information required for the process of reading a file in pieces via C++. A chunker object is created with the \code{\link{chunker}} function, that requires the path to a file, and other arguments, as the size of the chunk. Two basic methods are defined to manipulate the object:
+This package allows to read long data tables in chunks.
+The objects of class "chunker" are the central elements of the chunkR package. These objects can store a data chunk and other information required for the process of reading a file in pieces. A chunker object is created with the \code{\link{chunker}} function, that requires the path to a file, and other arguments, as the size of the chunk. Two basic methods are defined to manipulate the object:
 
 - \code{\link{next_chunk}} function to read the next chunk
 
@@ -21,7 +20,7 @@ The objects of class "chunker" are the central elements of the chunkR package. T
 
 The functions \code{\link{get_completed}} and \code{\link{get_colnames}} allow to get the number of rows already read, and the column names of the table.
 
-This package allows to read long data tables by chunks in R, using a fast C++ backend. The program can read dataframe (with column type detection) or matrix data. The program reads each chunk with the \code{\link{next_chunk}} function (that return TRUE), and makes it accessible via the \code{\link{get_table}} function. After reading all the file, \code{\link{next_chunk}} function returns FALSE and the \code{\link{get_table}} function an empty dataframe/matrix.
+The program can read data frames (with column type detection) or matrices. The program reads each chunk with the \code{\link{next_chunk}} function (that return TRUE), and makes it accessible via the \code{\link{get_table}} function. After reading all the file, \code{\link{next_chunk}} function returns FALSE and the \code{\link{get_table}} function an empty data frame/matrix.
  
 }
 \author{
@@ -40,7 +39,7 @@ tmp_path <- file.path(tempdir(),"iris.txt")
 write.table(iris, tmp_path, quote = FALSE)
 
 #----------------------------------------------------------------#
-#--- Reading a dataframe with automatic column-type detection ---#
+#--- Reading a data frame with automatic column-type detection ---#
 #----------------------------------------------------------------#
 
 # create a 'chunker' object passing the path of the input file.
@@ -73,7 +72,7 @@ my_chunker_object2 <- chunker(tmp_path_csv, chunksize = 30, sep = ",")
 file.remove(tmp_path_csv)
 
 #-------------------------------------------------------#
-#--- Reading a dataframe using column types argument ---#
+#--- Reading a data frame using column types argument ---#
 #-------------------------------------------------------#
 
 ## Four types can be passed : "character", "numeric" (aka "double"), "integer", "logical"
@@ -106,20 +105,21 @@ this_data <- get_table(my_chunker_object4)
 
 
 # The package provides a fast generic C++ function for conversion from
-# matrix (any R type) to dataframe
+# matrix (any R type) to data frame
 this_data_as_df2 <- matrix2df(this_data)
 
 # remove temporal file
 file.remove(tmp_path)
 
 
+ \dontrun{
 #----------------------------------#
 #--- Example with a big table -----#
 #----------------------------------#
 
-### Example 2 with a dataframe
+### Example with a data frame
 
-# create a large dataframe, and write it in a temporal directory
+# create a large data frame, and write it in a temporal directory
 
 tmp_path <- file.path(tempdir(),"big_table.txt")
 
@@ -143,7 +143,7 @@ lapply(data,typeof)
 file.remove(tmp_path)
 
 
-### Example 2 with a matrix
+### Example with a matrix
 
 # create a large matrix, and write it in a temporal directory
 
@@ -170,5 +170,5 @@ while(next_chunk(my_chunker_object6))
 
 # remove the temporal file
 file.remove(my_table)
-
+}
 }

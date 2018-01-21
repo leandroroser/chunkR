@@ -26,18 +26,18 @@ chunker(path, sep = " ", has_colnames = TRUE, has_rownames = TRUE,
 
 \item{autodetect}{Use auto-detection of columns classes? Default TRUE.}
 
-\item{scan_rows}{How many rows scan for auto-detection of columns classes. Default 10. Note
-that this value shoud be increased when columns present all NA values in the first scan_rows rows.
-This checking is perfomed via a call to read.table with the scan_rows parameter passed as nrows,
-and posterior extraction of the corresponding classes detected in the call.}
+\item{scan_rows}{How many rows to scan for auto-detection of columns classes. Default 10. Note
+that this value shoud be increased when columns present all NA values in the first scan_rows ranger of rows.
+Checking is perfomed via a call to read.table with the scan_rows value passed to the nrows parameter,
+and the posterior extraction of the corresponding classes detected in this call.}
 }
 \description{
 The objects of class "chunker" are the central elements of the
 chunkR package. These objects can store a data chunk and other 
-information required for the process of reading a file in pieces via C++.
+information required for the process of reading a file in pieces.
 A chunker object is created with the chunker() function, 
 that requires the path to a file, and other arguments, as the size of the chunk 
-and the data type ("dataframe" or "matrix").
+and the data type ("data.frame" or "matrix").
 Two basic methods are defined to manipulate the object: 
 
 -  \code{\link{next_chunk}} function to read the next chunk
@@ -58,9 +58,9 @@ data(iris)
 tmp_path <- file.path(tempdir(),"iris.txt")
 write.table(iris, tmp_path, quote = FALSE)
 
-#----------------------------------------------------------------#
-#--- Reading a dataframe with automatic column-type detection ---#
-#----------------------------------------------------------------#
+#-----------------------------------------------------------------#
+#--- Reading a data frame with automatic column-type detection ---#
+#-----------------------------------------------------------------#
 
 # create a 'chunker' object passing the path of the input file.
 my_chunker_object <- chunker(tmp_path, chunksize = 30)
@@ -91,9 +91,9 @@ my_chunker_object2 <- chunker(tmp_path_csv, chunksize = 30, sep = ",")
 # remove temporal file
 file.remove(tmp_path_csv)
 
-#-------------------------------------------------------#
-#--- Reading a dataframe using column types argument ---#
-#-------------------------------------------------------#
+#--------------------------------------------------------#
+#--- Reading a data frame using column types argument ---#
+#--------------------------------------------------------#
 
 ## Four types can be passed : "character", "numeric" (aka "double"), "integer", "logical"
 
@@ -125,7 +125,7 @@ this_data <- get_table(my_chunker_object4)
 
 
 # The package provides a fast generic C++ function for conversion from
-# matrix (any R type) to dataframe
+# matrix (any R type) to data frame
 this_data_as_df2 <- matrix2df(this_data)
 
 # remove temporal file
@@ -137,9 +137,9 @@ file.remove(tmp_path)
 #--- Example with a big table -----#
 #----------------------------------#
 
-### Example 2 with a dataframe
+### Example with a data frame
 
-# create a large dataframe, and write it in a temporal directory
+# create a large data frame, and write it in a temporal directory
 
 tmp_path <- file.path(tempdir(),"big_table.txt")
 
@@ -163,7 +163,7 @@ lapply(data,typeof)
 file.remove(tmp_path)
 
 
-### Example 2 with a matrix
+### Example with a matrix
 
 # create a large matrix, and write it in a temporal directory
 

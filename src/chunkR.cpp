@@ -31,7 +31,7 @@ namespace _chunkR {
 
 chunker::chunker(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize) :
 path(path), sep(sep), has_colnames(has_colnames),
-has_rownames(has_rownames), chunksize(chunksize), n_row(0), n_col(0), output_format("matrix"),
+has_rownames(has_rownames), chunksize(chunksize), output_format("matrix"), n_row(0), n_col(0),
 rnames([&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), 
 cnames([] {std::vector<std::string> out; return out;}()), 
 pointer_position(0), line(new std::string), element(new std::string), 
@@ -53,8 +53,7 @@ lines_completed(0), word(auto_vector) {
 chunker::chunker(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize,
                StringVector column_types) :
 path(path), sep(sep), has_colnames(has_colnames),
-has_rownames(has_rownames), chunksize(chunksize), n_row(0), n_col(0),
-output_format("data.frame"),
+has_rownames(has_rownames), chunksize(chunksize), output_format("data.frame"), n_row(0), n_col(0),
 rnames([&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), 
 cnames([] {std::vector<std::string> out; return out;}()), 
 pointer_position(0), line(new std::string), element(new std::string), 
