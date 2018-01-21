@@ -1,4 +1,4 @@
-chunkR 1.1.0 (Release date: 2019-01-30)
+chunkR 1.1.0 (Release date: 2018-01-21)
 ==============
 Changes:
 * The reader class was renamed as chunker for consistency with the package.
