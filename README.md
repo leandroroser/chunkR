@@ -2,7 +2,7 @@
 ======================================================
 
 
-[![Build Status](https://travis-ci.org/leandroroser/chunkR.svg?branch=master)](https://travis-ci.org/leandroroser/chunkR.svg?branch=master) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true)](https://ci.appveyor.com/project/leandroroser/chunkR) [![R](https://img.shields.io/badge/R%3E%3D-3.0-red.svg)](https://img.shields.io/badge/R%3E%3D-3.0-red.svg) [![Coverage status](https://codecov.io/gh/leandroroser/reader/branch/master/graph/badge.svg)](https://codecov.io/github/leandroroser/reader?branch=master)
+[![Build Status](https://travis-ci.org/leandroroser/chunkR.svg?branch=master)](https://travis-ci.org/leandroroser/chunkR.svg?branch=master) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true)](https://ci.appveyor.com/project/leandroroser/chunkR) [![R](https://img.shields.io/badge/R%3E%3D-3.0-red.svg)](https://img.shields.io/badge/R%3E%3D-3.0-red.svg) [![Coverage status](https://codecov.io/gh/leandroroser/chunkR/branch/master/graph/badge.svg)](https://codecov.io/github/leandroroser/chunkR?branch=masterr)
 
 <br/><br/><br/><br/><br/><br/>
 This package allows to read long data tables by chunks in R, using a fast C++ backend. The program can read dataframe (with column type detection) or matrix data. The program reads each chunk with the next_chunk() function (that return TRUE), and makes it accessible via the get_table() function. After reading all the file, the next_chunk() function returns FALSE and the get_data() function an empty dataframe/matrix.
