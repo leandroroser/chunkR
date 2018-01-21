@@ -5,7 +5,11 @@
 [![Build Status](https://travis-ci.org/leandroroser/chunkR.svg?branch=master)](https://travis-ci.org/leandroroser/chunkR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leandroroser/chunkR?branch=master&svg=true)](https://ci.appveyor.com/project/leandroroser/chunkR) [![R](https://www.r-pkg.org/badges/version/chunkR)](https://CRAN.R-project.org/package=chunkR) [![Coverage status](https://codecov.io/gh/leandroroser/chunkR/branch/master/graph/badge.svg)](https://codecov.io/github/leandroroser/chunkR?branch=master)
 
 <br/><br/><br/><br/><br/><br/>
-This package allows to read large data tables in chunks, using a fast C++ backend. ChunkR can read data frames (with automatic column type detection option) or matrices. The program reads and stores a chunk with the next_chunk() function (that returns TRUE), that can be retrieved via the get_table() function. After reading all the file, the next_chunk() function returns FALSE and the get_data() function an empty data frame/matrix.
+This package allows to read large data tables in chunks, using a fast C++ backend. ChunkR can import text files as data frames (with automatic column type detection option) or matrices. The program is designed to be simple and user-friendly. The program uses three basic functions: chunker, to create a connection to a text file; next_chunk() to read the next chunk,  and get_table() to retrieve the corresponding data chunk.
+
+
+These functions can be easily included in loops and other source code, using the return value of the next_chunk() function, that is TRUE when a new chunk is available and FALSE when the file was totally read, respectively. The get_table() function, returns an empty data frame/matrix when next_chunk() is FALSE. See the examples below.
+
 
 Installation
 ------------
