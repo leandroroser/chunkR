@@ -6,7 +6,7 @@
 
 
 <br/><br/><br/><br/><br/><br/>
-This package allows to read large data tables in chunks, using a fast C++ backend. ChunkR can import text files as data frames (with automatic column type detection option) or matrices. The program is designed to be simple and user-friendly. 
+This package allows to read large data tables in chunks, using a fast C++ backend. Text files can be imported as data frames (with automatic column type detection option) or matrices. The program is designed to be simple and user-friendly. 
 
 
 chunkR is based on three basic functions: chunker, to create a connection to a text file; next_chunk() to read the next chunk, and get_table() to retrieve the corresponding data chunk.
