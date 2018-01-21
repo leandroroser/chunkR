@@ -22,7 +22,7 @@ env:
 
 os:
 - linux
-- osx
+# - osx  # infinite time in travis
 
 #r_github_packages:
 #  - r-lib/covr
