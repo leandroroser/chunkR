@@ -1,5 +1,5 @@
 useDynLib(chunkR, .registration=TRUE)
-export(reader)
+export(chunker)
 export(chunkR_devel)
 export(matrix2df)
 exportMethods(next_chunk)

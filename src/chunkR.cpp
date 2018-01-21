@@ -26,10 +26,10 @@ namespace _chunkR {
 // CONSTRUCTORS & DESTRUCTOR
 //--------------------------------------------
 
-//' reader, matrix-constructor
+//' chunker, matrix-constructor
 //' @keywords internal
 
-reader::reader(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize) :
+chunker::chunker(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize) :
 path(path), sep(sep), has_colnames(has_colnames),
 has_rownames(has_rownames), chunksize(chunksize), n_row(0), n_col(0), output_format("matrix"),
 rnames([&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), 
@@ -41,16 +41,16 @@ lines_completed(0), word(auto_vector) {
   data_chunk.df = empty_df; 
   // configure for data frames
   
-  Rcout << "New reader object\n";
+  Rcout << "New chunker object\n";
   Rcout << "Path: " << path << std::endl;
   set_colnames();
 }
 
 
-//' reader, dataframe-constructor
+//' chunker, dataframe-constructor
 //' @keywords internal
 
-reader::reader(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize,
+chunker::chunker(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize,
                StringVector column_types) :
 path(path), sep(sep), has_colnames(has_colnames),
 has_rownames(has_rownames), chunksize(chunksize), n_row(0), n_col(0),
@@ -92,15 +92,15 @@ lines_completed(0), word(auto_vector) {
   }
   
   
-  Rcout << "New reader object\n";
+  Rcout << "New chunker object\n";
   Rcout << "Path: " << path << std::endl;
   set_colnames();
 }
 
-//' reader__destructor 
+//' chunker__destructor 
 //' @keywords internal
 
-reader::~reader() {
+chunker::~chunker() {
   delete line;
   delete element;
 }
@@ -110,10 +110,10 @@ reader::~reader() {
 // NEXT_CHUNK 
 //--------------------------------------------
 
-//' reader__next_chunk
+//' chunker__next_chunk
 //' @keywords internal
 
-bool reader::next_chunk() {
+bool chunker::next_chunk() {
   if(output_format == "matrix") {
     return next_chunk_matrix();
   } else {
@@ -122,10 +122,10 @@ bool reader::next_chunk() {
 }
 
 
-//' reader__next_chunk_matrix
+//' chunker__next_chunk_matrix
 //' @keywords internal
 
-bool reader::next_chunk_matrix() {
+bool chunker::next_chunk_matrix() {
   
   if (!line_container.eof()) {
     
@@ -208,10 +208,10 @@ bool reader::next_chunk_matrix() {
   
 }
 
-//' reader__next_chunk_df
+//' chunker__next_chunk_df
 //' @keywords internal
 
-bool reader::next_chunk_df() {
+bool chunker::next_chunk_df() {
   
   if (!line_container.eof()) {
     
@@ -310,10 +310,10 @@ bool reader::next_chunk_df() {
 // SETTERS
 //--------------------------------------------
 
-//' reader__set_colnames 
+//' chunker__set_colnames 
 //' @keywords internal
 
-void reader::set_colnames() {
+void chunker::set_colnames() {
   
   line_container.open(path, std::ios::binary);
   try {
@@ -375,7 +375,7 @@ void reader::set_colnames() {
 //' set_generic_rownames
 //' @keywords internal
 
-std::vector<std::string> reader::set_generic_rownames(std::string what, size_t start_from, size_t n_row) {
+std::vector<std::string> chunker::set_generic_rownames(std::string what, size_t start_from, size_t n_row) {
   std::ostringstream os;
   std::vector<std::string> output;
   output.reserve(n_row);
@@ -391,7 +391,7 @@ std::vector<std::string> reader::set_generic_rownames(std::string what, size_t s
 //' set_generic_colnames
 //' @keywords internal
 
-std::vector<std::string> reader::set_generic_colnames(std::string what,  size_t start_from, size_t n_col) {
+std::vector<std::string> chunker::set_generic_colnames(std::string what,  size_t start_from, size_t n_col) {
   std::ostringstream os;
   std::vector<std::string> output;
   output.reserve(n_col);
@@ -413,40 +413,40 @@ std::vector<std::string> reader::set_generic_colnames(std::string what,  size_t 
 //'get_matrix
 //'@keywords internal
 
-StringMatrix reader::get_matrix() {
+StringMatrix chunker::get_matrix() {
   return data_chunk.m;
 } 
 
 //'get_dataframe
 //'@keywords internal
 //'
-DataFrame reader::get_dataframe() {
+DataFrame chunker::get_dataframe() {
   return data_chunk.df;
 } 
 
 //---------------------------------------------
 
-//' reader__get_colnames
+//' chunker__get_colnames
 //' @keywords internal
 
-StringVector reader::get_colnames() {
+StringVector chunker::get_colnames() {
   StringVector out(cnames.size());
   out = cnames;
   return out;
 }
 
 
-//' reader__get_completed
+//' chunker__get_completed
 //' @keywords internal
 
-size_t reader::get_completed() {
+size_t chunker::get_completed() {
   return lines_completed;
 }
 
-//' reader__get_type
+//' chunker__get_type
 //' @keywords internal
 
-const std::string reader::get_type() {
+const std::string chunker::get_type() {
   return output_format;
 }
 
@@ -458,7 +458,7 @@ const std::string reader::get_type() {
 //' mixed_list
 //' @keywords internal
 
-inline List reader::mixed_list(std::vector<int> x,  int howmuch) {
+inline List chunker::mixed_list(std::vector<int> x,  int howmuch) {
   List output;
   
   for(int i = 0; i < x.size(); ++i) {
@@ -510,19 +510,19 @@ bool validate_C2(SEXP* args, int nargs) {
   return true;
 }
 
-//' reader_module
+//' chunker_module
 
-RCPP_MODULE(reader_module) {
-  class_<reader>("reader")
+RCPP_MODULE(chunker_module) {
+  class_<chunker>("chunker")
   .constructor<std::string, char, bool, bool, size_t, StringVector >("data.frame constructor", &validate_C1)
   .constructor<std::string, char, bool, bool, size_t>("matrix constructor", &validate_C2)
-  .method("get_colnames", &reader::get_colnames)
-  .method("next_chunk", &reader::next_chunk)
-  .method("get_matrix", &reader::get_matrix)
-  .method("get_dataframe", &reader::get_dataframe)
-  //.method("get_matrix2dataframe", &reader::get_matrix2dataframe) DEPRECATED IN chunkR 1.1.0
-  .method("get_completed", &reader::get_completed)
-  .method("get_type", &reader::get_completed)
+  .method("get_colnames", &chunker::get_colnames)
+  .method("next_chunk", &chunker::next_chunk)
+  .method("get_matrix", &chunker::get_matrix)
+  .method("get_dataframe", &chunker::get_dataframe)
+  //.method("get_matrix2dataframe", &chunker::get_matrix2dataframe) DEPRECATED IN chunkR 1.1.0
+  .method("get_completed", &chunker::get_completed)
+  .method("get_type", &chunker::get_completed)
   ;
 }
 
@@ -531,10 +531,10 @@ RCPP_MODULE(reader_module) {
 //--------------------------------------------
 
 // DEPRECATED IN chunkR 1.1.0
-// //' reader__get_dataframe
+// //' chunker__get_dataframe
 // //' @keywords internal
 // 
-// DataFrame reader::get_matrix2dataframe() {
+// DataFrame chunker::get_matrix2dataframe() {
 //   List output(n_col);
 //   for (size_t i = 0; i < n_col; ++i) {
 //     output[i] = data_chunk.m(_, i);

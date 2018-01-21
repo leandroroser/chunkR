@@ -11,31 +11,31 @@ matrix2df <- function(x) {
     .Call(`_chunkR_matrix2df`, x)
 }
 
-#' reader, matrix-constructor
+#' chunker, matrix-constructor
 #' @keywords internal
 NULL
 
-#' reader, dataframe-constructor
+#' chunker, dataframe-constructor
 #' @keywords internal
 NULL
 
-#' reader__destructor 
+#' chunker__destructor 
 #' @keywords internal
 NULL
 
-#' reader__next_chunk
+#' chunker__next_chunk
 #' @keywords internal
 NULL
 
-#' reader__next_chunk_matrix
+#' chunker__next_chunk_matrix
 #' @keywords internal
 NULL
 
-#' reader__next_chunk_df
+#' chunker__next_chunk_df
 #' @keywords internal
 NULL
 
-#' reader__set_colnames 
+#' chunker__set_colnames 
 #' @keywords internal
 NULL
 
@@ -56,15 +56,15 @@ NULL
 #'
 NULL
 
-#' reader__get_colnames
+#' chunker__get_colnames
 #' @keywords internal
 NULL
 
-#' reader__get_completed
+#' chunker__get_completed
 #' @keywords internal
 NULL
 
-#' reader__get_type
+#' chunker__get_type
 #' @keywords internal
 NULL
 
@@ -75,43 +75,43 @@ NULL
 #' validatos
 NULL
 
-#' reader_module
+#' chunker_module
 NULL
 
-reader__new_data_frame <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_) {
-    .Call(`_chunkR_reader__new_data_frame`, path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_)
+chunker__new_data_frame <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_) {
+    .Call(`_chunkR_chunker__new_data_frame`, path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_)
 }
 
-reader__new_matrix <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_) {
-    .Call(`_chunkR_reader__new_matrix`, path_, sep_, has_colnames_, has_rownames_, chunksize_)
+chunker__new_matrix <- function(path_, sep_, has_colnames_, has_rownames_, chunksize_) {
+    .Call(`_chunkR_chunker__new_matrix`, path_, sep_, has_colnames_, has_rownames_, chunksize_)
 }
 
-reader__next_chunk <- function(ptr) {
-    .Call(`_chunkR_reader__next_chunk`, ptr)
+chunker__next_chunk <- function(ptr) {
+    .Call(`_chunkR_chunker__next_chunk`, ptr)
 }
 
-reader__set_colnames <- function(ptr) {
-    .Call(`_chunkR_reader__set_colnames`, ptr)
+chunker__set_colnames <- function(ptr) {
+    .Call(`_chunkR_chunker__set_colnames`, ptr)
 }
 
-reader__get_matrix <- function(ptr) {
-    .Call(`_chunkR_reader__get_matrix`, ptr)
+chunker__get_matrix <- function(ptr) {
+    .Call(`_chunkR_chunker__get_matrix`, ptr)
 }
 
-reader__get_dataframe <- function(ptr) {
-    .Call(`_chunkR_reader__get_dataframe`, ptr)
+chunker__get_dataframe <- function(ptr) {
+    .Call(`_chunkR_chunker__get_dataframe`, ptr)
 }
 
-reader__get_colnames <- function(ptr) {
-    .Call(`_chunkR_reader__get_colnames`, ptr)
+chunker__get_colnames <- function(ptr) {
+    .Call(`_chunkR_chunker__get_colnames`, ptr)
 }
 
-reader__get_completed <- function(ptr) {
-    .Call(`_chunkR_reader__get_completed`, ptr)
+chunker__get_completed <- function(ptr) {
+    .Call(`_chunkR_chunker__get_completed`, ptr)
 }
 
-reader__get_type <- function(ptr) {
-    .Call(`_chunkR_reader__get_type`, ptr)
+chunker__get_type <- function(ptr) {
+    .Call(`_chunkR_chunker__get_type`, ptr)
 }
 
 # Register entry points for exported C++ functions

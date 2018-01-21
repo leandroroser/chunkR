@@ -1,5 +1,5 @@
-#ifndef READER_H_
-#define READER_H_
+#ifndef chunker_H_
+#define chunker_H_
 
 #include <Rcpp.h>
 #include <iostream>
@@ -8,17 +8,17 @@ using namespace Rcpp;
 
 namespace _chunkR {
 
-class reader {
+class chunker {
 
 public:
   // constructors & destructor-----
   // matrix constructor
-  reader(const std::string path, char sep, bool has_colnames, bool has_rownames,
+  chunker(const std::string path, char sep, bool has_colnames, bool has_rownames,
          size_t chunksize, StringVector column_types);
   // data.frame constructor
-	reader(const std::string path, char sep, bool has_colnames, bool has_rownames,
+	chunker(const std::string path, char sep, bool has_colnames, bool has_rownames,
 			size_t chunksize);
-	virtual ~reader();
+	virtual ~chunker();
 	
 	// next chunk ------------------
 	bool next_chunk();
@@ -70,6 +70,6 @@ private:
 
 };
 
-} /* namespace _reader */
+} /* namespace _chunker */
 
-#endif /* READER_H_ */
+#endif /* chunker_H_ */

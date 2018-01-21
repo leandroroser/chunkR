@@ -19,9 +19,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__new_data_frame
-RcppExport SEXP reader__new_data_frame(SEXP path_, SEXP sep_, SEXP has_colnames_, SEXP has_rownames_, SEXP chunksize_, SEXP column_types_);
-RcppExport SEXP _chunkR_reader__new_data_frame(SEXP path_SEXP, SEXP sep_SEXP, SEXP has_colnames_SEXP, SEXP has_rownames_SEXP, SEXP chunksize_SEXP, SEXP column_types_SEXP) {
+// chunker__new_data_frame
+RcppExport SEXP chunker__new_data_frame(SEXP path_, SEXP sep_, SEXP has_colnames_, SEXP has_rownames_, SEXP chunksize_, SEXP column_types_);
+RcppExport SEXP _chunkR_chunker__new_data_frame(SEXP path_SEXP, SEXP sep_SEXP, SEXP has_colnames_SEXP, SEXP has_rownames_SEXP, SEXP chunksize_SEXP, SEXP column_types_SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,13 +31,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< SEXP >::type has_rownames_(has_rownames_SEXP);
     Rcpp::traits::input_parameter< SEXP >::type chunksize_(chunksize_SEXP);
     Rcpp::traits::input_parameter< SEXP >::type column_types_(column_types_SEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__new_data_frame(path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_));
+    rcpp_result_gen = Rcpp::wrap(chunker__new_data_frame(path_, sep_, has_colnames_, has_rownames_, chunksize_, column_types_));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__new_matrix
-RcppExport SEXP reader__new_matrix(SEXP path_, SEXP sep_, SEXP has_colnames_, SEXP has_rownames_, SEXP chunksize_);
-RcppExport SEXP _chunkR_reader__new_matrix(SEXP path_SEXP, SEXP sep_SEXP, SEXP has_colnames_SEXP, SEXP has_rownames_SEXP, SEXP chunksize_SEXP) {
+// chunker__new_matrix
+RcppExport SEXP chunker__new_matrix(SEXP path_, SEXP sep_, SEXP has_colnames_, SEXP has_rownames_, SEXP chunksize_);
+RcppExport SEXP _chunkR_chunker__new_matrix(SEXP path_SEXP, SEXP sep_SEXP, SEXP has_colnames_SEXP, SEXP has_rownames_SEXP, SEXP chunksize_SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -46,84 +46,84 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< SEXP >::type has_colnames_(has_colnames_SEXP);
     Rcpp::traits::input_parameter< SEXP >::type has_rownames_(has_rownames_SEXP);
     Rcpp::traits::input_parameter< SEXP >::type chunksize_(chunksize_SEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__new_matrix(path_, sep_, has_colnames_, has_rownames_, chunksize_));
+    rcpp_result_gen = Rcpp::wrap(chunker__new_matrix(path_, sep_, has_colnames_, has_rownames_, chunksize_));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__next_chunk
-RcppExport bool reader__next_chunk(SEXP ptr);
-RcppExport SEXP _chunkR_reader__next_chunk(SEXP ptrSEXP) {
+// chunker__next_chunk
+RcppExport bool chunker__next_chunk(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__next_chunk(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__next_chunk(ptr));
+    rcpp_result_gen = Rcpp::wrap(chunker__next_chunk(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__set_colnames
-RcppExport bool reader__set_colnames(SEXP ptr);
-RcppExport SEXP _chunkR_reader__set_colnames(SEXP ptrSEXP) {
+// chunker__set_colnames
+RcppExport bool chunker__set_colnames(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__set_colnames(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__set_colnames(ptr));
+    rcpp_result_gen = Rcpp::wrap(chunker__set_colnames(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__get_matrix
-RcppExport StringMatrix reader__get_matrix(SEXP ptr);
-RcppExport SEXP _chunkR_reader__get_matrix(SEXP ptrSEXP) {
+// chunker__get_matrix
+RcppExport StringMatrix chunker__get_matrix(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__get_matrix(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__get_matrix(ptr));
+    rcpp_result_gen = Rcpp::wrap(chunker__get_matrix(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__get_dataframe
-RcppExport DataFrame reader__get_dataframe(SEXP ptr);
-RcppExport SEXP _chunkR_reader__get_dataframe(SEXP ptrSEXP) {
+// chunker__get_dataframe
+RcppExport DataFrame chunker__get_dataframe(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__get_dataframe(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__get_dataframe(ptr));
+    rcpp_result_gen = Rcpp::wrap(chunker__get_dataframe(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__get_colnames
-RcppExport StringVector reader__get_colnames(SEXP ptr);
-RcppExport SEXP _chunkR_reader__get_colnames(SEXP ptrSEXP) {
+// chunker__get_colnames
+RcppExport StringVector chunker__get_colnames(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__get_colnames(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__get_colnames(ptr));
+    rcpp_result_gen = Rcpp::wrap(chunker__get_colnames(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__get_completed
-RcppExport unsigned int reader__get_completed(SEXP ptr);
-RcppExport SEXP _chunkR_reader__get_completed(SEXP ptrSEXP) {
+// chunker__get_completed
+RcppExport unsigned int chunker__get_completed(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__get_completed(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__get_completed(ptr));
+    rcpp_result_gen = Rcpp::wrap(chunker__get_completed(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
-// reader__get_type
-RcppExport std::string reader__get_type(SEXP ptr);
-RcppExport SEXP _chunkR_reader__get_type(SEXP ptrSEXP) {
+// chunker__get_type
+RcppExport std::string chunker__get_type(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__get_type(SEXP ptrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(reader__get_type(ptr));
+    rcpp_result_gen = Rcpp::wrap(chunker__get_type(ptr));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -142,20 +142,20 @@ RcppExport SEXP _chunkR_RcppExport_registerCCallable() {
     return R_NilValue;
 }
 
-RcppExport SEXP _rcpp_module_boot_reader_module();
+RcppExport SEXP _rcpp_module_boot_chunker_module();
 
 static const R_CallMethodDef CallEntries[] = {
     {"_chunkR_matrix2df", (DL_FUNC) &_chunkR_matrix2df, 1},
-    {"_chunkR_reader__new_data_frame", (DL_FUNC) &_chunkR_reader__new_data_frame, 6},
-    {"_chunkR_reader__new_matrix", (DL_FUNC) &_chunkR_reader__new_matrix, 5},
-    {"_chunkR_reader__next_chunk", (DL_FUNC) &_chunkR_reader__next_chunk, 1},
-    {"_chunkR_reader__set_colnames", (DL_FUNC) &_chunkR_reader__set_colnames, 1},
-    {"_chunkR_reader__get_matrix", (DL_FUNC) &_chunkR_reader__get_matrix, 1},
-    {"_chunkR_reader__get_dataframe", (DL_FUNC) &_chunkR_reader__get_dataframe, 1},
-    {"_chunkR_reader__get_colnames", (DL_FUNC) &_chunkR_reader__get_colnames, 1},
-    {"_chunkR_reader__get_completed", (DL_FUNC) &_chunkR_reader__get_completed, 1},
-    {"_chunkR_reader__get_type", (DL_FUNC) &_chunkR_reader__get_type, 1},
-    {"_rcpp_module_boot_reader_module", (DL_FUNC) &_rcpp_module_boot_reader_module, 0},
+    {"_chunkR_chunker__new_data_frame", (DL_FUNC) &_chunkR_chunker__new_data_frame, 6},
+    {"_chunkR_chunker__new_matrix", (DL_FUNC) &_chunkR_chunker__new_matrix, 5},
+    {"_chunkR_chunker__next_chunk", (DL_FUNC) &_chunkR_chunker__next_chunk, 1},
+    {"_chunkR_chunker__set_colnames", (DL_FUNC) &_chunkR_chunker__set_colnames, 1},
+    {"_chunkR_chunker__get_matrix", (DL_FUNC) &_chunkR_chunker__get_matrix, 1},
+    {"_chunkR_chunker__get_dataframe", (DL_FUNC) &_chunkR_chunker__get_dataframe, 1},
+    {"_chunkR_chunker__get_colnames", (DL_FUNC) &_chunkR_chunker__get_colnames, 1},
+    {"_chunkR_chunker__get_completed", (DL_FUNC) &_chunkR_chunker__get_completed, 1},
+    {"_chunkR_chunker__get_type", (DL_FUNC) &_chunkR_chunker__get_type, 1},
+    {"_rcpp_module_boot_chunker_module", (DL_FUNC) &_rcpp_module_boot_chunker_module, 0},
     {"_chunkR_RcppExport_registerCCallable", (DL_FUNC) &_chunkR_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}
 };

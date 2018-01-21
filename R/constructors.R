@@ -1,5 +1,5 @@
 
-#' reader
+#' chunker
 #' @param path Input file path 
 #' @param sep Character separating cells in the input table (default = " ")
 #' @param has_colnames Column names present in the input table? (Logical, default TRUE)
@@ -14,10 +14,10 @@
 #' This checking is perfomed via a call to read.table with the scan_rows parameter passed as nrows,
 #' and posterior extraction of the corresponding classes detected in the call. 
 #' 
-#' @description The objects of class "reader" are the central elements of the
+#' @description The objects of class "chunker" are the central elements of the
 #' chunkR package. These objects can store a data chunk and other 
 #' information required for the process of reading a file in pieces via C++.
-#' A reader object is created with the reader() function, 
+#' A chunker object is created with the chunker() function, 
 #' that requires the path to a file, and other arguments, as the size of the chunk 
 #' and the data type ("dataframe" or "matrix").
 #' Two basic methods are defined to manipulate the object: 
@@ -44,20 +44,20 @@
 #' #--- Reading a dataframe with automatic column-type detection ---#
 #' #----------------------------------------------------------------#
 #' 
-#' # create a 'reader' object passing the path of the input file.
-#' my_reader_object <- reader(tmp_path, chunksize = 30)
+#' # create a 'chunker' object passing the path of the input file.
+#' my_chunker_object <- chunker(tmp_path, chunksize = 30)
 #' 
 #' # read a chunk
-#' next_chunk(my_reader_object)
+#' next_chunk(my_chunker_object)
 #' 
 #' # get the chunk
-# get_table(my_reader_object)
+#'  get_table(my_chunker_object)
 #' 
 #' # read another chunk
-#' next_chunk(my_reader_object)
+#' next_chunk(my_chunker_object)
 #' 
 #' # get the number of lines already read
-#' get_completed(my_reader_object)
+#' get_completed(my_chunker_object)
 #' 
 #' 
 #' #--- read a csv file ---#
@@ -67,7 +67,7 @@
 #' write.table(iris, tmp_path_csv, quote = FALSE, sep = ",")
 #' 
 #' # read the csv indicating the value of the sep parameter
-#' my_reader_object2 <- reader(tmp_path_csv, chunksize = 30, sep = ",")
+#' my_chunker_object2 <- chunker(tmp_path_csv, chunksize = 30, sep = ",")
 #' # the file can  then be processed as with tab delimiters
 #' 
 #' # remove temporal file
@@ -79,31 +79,31 @@
 #' 
 #' ## Four types can be passed : "character", "numeric" (aka "double"), "integer", "logical"
 #' 
-#' # create a 'reader' object passing the path of the input file.
-#' my_reader_object3 <- reader(tmp_path, chunksize = 120,
+#' # create a 'chunker' object passing the path of the input file.
+#' my_chunker_object3 <- chunker(tmp_path, chunksize = 120,
 #'  columns_classes = c("numeric", "numeric", "numeric","numeric", "character"))
 #' 
 #' # read a chunk
-#' next_chunk(my_reader_object3)
+#' next_chunk(my_chunker_object3)
 #' 
 #' # get the chunk
-#' get_table(my_reader_object3)
+#' get_table(my_chunker_object3)
 #' 
 #' # read another chunk
-#' next_chunk(my_reader_object3)
+#' next_chunk(my_chunker_object3)
 #' 
 #' # get the number of lines already read
-#' get_completed(my_reader_object3)
+#' get_completed(my_chunker_object3)
 #' 
 #' 
 #' #-------------------------#
 #' #--- Reading a matrix  ---#
 #' #-------------------------#
 #' 
-#' my_reader_object4 <- reader(tmp_path, chunksize = 30, data_format= "matrix")
+#' my_chunker_object4 <- chunker(tmp_path, chunksize = 30, data_format= "matrix")
 #' 
 #' # store the chunk as a character matrix in R
-#' this_data <- get_table(my_reader_object4)
+#' this_data <- get_table(my_chunker_object4)
 #' 
 #' 
 #' # The package provides a fast generic C++ function for conversion from
@@ -135,11 +135,11 @@
 #' 
 #' write.table(out, tmp_path)
 #' 
-#' # create a reader object, reading in chunks of 10000 lines
-#' my_reader_object5 <- reader(tmp_path, chunksize = 10000)
+#' # create a chunker object, reading in chunks of 10000 lines
+#' my_chunker_object5 <- chunker(tmp_path, chunksize = 10000)
 #' 
-#' next_chunk(my_reader_object)
-#' data <- get_table(my_reader_object5) 
+#' next_chunk(my_chunker_object5)
+#' data <- get_table(my_chunker_object5) 
 #' 
 #' # check classes
 #' lapply(data,typeof)
@@ -154,15 +154,15 @@
 #' write.table(matrix(sample(c("a", "t", "c", "g"), 1000000, replace = TRUE), 
 #' 100000, 1000), my_table)
 #' 
-#' # create a reader object, reading in chunks of 10000 lines
-#' my_reader_object6 <- reader(my_table, chunksize = 10000, data_format= "matrix")
+#' # create a chunker object, reading in chunks of 10000 lines
+#' my_chunker_object6 <- chunker(my_table, chunksize = 10000, data_format= "matrix")
 #'
 #' # create a loop to read all the file and make something with it
 #' 
 #' lines <- 0
-#' while(next_chunk(my_reader_object6))
+#' while(next_chunk(my_chunker_object6))
 #' {
-#'   data <- get_table(my_reader_object6) 
+#'   data <- get_table(my_chunker_object6) 
 #'   
 #'   # do something with data, e.g., convert to data frame first
 #'   data <- matrix2df(data)
@@ -178,7 +178,7 @@
 #' 
 #' @export
 
-setGeneric("reader", function(path, sep = " ", has_colnames = TRUE,
+setGeneric("chunker", function(path, sep = " ", has_colnames = TRUE,
                               has_rownames = TRUE, chunksize = 1000L,
                               data_format = c("data.frame", "matrix"),
                               columns_classes = character(0),
@@ -206,6 +206,6 @@ setGeneric("reader", function(path, sep = " ", has_colnames = TRUE,
     x <- lapply(as.list(x), typeof)
     columns_classes <- unname(unlist(x))
   }
-  new("reader", path, sep, has_colnames, has_rownames, chunksize, 
+  new("chunker", path, sep, has_colnames, has_rownames, chunksize, 
       data_format, columns_classes)
 })

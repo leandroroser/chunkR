@@ -1,5 +1,5 @@
 
-#Rcpp::loadModule("reader", TRUE, loadNow = TRUE)
+#Rcpp::loadModule("chunker", TRUE, loadNow = TRUE)
 
 .onUnload <- function (libpath) {
   library.dynam.unload("chunkR", libpath)

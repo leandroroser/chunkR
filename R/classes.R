@@ -1,7 +1,7 @@
 
-#' reader class
-#' @name reader-class
+#' chunker class
+#' @name chunker-class
 #' @slot pointer externalptr object
 #' @keywords internal
 
-setClass( "reader", representation( pointer = "externalptr" ) )
+setClass( "chunker", representation( pointer = "externalptr" ) )

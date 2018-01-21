@@ -1,7 +1,8 @@
 chunkR 1.1.0 (Release date: 2019-01-30)
 ==============
 Changes:
-
+* The reader class was renamed as chunker for consistency with the package.
+* The reader function was renamed as chunker.
 * New functionality to read dataframes direcly from the source file.
   The newinterface does not requires to read the data as a text matrix 
   prior to the obtention of a dataframe.

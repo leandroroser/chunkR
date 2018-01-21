@@ -16,5 +16,7 @@ RoxygenNote: 6.0.1
 NeedsCompilation: yes
 Packaged: 2018-01-11 08:12:58 UTC; leandro
 Author: Leandro Roser [aut, cre]
-Suggests: testthat
-RcppModules: reader
+Suggests: 
+    testthat,
+    covr
+RcppModules: chunker
