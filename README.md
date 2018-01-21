@@ -64,6 +64,9 @@ write.table(iris, tmp_path_csv, quote = FALSE, sep = ",")
 my_chunker_object2 <- chunker(tmp_path_csv, chunksize = 30, sep = ",")
 # the file can  then be processed as with tab delimiters
 
+next_chunk(my_chunker_object2)
+get_table(my_chunker_object2)
+
 # remove temporal file
 file.remove(tmp_path_csv)
 
@@ -95,6 +98,9 @@ get_completed(my_chunker_object3)
 #-------------------------#
 
 my_chunker_object4 <- chunker(tmp_path, chunksize = 30, data_format= "matrix")
+
+# read a chunk
+next_chunk(my_chunker_object4)
 
 # store the chunk as a character matrix in R
 this_data <- get_table(my_chunker_object4)
