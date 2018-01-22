@@ -26,11 +26,6 @@ os:
 - linux
 dist: trusty
 
-addons:
-  apt:
-    packages:
-     - libssl-dev
-
 matrix:
   include:
     - os: linux
@@ -55,7 +50,7 @@ matrix:
       env: BUILD='Debug' CC=gcc-4 CXX=g++-4
            CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"
       addons: *gcc5
-    - os: linux
+       - os: linux
       compiler: "gcc-4"
       env: BUILD='Release' CC=gcc-4 CXX=g++-4
            CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"
@@ -125,7 +120,7 @@ before_install:
  - Rscript -e 'update.packages(ask = FALSE)'
   
 after_success:
-- Rscript -e 'covr::codecov()'
+#- Rscript -e 'covr::codecov()'
 - if [[ "$TRAVIS_OS_NAME" = 'linux' ]]; then R CMD INSTALL *tar.gz; fi
 
 
