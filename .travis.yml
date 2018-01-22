@@ -105,6 +105,14 @@ matrix:
       compiler: clang
       env: BUILD='Debug'
     - os: osx
+      osx_image: xcode8
+      compiler: clang
+      env: BUILD='Debug'
+    - os: osx
+      osx_image: xcode8
+      compiler: clang
+      env: BUILD='Release'
+    - os: osx
       osx_image: xcode8.3
       compiler: clang
       env: BUILD='Debug'
