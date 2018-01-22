@@ -129,12 +129,14 @@ r_github_packages:
   - r-lib/covr
 
 before_install:
+# solve mongo db key expired problem
+ - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
  - sudo apt-get -y install r-cran-git2r
  - Rscript -e 'update.packages(ask = FALSE)'
 
   
 after_success:
-#- Rscript -e 'covr::codecov()'
+- Rscript -e 'covr::codecov()'
 - if [[ "$TRAVIS_OS_NAME" = 'linux' ]]; then R CMD INSTALL *tar.gz; fi
 
 
