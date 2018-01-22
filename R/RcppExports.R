@@ -72,42 +72,6 @@ NULL
 #' @keywords internal
 NULL
 
-chunker__new_data_frame <- function(path_, sep_, quoted_, has_colnames_, has_rownames_, chunksize_, column_types_) {
-    .Call(`_chunkR_chunker__new_data_frame`, path_, sep_, quoted_, has_colnames_, has_rownames_, chunksize_, column_types_)
-}
-
-chunker__new_matrix <- function(path_, sep_, quoted_, has_colnames_, has_rownames_, chunksize_) {
-    .Call(`_chunkR_chunker__new_matrix`, path_, sep_, quoted_, has_colnames_, has_rownames_, chunksize_)
-}
-
-chunker__next_chunk <- function(ptr) {
-    .Call(`_chunkR_chunker__next_chunk`, ptr)
-}
-
-chunker__set_colnames <- function(ptr) {
-    .Call(`_chunkR_chunker__set_colnames`, ptr)
-}
-
-chunker__get_matrix <- function(ptr) {
-    .Call(`_chunkR_chunker__get_matrix`, ptr)
-}
-
-chunker__get_dataframe <- function(ptr) {
-    .Call(`_chunkR_chunker__get_dataframe`, ptr)
-}
-
-chunker__get_colnames <- function(ptr) {
-    .Call(`_chunkR_chunker__get_colnames`, ptr)
-}
-
-chunker__get_completed <- function(ptr) {
-    .Call(`_chunkR_chunker__get_completed`, ptr)
-}
-
-chunker__get_type <- function(ptr) {
-    .Call(`_chunkR_chunker__get_type`, ptr)
-}
-
 # Register entry points for exported C++ functions
 methods::setLoadAction(function(ns) {
     .Call('_chunkR_RcppExport_registerCCallable', PACKAGE = 'chunkR')

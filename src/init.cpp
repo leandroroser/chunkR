@@ -4,8 +4,8 @@ using namespace _chunkR;
 using namespace Rcpp;
 
 
-// [[Rcpp::export]]
-SEXP chunker__new_data_frame(SEXP path_, SEXP sep_, SEXP quoted_,
+
+RcppExport SEXP chunker__new_data_frame(SEXP path_, SEXP sep_, SEXP quoted_,
                                         SEXP has_colnames_, SEXP has_rownames_, 
                                         SEXP chunksize_, SEXP column_types_) {
   
@@ -23,8 +23,8 @@ SEXP chunker__new_data_frame(SEXP path_, SEXP sep_, SEXP quoted_,
   return ptr;
 }
 
-// [[Rcpp::export]]
-SEXP chunker__new_matrix(SEXP path_, SEXP sep_,  SEXP quoted_,
+
+RcppExport SEXP chunker__new_matrix(SEXP path_, SEXP sep_,  SEXP quoted_,
                                     SEXP has_colnames_, SEXP has_rownames_, 
                                     SEXP chunksize_) {
   
@@ -40,45 +40,45 @@ SEXP chunker__new_matrix(SEXP path_, SEXP sep_,  SEXP quoted_,
   return ptr;
 }
 
-// [[Rcpp::export]]
-SEXP chunker__next_chunk(SEXP ptr) {
+
+RcppExport SEXP chunker__next_chunk(SEXP ptr) {
   Rcpp::XPtr < chunker > data(ptr);
   return wrap(data->next_chunk());
 }
 
-// [[Rcpp::export]]
-bool chunker__set_colnames(SEXP ptr) {
+
+RcppExport SEXP chunker__set_colnames(SEXP ptr) {
   Rcpp::XPtr < chunker > data(ptr);
   data->set_colnames();
   return wrap(true);
 }
 
-// [[Rcpp::export]]
-SEXP chunker__get_matrix(SEXP ptr) {
+
+RcppExport SEXP chunker__get_matrix(SEXP ptr) {
 	Rcpp::XPtr < chunker > data(ptr);
 	return data->get_matrix();
 }
 
-// [[Rcpp::export]]
-SEXP chunker__get_dataframe(SEXP ptr) {
+
+RcppExport SEXP chunker__get_dataframe(SEXP ptr) {
   Rcpp::XPtr < chunker > data(ptr);
   return data->get_dataframe();
 }
 
-// [[Rcpp::export]]
-SEXP chunker__get_colnames(SEXP ptr) {
+
+RcppExport SEXP chunker__get_colnames(SEXP ptr) {
   Rcpp::XPtr < chunker > data(ptr);
   return data->get_colnames();
 }
 
-// [[Rcpp::export]]
-SEXP chunker__get_completed(SEXP ptr) {
+
+RcppExport SEXP chunker__get_completed(SEXP ptr) {
 	Rcpp::XPtr < chunker > data(ptr);
 	return wrap(data->get_completed());
 }
 
-// [[Rcpp::export]]
-SEXP chunker__get_type(SEXP ptr) {
+
+RcppExport SEXP chunker__get_type(SEXP ptr) {
   Rcpp::XPtr < chunker > data(ptr);
   return wrap(data->get_type());
 }
