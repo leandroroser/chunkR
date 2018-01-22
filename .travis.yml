@@ -26,100 +26,63 @@ os:
 - linux
 dist: trusty
 
-
 matrix:
   include:
     - os: linux
       compiler: "clang-6.0"
       env: BUILD='Debug' CC=clang-6.0 CXX=clang++-6.0
-      addons:
-        apt:
-         packages:
-          - libssl-dev
-    - os: linux
+      addons: *clang60
+     - os: linux
       compiler: "clang-6.0"
       env: BUILD='Release' CC=clang-6.0 CXX=clang++-6.0
       addons: *clang60
-        apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "clang-5.0"
       env: BUILD='Debug' CC=clang-5.0 CXX=clang++-5.0
            CLANG_TIDY=clang-tidy-5.0
-       apt:
-         packages:
-          - libssl-dev
       addons: *clang50
     - os: linux
       compiler: "clang-5.0"
       env: BUILD='Release' CC=clang-5.0 CXX=clang++-5.0
       addons: *clang50
-      apt:
-         packages:
-          - libssl-dev
-    - os: linux
+     - os: linux
       compiler: "gcc-4"
       env: BUILD='Debug' CC=gcc-4 CXX=g++-4
            CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"
       addons: *gcc5
-        apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "gcc-4"
       env: BUILD='Release' CC=gcc-4 CXX=g++-4
            CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"
       addons: *gcc5
-       apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "gcc-5"
       env: BUILD='Debug' CC=gcc-5 CXX=g++-5
            CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=1"
       addons: *gcc5
-       apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "gcc-5"
       env: BUILD='Debug' CC=gcc-5 CXX=g++-5
            CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"
       addons: *gcc5
-        apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "gcc-5"
       env: BUILD='Debug' CC=gcc-5 CXX=g++-5
            CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=1"
       addons: *gcc5
-        apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "gcc-6"
       env: BUILD='Debug' CC=gcc-6 CXX=g++-6
       addons: *gcc6
-       apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "gcc-6"
       env: BUILD='Debug' CC=gcc-6 CXX=g++-6
            PROTOZERO_DATA_VIEW=std::experimental::string_view
       addons: *gcc6
-      apt:
-         packages:
-          - libssl-dev
     - os: linux
       compiler: "gcc-6"
       env: BUILD='Release' CC=gcc-6 CXX=g++-6
       addons: *gcc6
-       apt:
-         packages:
-          - libssl-dev
     - os: osx
       osx_image: xcode6.4
       compiler: clang
