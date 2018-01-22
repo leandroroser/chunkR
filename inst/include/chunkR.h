@@ -1,6 +1,8 @@
 #ifndef chunker_H_
 #define chunker_H_
 
+#pragma clang diagnostic ignored "-Wreturn-type-c-linkage"
+
 #include <Rcpp.h>
 #include <iostream>
 #include <fstream>
