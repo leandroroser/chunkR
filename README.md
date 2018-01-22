@@ -54,6 +54,17 @@ next_chunk(my_chunker_object)
 get_completed(my_chunker_object)
 
 
+#---- Quoted data --------#
+
+write.table(iris, tmp_path, quote = TRUE)
+
+my_chunker_object <- chunker(tmp_path, quoted = TRUE, chunksize = 30)
+
+next_chunk(my_chunker_object)
+
+get_table(my_chunker_object)
+
+
 #--- read a csv file ---#
 
 tmp_path_csv <- file.path(tempdir(),"iris.csv")

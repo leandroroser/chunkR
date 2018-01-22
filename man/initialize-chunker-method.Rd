@@ -5,7 +5,7 @@
 \alias{initialize,chunker-method}
 \title{chunker initializer}
 \usage{
-\S4method{initialize}{chunker}(.Object, path_, sep_, has_colnames_,
+\S4method{initialize}{chunker}(.Object, path_, sep_, quoted_, has_colnames_,
   has_rownames_, chunksize_, data_format_, columns_classes_)
 }
 \description{

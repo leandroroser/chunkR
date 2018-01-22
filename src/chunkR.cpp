@@ -29,8 +29,9 @@ namespace _chunkR {
 //' chunker, matrix-constructor
 //' @keywords internal
 
-chunker::chunker(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize) :
-path(path), sep(sep), has_colnames(has_colnames),
+chunker::chunker(const std::string path, char sep, bool quoted, 
+                 bool has_colnames, bool has_rownames, size_t chunksize) :
+path(path), sep(sep), quoted(quoted), has_colnames(has_colnames),
 has_rownames(has_rownames), chunksize(chunksize), output_format("matrix"), n_row(0), n_col(0),
 rnames([&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), 
 cnames([] {std::vector<std::string> out; return out;}()), 
@@ -50,9 +51,10 @@ lines_completed(0), word(auto_vector) {
 //' chunker, dataframe-constructor
 //' @keywords internal
 
-chunker::chunker(const std::string path, char sep, bool has_colnames, bool has_rownames, size_t chunksize,
-               StringVector column_types) :
-path(path), sep(sep), has_colnames(has_colnames),
+chunker::chunker(const std::string path, char sep, bool quoted, 
+                 bool has_colnames, bool has_rownames, size_t chunksize,
+                 StringVector column_types) :
+path(path), sep(sep), quoted(quoted), has_colnames(has_colnames),
 has_rownames(has_rownames), chunksize(chunksize), output_format("data.frame"), n_row(0), n_col(0),
 rnames([&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), 
 cnames([] {std::vector<std::string> out; return out;}()), 
@@ -146,6 +148,9 @@ bool chunker::next_chunk_matrix() {
       
       std::stringstream ss(*line);
       while (std::getline(ss, *element, sep)) {
+        if(quoted) {
+          element->erase(remove(element->begin(), element->end(), '\"' ), element->end());
+        }
         if (is_name && has_rownames) {
           rnames.push_back(*element);
           is_name = false;
@@ -241,13 +246,19 @@ bool chunker::next_chunk_df() {
       int count_elements = 0;
       while (std::getline(ss, *element, sep)) {
         if (is_name && has_rownames) {
+          if(quoted) {
+            element->erase(remove(element->begin(), element->end(), '\"' ), element->end());
+          }
           rnames.push_back(*element);
           is_name = false;
           continue;
         }
         
         if(col_types[count_elements] == 0) {
-          std::string temp_out = * element;
+          if(quoted) {
+            element->erase(remove(element->begin(), element->end(), '\"' ), element->end());
+          }
+          std::string temp_out = *element;
           (Rcpp::as<StringVector>(output[count_elements]))[lines_read_chunk] = temp_out;
         } else if(col_types[count_elements] == 1) {
           double temp_out = std::atof((* element).c_str());
@@ -329,6 +340,9 @@ void chunker::set_colnames() {
     std::getline(line_container, *line);
     std::stringstream headss(*line);
     while (std::getline(headss, *element, sep)) {
+      if(quoted) {
+        element->erase(remove(element->begin(), element->end(), '\"' ), element->end());
+      }
       cnames.push_back(*element);
     }
   }

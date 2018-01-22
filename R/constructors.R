@@ -2,6 +2,7 @@
 #' chunker
 #' @param path Input file path 
 #' @param sep Character separating cells in the input table (default = " ")
+#' @param quoted Quoted character data? Default FALSE. If TRUE, the program removes quotes.
 #' @param has_colnames Column names present in the input table? (Logical, default TRUE)
 #' @param has_rownames Row names present in the input table? (Logical, default TRUE)
 #' @param chunksize Chunk size (default 1000)
@@ -178,12 +179,11 @@
 #' 
 #' @export
 
-setGeneric("chunker", function(path, sep = " ", has_colnames = TRUE,
-                              has_rownames = TRUE, chunksize = 1000L,
-                              data_format = c("data.frame", "matrix"),
-                              columns_classes = character(0),
-                              autodetect = TRUE,
-                              scan_rows = 10) {
+setGeneric("chunker", function(path, sep = " ", quoted = FALSE,
+                               has_colnames = TRUE, has_rownames = TRUE, 
+                               chunksize = 1000L, data_format = c("data.frame", "matrix"),
+                               columns_classes = character(0), autodetect = TRUE,
+                               scan_rows = 10) {
   
   data_format <- match.arg(data_format)
   
@@ -206,6 +206,6 @@ setGeneric("chunker", function(path, sep = " ", has_colnames = TRUE,
     x <- lapply(as.list(x), typeof)
     columns_classes <- unname(unlist(x))
   }
-  new("chunker", path, sep, has_colnames, has_rownames, chunksize, 
+  new("chunker", path, sep, quoted, has_colnames, has_rownames, chunksize, 
       data_format, columns_classes)
 })

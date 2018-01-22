@@ -4,14 +4,17 @@
 \alias{chunker}
 \title{chunker}
 \usage{
-chunker(path, sep = " ", has_colnames = TRUE, has_rownames = TRUE,
-  chunksize = 1000L, data_format = c("data.frame", "matrix"),
-  columns_classes = character(0), autodetect = TRUE, scan_rows = 10)
+chunker(path, sep = " ", quoted = FALSE, has_colnames = TRUE,
+  has_rownames = TRUE, chunksize = 1000L, data_format = c("data.frame",
+  "matrix"), columns_classes = character(0), autodetect = TRUE,
+  scan_rows = 10)
 }
 \arguments{
 \item{path}{Input file path}
 
 \item{sep}{Character separating cells in the input table (default = " ")}
+
+\item{quoted}{Quoted character data? Default FALSE. If TRUE, the program removes quotes.}
 
 \item{has_colnames}{Column names present in the input table? (Logical, default TRUE)}
 

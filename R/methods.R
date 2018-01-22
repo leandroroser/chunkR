@@ -4,7 +4,7 @@
 #' @keywords internal
 
 setMethod( "initialize", "chunker", 
-           function(.Object, path_, sep_, has_colnames_, has_rownames_, 
+           function(.Object, path_, sep_, quoted_, has_colnames_, has_rownames_, 
                     chunksize_, data_format_,  columns_classes_) {
              
              path_ <- normalizePath(path_)
@@ -12,15 +12,18 @@ setMethod( "initialize", "chunker",
              if(data_format_ == "matrix") {
                .Object@pointer  <- chunker__new_matrix(path_, 
                                                       sep_, 
+                                                      quoted_,
                                                       has_colnames_, 
                                                       has_rownames_, 
                                                       chunksize_)
              } else {
-               .Object@pointer  <- chunker__new_data_frame(path_, sep_,
-                                                          has_colnames_, 
-                                                          has_rownames_,
-                                                          chunksize_, 
-                                                          columns_classes_)
+               .Object@pointer  <- chunker__new_data_frame(path_, 
+                                                           sep_,
+                                                           quoted_,
+                                                           has_colnames_, 
+                                                           has_rownames_,
+                                                           chunksize_, 
+                                                           columns_classes_)
              }
              .Object
            })

@@ -1,7 +1,6 @@
 #ifndef chunker_H_
 #define chunker_H_
 
-#pragma clang diagnostic ignored "-Wreturn-type-c-linkage"
 
 #include <Rcpp.h>
 #include <iostream>
@@ -15,10 +14,10 @@ class chunker {
 public:
   // constructors & destructor-----
   // matrix constructor
-  chunker(const std::string path, char sep, bool has_colnames, bool has_rownames,
+  chunker(const std::string path, char sep, bool quoted, bool has_colnames, bool has_rownames,
          size_t chunksize, StringVector column_types);
   // data.frame constructor
-	chunker(const std::string path, char sep, bool has_colnames, bool has_rownames,
+	chunker(const std::string path, char sep, bool quoted, bool has_colnames, bool has_rownames,
 			size_t chunksize);
 	virtual ~chunker();
 	
@@ -45,6 +44,7 @@ public:
 private:
 	const std::string path;
 	const char sep;
+	bool quoted;
 	bool has_colnames;
 	const bool has_rownames;
 	const size_t chunksize;

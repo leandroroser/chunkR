@@ -1,7 +1,7 @@
 Package: chunkR
 Type: Package
 Title: Read Tables in Chunks
-Version: 1.1.0
+Version: 1.1.0.9000
 Date: 2018-01-21
 Authors@R: c(person(given = "Leandro", family = "Roser", role = c("aut", "cre"), email = "learoser@gmail.com"))
 Maintainer: Leandro Roser <learoser@gmail.com>
