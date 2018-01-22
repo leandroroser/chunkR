@@ -129,7 +129,9 @@ r_github_packages:
   - r-lib/covr
 
 before_install:
+ - sudo apt-get -y install r-cran-git2r
  - Rscript -e 'update.packages(ask = FALSE)'
+
   
 after_success:
 #- Rscript -e 'covr::codecov()'
