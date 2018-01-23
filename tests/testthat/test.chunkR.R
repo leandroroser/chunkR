@@ -1,13 +1,13 @@
 context("test_chunkR.R")
 
 data(iris)
-tmp_csv <- tempfile(fileext = ".csv")
+tmp_csv <- tempfile()
 write.table(iris, tmp_csv, quote = FALSE, sep = ",")
-tmp_txt <- tempfile(fileext = ".txt")
+tmp_txt <- tempfile()
 write.table(iris, tmp_txt, quote = FALSE)
-tmp_txt_q <- tempfile(fileext = ".txt")
+tmp_txt_q <- tempfile()
 write.table(iris, tmp_txt_q, quote = TRUE)
-tmp_txt_nrnc <- tempfile(fileext = ".txt")
+tmp_txt_nrnc <- tempfile()
 write.table(iris, tmp_txt_nrnc, quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 
