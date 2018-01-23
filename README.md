@@ -1,4 +1,4 @@
-<br/> chunkR devel <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/blank.png" height = "100px" width="100px" align="right"  alt = "blank"/>  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="230px" align="right"  alt = "chunkR icon"/> 
+<br/> <span style="color:green">chunkR</span> devel <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/blank.png" height = "100px" width="100px" align="right"  alt = "blank"/>  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="230px" align="right"  alt = "chunkR icon"/> 
 ======================================================
 
 
@@ -9,34 +9,35 @@
 This package allows to read large data tables in chunks, using a fast C++ backend. Text files can be imported as data frames (with automatic column type detection option) or matrices. The program is designed to be simple and user-friendly. 
 
 
-chunkR is based on three basic functions: chunker, to create a connection to a text file; next_chunk() to read the next chunk, and get_table() to retrieve the corresponding data chunk.
+chunkR is based on three basic functions: <span style="color:green; weight:bold">chunker</span>, to create a connection to a text file; <span style="color:green; weight:bold">next_chunk()</span> to read the next chunk, and <span style="color:green; weight:bold">get_table()</span> to retrieve the corresponding data chunk.
 
 
 These functions can be easily included in loops and other source code, using the return value of the next_chunk() function, that is TRUE when a new chunk is available and FALSE when the file was totally read, respectively. The get_table() function, returns an empty data frame/matrix when next_chunk() is FALSE. See the examples below.
 
 
-Installation
+<span style="color:blue">Installation<span style="color:blue">
 ------------
 
-```diff
+```R
 library(devtools)
 install_github("leandroroser/chunkR")
 ```
 
-Example
+<span style="color:blue">Examples<span style="color:blue">
 --------
 
-```diff
+```R
 data(iris)
 
 # write iris as tab delimited file. Note that quote is set to FALSE
-
 tmp_path <- file.path(tempdir(),"iris.txt")
 write.table(iris, tmp_path, quote = FALSE)
 
+<span style="color:red">
 #-----------------------------------------------------------------#
 #--- Reading a data frame with automatic column-type detection ---#
 #-----------------------------------------------------------------#
+</span>
 
 # create a 'chunker' object passing the path of the input file.
 my_chunker_object <- chunker(tmp_path, chunksize = 30)
@@ -53,8 +54,9 @@ next_chunk(my_chunker_object)
 # get the number of lines already read
 get_completed(my_chunker_object)
 
-
+<span style="color:red">
 #---- Quoted data --------#
+</span>
 
 write.table(iris, tmp_path, quote = TRUE)
 
@@ -64,8 +66,9 @@ next_chunk(my_chunker_object)
 
 get_table(my_chunker_object)
 
-
+<span style="color:red">
 #---- Data without rownames and/or colnames ----#
+</span>
 
 tmp_path <- file.path(tempdir(),"iris.txt")
 write.table(iris, tmp_path, quote = FALSE, row.names = FALSE, col.names = FALSE)
@@ -77,8 +80,9 @@ next_chunk(my_chunker_object2)
 
 get_table(my_chunker_object2) # automatic generation of rownames and/or colnames
 
-
+<span style="color:red">
 #--- read a csv file ---#
+</span>
 
 tmp_path_csv <- file.path(tempdir(),"iris.csv")
 
@@ -94,9 +98,11 @@ get_table(my_chunker_object3)
 # remove temporal file
 file.remove(tmp_path_csv)
 
+<span style="color:red">
 #--------------------------------------------------------#
 #--- Reading a data frame using column types argument ---#
 #--------------------------------------------------------#
+</span>
 
 ## Four types can be passed : "character", "numeric" (aka "double"), "integer", "logical"
 
@@ -116,10 +122,11 @@ next_chunk(my_chunker_object4)
 # get the number of lines already read
 get_completed(my_chunker_object4)
 
-
+<span style="color:red">
 #-------------------------#
 #--- Reading a matrix  ---#
 #-------------------------#
+</span>
 
 my_chunker_object5 <- chunker(tmp_path, chunksize = 30, data_format= "matrix")
 
@@ -137,10 +144,11 @@ this_data_as_df2 <- matrix2df(this_data)
 # remove temporal file
 file.remove(tmp_path)
 
-
+<span style="color:red">
 #----------------------------------#
 #--- Example with a big table -----#
 #----------------------------------#
+</span>
 
 ### Example with a data frame
 
