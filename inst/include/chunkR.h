@@ -1,7 +1,6 @@
 #ifndef chunker_H_
 #define chunker_H_
 
-
 #include <Rcpp.h>
 #include <iostream>
 #include <fstream>

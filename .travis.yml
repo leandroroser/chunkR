@@ -9,8 +9,7 @@ r:
   - 3.3.2
 
 cache: packages
-
-sudo: false
+sudo: true
 
 # To CRAN, warnings <are> errors.
 warnings_are_errors: true
