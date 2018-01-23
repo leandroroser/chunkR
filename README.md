@@ -33,11 +33,11 @@ data(iris)
 tmp_path <- file.path(tempdir(),"iris.txt")
 write.table(iris, tmp_path, quote = FALSE)
 
-<span style="color:red">
+
 #-----------------------------------------------------------------#
 #--- Reading a data frame with automatic column-type detection ---#
 #-----------------------------------------------------------------#
-</span>
+
 
 # create a 'chunker' object passing the path of the input file.
 my_chunker_object <- chunker(tmp_path, chunksize = 30)
@@ -66,9 +66,9 @@ next_chunk(my_chunker_object)
 
 get_table(my_chunker_object)
 
-<span style="color:red">
+
 #---- Data without rownames and/or colnames ----#
-</span>
+
 
 tmp_path <- file.path(tempdir(),"iris.txt")
 write.table(iris, tmp_path, quote = FALSE, row.names = FALSE, col.names = FALSE)
@@ -98,11 +98,11 @@ get_table(my_chunker_object3)
 # remove temporal file
 file.remove(tmp_path_csv)
 
-<span style="color:red">
+
 #--------------------------------------------------------#
 #--- Reading a data frame using column types argument ---#
 #--------------------------------------------------------#
-</span>
+
 
 ## Four types can be passed : "character", "numeric" (aka "double"), "integer", "logical"
 
@@ -122,11 +122,11 @@ next_chunk(my_chunker_object4)
 # get the number of lines already read
 get_completed(my_chunker_object4)
 
-<span style="color:red">
+
 #-------------------------#
 #--- Reading a matrix  ---#
 #-------------------------#
-</span>
+
 
 my_chunker_object5 <- chunker(tmp_path, chunksize = 30, data_format= "matrix")
 
@@ -144,11 +144,11 @@ this_data_as_df2 <- matrix2df(this_data)
 # remove temporal file
 file.remove(tmp_path)
 
-<span style="color:red">
+
 #----------------------------------#
 #--- Example with a big table -----#
 #----------------------------------#
-</span>
+
 
 ### Example with a data frame
 
