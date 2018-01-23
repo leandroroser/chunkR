@@ -54,9 +54,9 @@ next_chunk(my_chunker_object)
 # get the number of lines already read
 get_completed(my_chunker_object)
 
-<span style="color:red">
+
 #---- Quoted data --------#
-</span>
+
 
 write.table(iris, tmp_path, quote = TRUE)
 
