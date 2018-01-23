@@ -82,11 +82,3 @@ RcppExport SEXP chunker__get_type(SEXP ptr) {
   Rcpp::XPtr < chunker > data(ptr);
   return wrap(data->get_type());
 }
-
-
-// DEPRECATED IN chunkR 1.1.0
-// 
-// DataFrame chunker__get_matrix2dataframe(SEXP ptr) {
-//   Rcpp::XPtr < chunker > data(ptr);
-//   return data->get_matrix2dataframe();
-// }

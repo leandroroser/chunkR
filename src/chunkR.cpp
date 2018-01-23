@@ -14,8 +14,10 @@ using namespace Rcpp;
 
 StringMatrix NULLstringm(0);
 const StringMatrix empty_stringm = NULLstringm;
-DataFrame NULLdf(0);
+
+DataFrame NULLdf = DataFrame::create();
 const DataFrame empty_df = NULLdf;
+
 std::vector<std::string> autovector;
 #define auto_vector autovector
 
@@ -40,7 +42,6 @@ lines_completed(0), word(auto_vector) {
   
   data_chunk.m = empty_stringm;
   data_chunk.df = empty_df; 
-  // configure for data frames
   
   Rcout << "New chunker object\n";
   Rcout << "Path: " << path << std::endl;
@@ -73,6 +74,7 @@ lines_completed(0), word(auto_vector) {
   
   data_chunk.m = empty_stringm;
   data_chunk.df = empty_df; 
+  
   // configure for data frames
   size_t df_size = column_types.size();
   if(df_size > 0) {
@@ -196,8 +198,7 @@ bool chunker::next_chunk_matrix() {
     line_container.close();
     
     if (output.nrow() == 0) {
-      StringMatrix output(0);
-      data_chunk.m = output;
+      data_chunk.m = empty_stringm;
       return false;
     }
     
@@ -205,8 +206,7 @@ bool chunker::next_chunk_matrix() {
     return true;
     
   } else {
-    StringMatrix output(0);
-    data_chunk.m = output;
+    data_chunk.m = empty_stringm;
     return false;
   }
   
@@ -300,7 +300,7 @@ bool chunker::next_chunk_df() {
     
     if (lines_read_chunk == 0) {
       DataFrame output;
-      data_chunk.df = output;
+      data_chunk.df = empty_df;
       return false;
     }
     
@@ -308,8 +308,7 @@ bool chunker::next_chunk_df() {
     return true;
     
   } else {
-    DataFrame output;
-    data_chunk.df = output;
+    data_chunk.df = empty_df;
     return false;
   }
   
@@ -388,11 +387,11 @@ void chunker::set_colnames() {
 //' set_generic_rownames
 //' @keywords internal
 
-std::vector<std::string> chunker::set_generic_rownames(std::string what, size_t start_from, size_t n_row) {
+std::vector<std::string> chunker::set_generic_rownames(std::string what, size_t start_from, size_t rownumber) {
   std::ostringstream os;
   std::vector<std::string> output;
-  output.reserve(n_row);
-  for (size_t i = start_from; i < start_from + n_row; ++i) {
+  output.reserve(rownumber);
+  for (size_t i = start_from; i < start_from + rownumber; ++i) {
     os << what << "_" << i;
     output.push_back(os.str());
     os.str("");
@@ -404,11 +403,11 @@ std::vector<std::string> chunker::set_generic_rownames(std::string what, size_t 
 //' set_generic_colnames
 //' @keywords internal
 
-std::vector<std::string> chunker::set_generic_colnames(std::string what,  size_t start_from, size_t n_col) {
+std::vector<std::string> chunker::set_generic_colnames(std::string what,  size_t start_from, size_t colnumber) {
   std::ostringstream os;
   std::vector<std::string> output;
-  output.reserve(n_col);
-  for (size_t i = start_from; i < start_from + n_col; ++i) {
+  output.reserve(colnumber);
+  for (size_t i = start_from; i < start_from + colnumber; ++i) {
     os << what << "_" << i;
     output.push_back(os.str());
     os.str("");
@@ -506,58 +505,6 @@ inline List chunker::mixed_list(std::vector<int> x,  int howmuch) {
   }
   return output;
 }
-
-
-// //--------------------------------------------
-// // MODULE
-// //--------------------------------------------
-// 
-// //' validatos
-// 
-// bool validate_C1(SEXP* args, int nargs) {
-//   if( nargs != 6 ) return false;
-//   return true;
-// }
-// 
-// bool validate_C2(SEXP* args, int nargs) {
-//   if( nargs != 5 ) return false;
-//   return true;
-// }
-// 
-// //' chunker_module
-// 
-// RCPP_MODULE(chunker_module) {
-//   class_<chunker>("chunker")
-//   .constructor<std::string, char, bool, bool, size_t, StringVector >("data.frame constructor", &validate_C1)
-//   .constructor<std::string, char, bool, bool, size_t>("matrix constructor", &validate_C2)
-//   .method("get_colnames", &chunker::get_colnames)
-//   .method("next_chunk", &chunker::next_chunk)
-//   .method("get_matrix", &chunker::get_matrix)
-//   .method("get_dataframe", &chunker::get_dataframe)
-//   //.method("get_matrix2dataframe", &chunker::get_matrix2dataframe) DEPRECATED IN chunkR 1.1.0
-//   .method("get_completed", &chunker::get_completed)
-//   .method("get_type", &chunker::get_completed)
-//   ;
-// }
-
-//--------------------------------------------
-// DEPRECATED
-//--------------------------------------------
-
-// DEPRECATED IN chunkR 1.1.0
-// //' chunker__get_dataframe
-// //' @keywords internal
-// 
-// DataFrame chunker::get_matrix2dataframe() {
-//   List output(n_col);
-//   for (size_t i = 0; i < n_col; ++i) {
-//     output[i] = data_chunk.m(_, i);
-//   }
-//   output.attr("row.names") = rownames(data_chunk.m);
-//   output.attr("names") = colnames(data_chunk.m);
-//   output.attr("class") = "data.frame";
-//   return output;
-// }
 
 
 } /* namespace _chunkR */

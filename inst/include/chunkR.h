@@ -1,5 +1,5 @@
-#ifndef chunker_H_
-#define chunker_H_
+#ifndef CHUNKER_H_
+#define CHUNKER_H_
 
 #include <Rcpp.h>
 #include <iostream>
@@ -14,10 +14,10 @@ public:
   // constructors & destructor-----
   // matrix constructor
   chunker(const std::string path, char sep, bool quoted, bool has_colnames, bool has_rownames,
-         size_t chunksize, StringVector column_types);
+          size_t chunksize, StringVector column_types);
   // data.frame constructor
 	chunker(const std::string path, char sep, bool quoted, bool has_colnames, bool has_rownames,
-			size_t chunksize);
+		    	size_t chunksize);
 	virtual ~chunker();
 	
 	// next chunk ------------------
@@ -27,8 +27,8 @@ public:
 	
   // setters ---------------------
 	void set_colnames();
-	std::vector<std::string> set_generic_rownames(std::string what, size_t start_from, size_t n_row);
-	std::vector<std::string> set_generic_colnames(std::string what, size_t start_from, size_t n_col);
+	std::vector<std::string> set_generic_rownames(std::string what, size_t start_from, size_t rownumber);
+	std::vector<std::string> set_generic_colnames(std::string what, size_t start_from, size_t colnumber);
 	
 	// getters --------------------
 	StringMatrix get_matrix();
@@ -71,6 +71,6 @@ private:
 
 };
 
-} /* namespace _chunker */
+} /* namespace _chunkR */
 
-#endif /* chunker_H_ */
+#endif /* CHUNKER_H_ */
