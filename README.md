@@ -6,7 +6,7 @@
 
 
 <br/><br/><br/><br/><br/><br/>
-This package allows to read large data tables in chunks, using a fast C++ backend. Text files can be imported as data frames (with automatic column type detection option) or matrices. The program is designed to be simple and user-friendly. 
+This package allows to read large text tables in chunks, using a fast C++ backend. Text files can be imported as data frames (with automatic column type detection option) or matrices. The program is designed to be simple and user-friendly. 
 
 
 chunkR is based on three basic functions: <span style="color:green; weight:bold">chunker</span>, to create a connection to a text file; <span style="color:green; weight:bold">next_chunk()</span> to read the next chunk, and <span style="color:green; weight:bold">get_table()</span> to retrieve the corresponding data chunk.
@@ -71,7 +71,7 @@ get_table(my_chunker_object)
 
 
 tmp_path <- file.path(tempdir(),"iris.txt")
-write.table(iris, tmp_path, quote = FALSE, row.names = FALSE, col.names = FALSE)
+write.table(iris, tmp_path, row.names = FALSE, col.names = FALSE)
 
 my_chunker_object2 <- chunker(tmp_path, quoted = TRUE, chunksize = 30,
 has_rownames = FALSE, has_colnames = FALSE)
@@ -80,9 +80,9 @@ next_chunk(my_chunker_object2)
 
 get_table(my_chunker_object2) # automatic generation of rownames and/or colnames
 
-<span style="color:red">
+
 #--- read a csv file ---#
-</span>
+
 
 tmp_path_csv <- file.path(tempdir(),"iris.csv")
 

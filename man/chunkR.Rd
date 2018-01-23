@@ -6,11 +6,11 @@
  Read Tables in Chunks
 }
 \description{
-  Read external data tables chunk by chunk using a C++ backend and a simple R interface.
+  Read text tables chunk by chunk using a C++ backend and a simple R interface.
 }
 
 \details{
-This package allows to read long data tables in chunks.
+This package allows to read long text tables in chunks.
 The objects of class "chunker" are the central elements of the chunkR package. These objects can store a data chunk and other information required for the process of reading a file in pieces. A chunker object is created with the \code{\link{chunker}} function, that requires the path to a file, and other arguments, as the size of the chunk. Two basic methods are defined to manipulate the object:
 
 - \code{\link{next_chunk}} function to read the next chunk
