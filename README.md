@@ -1,4 +1,4 @@
-<br/> <span style="color:green">chunkR</span> devel <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/blank.png" height = "100px" width="100px" align="right"  alt = "blank"/>  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="230px" align="right"  alt = "chunkR icon"/> 
+<br/> <p style="color:green">chunkR</p> devel <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/blank.png" height = "100px" width="100px" align="right"  alt = "blank"/>  <img src  = "https://github.com/leandroroser/chunkR/blob/master/inst/extdata/icon.png" width="230px" align="right"  alt = "chunkR icon"/> 
 ======================================================
 
 
