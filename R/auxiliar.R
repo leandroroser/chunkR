@@ -8,3 +8,9 @@ chunkR_devel <- function(){
   cat("Opening link: https://leandroroser.github.io/chunkR\n")
   browseURL("https://github.com/leandroroser/chunkR")
 }
+
+is_meta <- function(X) {
+  meta <- c("\\.", "\\\\", "\\|", "\\[", "\\]", "\\{", "\\}", 
+            "\\(", "\\)", "\\^", "\\*", "\\?", "\\+", "\\$")
+  any(meta %in% paste("\\", X, sep = ""))
+}

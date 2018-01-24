@@ -38,7 +38,7 @@ has_rownames(has_rownames), chunksize(chunksize), output_format("matrix"), n_row
 rnames([&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), 
 cnames([] {std::vector<std::string> out; return out;}()), 
 pointer_position(0), line(new std::string), element(new std::string), 
-lines_completed(0), word(auto_vector) {
+lines_completed(0), word(auto_vector), validation_state("") {
   
   data_chunk.m = empty_stringm;
   data_chunk.df = empty_df; 
@@ -55,12 +55,12 @@ lines_completed(0), word(auto_vector) {
 chunker::chunker(const std::string path, char sep, bool quoted, 
                  bool has_colnames, bool has_rownames, size_t chunksize,
                  StringVector column_types) :
-path(path), sep(sep), quoted(quoted), has_colnames(has_colnames),
+path(path), sep(sep),  quoted(quoted), has_colnames(has_colnames),
 has_rownames(has_rownames), chunksize(chunksize), output_format("data.frame"), n_row(0), n_col(0),
 rnames([&chunksize] {std::vector<std::string> out; out.reserve(chunksize); return out;}()), 
 cnames([] {std::vector<std::string> out; return out;}()), 
 pointer_position(0), line(new std::string), element(new std::string), 
-lines_completed(0), word(auto_vector) {
+lines_completed(0), word(auto_vector), validation_state("") {
   
   // count lines in file
   Rcout << "Counting lines in file... ";
@@ -108,7 +108,6 @@ chunker::~chunker() {
   delete element;
 }
 
-
 //--------------------------------------------
 // NEXT_CHUNK 
 //--------------------------------------------
@@ -129,7 +128,10 @@ bool chunker::next_chunk() {
 //' @keywords internal
 
 bool chunker::next_chunk_matrix() {
-  
+  if(!is_valid_chunker()) {
+    Rcout << validation_state << std::endl;
+    return false;
+  }
   if (!line_container.eof()) {
     
     line_container.open(path, std::ios::binary);
@@ -147,9 +149,10 @@ bool chunker::next_chunk_matrix() {
     
     while (std::getline(line_container, *line)) {
       bool is_name = true;
-      
       std::stringstream ss(*line);
+
       while (std::getline(ss, *element, sep)) {
+	
         if(quoted) {
           element->erase(remove(element->begin(), element->end(), '\"' ), element->end());
         }
@@ -168,7 +171,21 @@ bool chunker::next_chunk_matrix() {
       }
     }
     
+
     pointer_position = line_container.tellg();
+    
+    try {
+      if(word.size() != (lines_read_chunk * n_col)) throw(1);
+    } catch(int e) {
+      Rcout << "Number of elements are not multiple of matrix dimension" << std::endl;
+      line_container.seekg(0, std::ios::end);
+      word.clear();
+      line_container.close();
+      rnames.clear();
+      data_chunk.m = empty_stringm;
+      validation_state = "Invalid object: number of elements are not multiple of matrix dimension";
+      return false;
+    }
     
     // create output
     StringMatrix output(lines_read_chunk, n_col);
@@ -255,6 +272,7 @@ bool chunker::next_chunk_df() {
         }
         
         if(col_types[count_elements] == 0) {
+	
           if(quoted) {
             element->erase(remove(element->begin(), element->end(), '\"' ), element->end());
           }
@@ -339,6 +357,7 @@ void chunker::set_colnames() {
     std::getline(line_container, *line);
     std::stringstream headss(*line);
     while (std::getline(headss, *element, sep)) {
+	
       if(quoted) {
         element->erase(remove(element->begin(), element->end(), '\"' ), element->end());
       }
@@ -426,6 +445,9 @@ std::vector<std::string> chunker::set_generic_colnames(std::string what,  size_t
 //'@keywords internal
 
 StringMatrix chunker::get_matrix() {
+  if(!is_valid_chunker()) {
+    Rcpp::stop(validation_state); 
+  }
   return data_chunk.m;
 } 
 
@@ -433,6 +455,9 @@ StringMatrix chunker::get_matrix() {
 //'@keywords internal
 //'
 DataFrame chunker::get_dataframe() {
+  if(!is_valid_chunker()) {
+    Rcpp::stop(validation_state); 
+  }
   return data_chunk.df;
 } 
 
@@ -505,6 +530,30 @@ inline List chunker::mixed_list(std::vector<int> x,  int howmuch) {
   }
   return output;
 }
+
+// to create an invalid object, passa text to validation state.
+// If validation_state.size() != 0, throw an error
+bool chunker::is_valid_chunker() {
+  if(validation_state.size() != 0) return false;
+  return true;
+}
+
+
+// bool is_space(char x) {
+//   if(x == ' ' || x == '\n' || x == '\n' || x == '\v' || x == '\f' || x == '\r') {
+//     return true;
+//   } 
+//   return false;
+// }
+// 
+// bool test_empty(std::string buffer) {
+//   for (int i = 0; i< buffer.length(); ++i){
+//     if(!is_space(buffer[i])) {
+//       return false;
+//     } 
+//     return true;
+//   }
+// }
 
 
 } /* namespace _chunkR */

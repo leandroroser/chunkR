@@ -198,19 +198,21 @@ setGeneric("chunker", function(path, sep = " ", quoted = FALSE,
     }
   }
   
-  
   if(autodetect) {
-    if(!has_rownames) {
-    x <- read.table(path, nrows = scan_rows, header = has_colnames, 
-                    row.names = NULL, stringsAsFactors = FALSE, sep = sep)
-    } else {
-      x <- read.table(path, nrows = scan_rows, header = has_colnames, 
-                      stringsAsFactors = FALSE, sep = sep) 
-    }
+    
+      if(!has_rownames) {
+        x <- read.table(path, nrows = scan_rows, header = has_colnames, 
+                        row.names = NULL, stringsAsFactors = FALSE, sep = sep)
+      } else {
+        x <- read.table(path, nrows = scan_rows, header = has_colnames, 
+                        stringsAsFactors = FALSE, sep = sep) 
+      }
+      # special case with another custom newline
+ 
     x <- lapply(as.list(x), typeof)
     columns_classes <- unname(unlist(x))
   }
-  
-  new("chunker", path, sep, quoted, has_colnames, has_rownames, chunksize, 
-      data_format, columns_classes)
+
+  new("chunker", path, sep, quoted, has_colnames, 
+      has_rownames, chunksize, data_format, columns_classes)
 })

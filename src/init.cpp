@@ -5,9 +5,10 @@ using namespace Rcpp;
 
 
 // [[Rcpp::export]]
-RcppExport SEXP chunker__new_data_frame(SEXP path_, SEXP sep_, SEXP quoted_,
-                                        SEXP has_colnames_, SEXP has_rownames_, 
-                                        SEXP chunksize_, SEXP column_types_) {
+RcppExport SEXP chunker__new_data_frame(SEXP path_, SEXP sep_, 
+                                        SEXP quoted_, SEXP has_colnames_, 
+                                        SEXP has_rownames_, SEXP chunksize_, 
+                                        SEXP column_types_) {
   
   std::string path = Rcpp::as < std::string > (path_);
   char sep = Rcpp::as<char>(sep_);
@@ -24,9 +25,9 @@ RcppExport SEXP chunker__new_data_frame(SEXP path_, SEXP sep_, SEXP quoted_,
 }
 
 // [[Rcpp::export]]
-RcppExport SEXP chunker__new_matrix(SEXP path_, SEXP sep_,  SEXP quoted_,
-                                    SEXP has_colnames_, SEXP has_rownames_, 
-                                    SEXP chunksize_) {
+RcppExport SEXP chunker__new_matrix(SEXP path_, SEXP sep_,  
+                                    SEXP quoted_, SEXP has_colnames_, 
+                                    SEXP has_rownames_, SEXP chunksize_) {
   
   std::string path = Rcpp::as < std::string > (path_);
   char sep = Rcpp::as<char>(sep_);
@@ -34,9 +35,9 @@ RcppExport SEXP chunker__new_matrix(SEXP path_, SEXP sep_,  SEXP quoted_,
   bool has_colnames = Rcpp::as<bool>(has_colnames_);
   bool has_rownames = Rcpp::as<bool>(has_rownames_);
   unsigned int chunksize = Rcpp::as<unsigned int>(chunksize_);
-  Rcpp::XPtr < chunker > ptr(new chunker(path, sep, quoted, has_colnames, 
-                                         has_rownames, chunksize), 
-                                         true);
+  Rcpp::XPtr < chunker > ptr(new chunker(path, sep, quoted, 
+                                         has_colnames,  has_rownames, 
+                                         chunksize), true);
   return ptr;
 }
 

@@ -13,11 +13,12 @@ class chunker {
 public:
   // constructors & destructor-----
   // matrix constructor
-  chunker(const std::string path, char sep, bool quoted, bool has_colnames, bool has_rownames,
+  chunker(const std::string path, char sep, bool quoted, 
+          bool has_colnames, bool has_rownames,
           size_t chunksize, StringVector column_types);
   // data.frame constructor
-	chunker(const std::string path, char sep, bool quoted, bool has_colnames, bool has_rownames,
-		    	size_t chunksize);
+	chunker(const std::string path, char sep,  bool quoted,
+         bool has_colnames, bool has_rownames, size_t chunksize);
 	virtual ~chunker();
 	
 	// next chunk ------------------
@@ -39,6 +40,9 @@ public:
 	
 	// auxiliary ------------------
 	inline List mixed_list(std::vector<int> x,  int howmuch);
+	
+	// validators ----------------
+	bool is_valid_chunker();
 
 private:
 	const std::string path;
@@ -63,6 +67,7 @@ private:
 	std::string* element;
 	size_t lines_completed;
 	std::vector<std::string> word;
+	std::string validation_state;
   
 	struct chunkInfo {
 	  StringMatrix m;

@@ -4,8 +4,8 @@
 #' @keywords internal
 
 setMethod( "initialize", "chunker", 
-           function(.Object, path_, sep_, quoted_, has_colnames_, has_rownames_, 
-                    chunksize_, data_format_,  columns_classes_) {
+           function(.Object, path_, sep_, quoted_, has_colnames_, 
+                    has_rownames_, chunksize_, data_format_,  columns_classes_) {
              
              path_ <- normalizePath(path_)
              
