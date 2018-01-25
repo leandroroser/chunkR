@@ -134,7 +134,7 @@ bool chunker::next_chunk_matrix() {
   }
   if (!line_container.eof()) {
     
-    line_container.open(path, std::ios::binary);
+    line_container.open(path);
     if (line_container.fail()) {
       std::ostringstream msg;
       msg << "Input file opening failed.\n";
@@ -236,7 +236,7 @@ bool chunker::next_chunk_df() {
   
   if (!line_container.eof()) {
     
-    line_container.open(path, std::ios::binary);
+    line_container.open(path);
     if (line_container.fail()) {
       std::ostringstream msg;
       msg << "Input file opening failed.\n";
@@ -342,7 +342,7 @@ bool chunker::next_chunk_df() {
 
 void chunker::set_colnames() {
   
-  line_container.open(path, std::ios::binary);
+  line_container.open(path);
   try {
     if (line_container.fail()) {
       std::ostringstream msg;
