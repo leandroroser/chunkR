@@ -498,7 +498,7 @@ const std::string chunker::get_type() {
 inline List chunker::mixed_list(std::vector<int> x,  int howmuch) {
   List output;
   
-  for(int i = 0; i < x.size(); ++i) {
+  for(size_t i = 0; i < x.size(); ++i) {
     switch (x[i]) {
     case 0:
   {
