@@ -129,7 +129,7 @@ r_github_packages:
 
 before_install:
 # solve mongo db key expired problem
- - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 && sudo apt-get; fi
+ - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 && sudo apt-get update; fi
  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get -y install r-cran-git2r; fi
  - Rscript -e 'update.packages(ask = FALSE)'
 
