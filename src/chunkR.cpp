@@ -165,6 +165,7 @@ bool chunker::next_chunk_matrix() {
       if (++lines_read_chunk >= chunksize) {
         break;
       }
+      line_container.seekg(offset, std::ios::cur);
     }
     
 
@@ -289,6 +290,8 @@ bool chunker::next_chunk_df() {
       if (++lines_read_chunk >= chunksize) {
         break;
       }
+      
+      line_container.seekg(offset, std::ios::cur);
     }
     
     pointer_position = line_container.tellg();
@@ -548,7 +551,7 @@ void chunker::set_offset() {
       if (file.get(c)) {
         if (c == '\n') {
           offset = 1;
-          eof == '\r';
+          eof = '\r';
           break;
         }
       }
