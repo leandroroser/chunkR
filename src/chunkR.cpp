@@ -561,7 +561,6 @@ void chunker::set_offset() {
     }
   }
   if(offset == -1) {
-    validation_state = "Invalid end of line";
     Rcpp::stop("Invalid end of line");
   }
 }
