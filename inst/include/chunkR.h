@@ -27,6 +27,8 @@ public:
 	bool next_chunk_df();
 	
   // setters ---------------------
+  void set_offset();
+  void count_lines();
 	void set_colnames();
 	std::vector<std::string> set_generic_rownames(std::string what, size_t start_from, size_t rownumber);
 	std::vector<std::string> set_generic_colnames(std::string what, size_t start_from, size_t colnumber);
@@ -68,6 +70,9 @@ private:
 	size_t lines_completed;
 	std::vector<std::string> word;
 	std::string validation_state;
+	
+	int offset;
+	char eof;
   
 	struct chunkInfo {
 	  StringMatrix m;

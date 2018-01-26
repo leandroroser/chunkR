@@ -1,3 +1,9 @@
+chunkR 1.1.1 (devel)
+==============
+Changes:
+* Added detection of end of line character for cross platform compatibility.
+* Correction of return values in exported functions.
+
 chunkR 1.1.0 (Release date: 2018-01-21)
 ==============
 Changes:

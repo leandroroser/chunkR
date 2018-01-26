@@ -40,6 +40,7 @@ cnames([] {std::vector<std::string> out; return out;}()),
 pointer_position(0), line(new std::string), element(new std::string), 
 lines_completed(0), word(auto_vector), validation_state("") {
   
+  set_offset();
   data_chunk.m = empty_stringm;
   data_chunk.df = empty_df; 
   
@@ -62,15 +63,10 @@ cnames([] {std::vector<std::string> out; return out;}()),
 pointer_position(0), line(new std::string), element(new std::string), 
 lines_completed(0), word(auto_vector), validation_state("") {
   
+  // set offset
+  set_offset();
   // count lines in file
-  Rcout << "Counting lines in file... ";
-  std::ifstream this_file(path); 
-  n_lines = std::count(std::istreambuf_iterator<char>(this_file), 
-                       std::istreambuf_iterator<char>(), '\n');
-  if(has_colnames) {
-    n_lines = n_lines -1;
-  }
-  Rcout << "done.\n";
+  count_lines();
   
   data_chunk.m = empty_stringm;
   data_chunk.df = empty_df; 
@@ -134,20 +130,20 @@ bool chunker::next_chunk_matrix() {
   }
   if (!line_container.eof()) {
     
-    line_container.open(path);
+    line_container.open(path.c_str(), std::ios::binary);
     if (line_container.fail()) {
       std::ostringstream msg;
       msg << "Input file opening failed.\n";
       throw(msg.str());
     }
     
-    line_container.seekg(pointer_position);
+    line_container.seekg(pointer_position + offset);
     
     // for first line read before
     size_t lines_read_chunk = 0;
     size_t initial_lines  = lines_completed;
     
-    while (std::getline(line_container, *line)) {
+    while (std::getline(line_container, *line, eof)) {
       bool is_name = true;
       std::stringstream ss(*line);
 
@@ -236,14 +232,14 @@ bool chunker::next_chunk_df() {
   
   if (!line_container.eof()) {
     
-    line_container.open(path);
+    line_container.open(path.c_str(), std::ios::binary);
     if (line_container.fail()) {
       std::ostringstream msg;
       msg << "Input file opening failed.\n";
       throw(msg.str());
     }
     
-    line_container.seekg(pointer_position);
+    line_container.seekg(pointer_position + offset);
     
     // for first line read before
     size_t lines_read_chunk = 0;
@@ -256,7 +252,7 @@ bool chunker::next_chunk_df() {
       output = mixed_list(col_types, n_lines - initial_lines); 
     }
     
-    while (std::getline(line_container, *line)) {
+    while (std::getline(line_container, *line, eof)) {
       bool is_name = true;
       
       std::stringstream ss(*line);
@@ -342,7 +338,7 @@ bool chunker::next_chunk_df() {
 
 void chunker::set_colnames() {
   
-  line_container.open(path);
+  line_container.open(path.c_str(), std::ios::binary);
   try {
     if (line_container.fail()) {
       std::ostringstream msg;
@@ -354,7 +350,7 @@ void chunker::set_colnames() {
   }
   
   if (has_colnames) {
-    std::getline(line_container, *line);
+    std::getline(line_container, *line, eof);
     std::stringstream headss(*line);
     while (std::getline(headss, *element, sep)) {
 	
@@ -368,7 +364,7 @@ void chunker::set_colnames() {
   
   // Read first line only to set number of columns
   bool is_name = true;
-  std::getline(line_container, *line);
+  std::getline(line_container, *line, eof);
   std::stringstream ss(*line);
   while (std::getline(ss, *element, sep)) {
     if (is_name && has_rownames) {
@@ -538,6 +534,47 @@ bool chunker::is_valid_chunker() {
   return true;
 }
 
+void chunker::set_offset() {
+  std::ifstream file(path.c_str(), std::ios::binary);
+  char c;
+  offset = -1;
+  while (file.get(c)) {
+    if (c == '\n') {
+      offset = 0;
+      eof = '\n';
+      break;
+    }
+    if (c == '\r') {
+      if (file.get(c)) {
+        if (c == '\n') {
+          offset = 1;
+          eof == '\r';
+          break;
+        }
+      }
+      offset = 0;
+      eof = '\r';
+      break;
+    }
+  }
+  if(offset == -1) {
+    validation_state = "Invalid end of line";
+    Rcpp::stop("Invalid end of line");
+  }
+}
+
+
+void chunker::count_lines() {
+Rcout << "Counting lines in file... ";
+std::ifstream this_file(path.c_str(), std::ios::binary); 
+n_lines = std::count(std::istreambuf_iterator<char>(this_file), 
+                     std::istreambuf_iterator<char>(), eof);
+this_file.close();
+if(has_colnames) {
+  n_lines = n_lines -1;
+}
+Rcout << "done.\n";
+}
 
 // bool is_space(char x) {
 //   if(x == ' ' || x == '\n' || x == '\n' || x == '\v' || x == '\f' || x == '\r') {
