@@ -24,6 +24,7 @@ test_that("chunkR data.frame autodetection works", {
  # test get_table
  this_data <- get_table(my_chunker_object)
  expect_that(this_data, is_a("data.frame"))
+ expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
  
  # test get_completed
  expect_that(get_completed(my_chunker_object), is_a("numeric"))
@@ -47,6 +48,7 @@ test_that("chunkR data.frame custom detection works", {
   # test get_table
   this_data <- get_table(my_chunker_object)
   expect_that(this_data, is_a("data.frame"))
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n  
   
   # test get_completed
   expect_that(get_completed(my_chunker_object), is_a("numeric"))
@@ -69,6 +71,7 @@ test_that("chunkR removes quotes in data frames", {
   this_data <- get_table(my_chunker_object)
   expect_that(this_data, is_a("data.frame"))
   expect_true(this_data[, 5][1] == "setosa")
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
 
 })
 
@@ -87,7 +90,8 @@ test_that("chunkR removes quotes in matrices", {
   this_data <- get_table(my_chunker_object)
   expect_that(this_data, is_a("matrix"))
   expect_true(this_data[, 5][1] == "setosa")
-
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
+  
 })
 
 test_that("chunkR can read data w/o column names and row names and generate a valid data frame", {
@@ -108,6 +112,7 @@ test_that("chunkR can read data w/o column names and row names and generate a va
   
   expect_true(rownames(this_data)[1] == "R_1")
   expect_true(colnames(this_data)[1] == "C_1")
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
   
 })
 
@@ -130,6 +135,7 @@ test_that("chunkR can read data w/o column names and row names and generate a va
   
   expect_true(rownames(this_data)[1] == "R_1")
   expect_true(colnames(this_data)[1] == "C_1")
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
   
 })
 
@@ -151,11 +157,11 @@ test_that("chunkR matrix works", {
   # Matrix data can be converted to data frame with the C++ method get_table. 
   # , which is much faster than the native function "as.data.frame"
   this_data_as_df <- get_table(my_chunker_object)
-  
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
   # The package also provides a fast generic C++ function for conversion from
   # matrix (any R type) to dataframe
   this_data_as_df2 <- matrix2df(this_data)
-
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
 })
 
 
@@ -169,6 +175,7 @@ test_that("chunkR is able to read csv files", {
   expect_true(next_chunk(my_chunker_object))
   
   this_data <- get_table(my_chunker_object)
+  expect_that(length(grep("\r|\n",as.matrix(this_data))), equals(0)) # no \r and \n
   # test get_table
   expect_that(this_data, is_a("data.frame"))
   
