@@ -24,8 +24,6 @@
 \alias{get_attr}
 \alias{get_attr,chunker-method}
 \alias{get_attr,chunker-methods}
-\alias{show,chunker-method}
-\alias{print,chunker-methods}
 \title{Manipulation methods for chunker objects}
 \usage{
 next_chunk(obj)
@@ -55,8 +53,6 @@ get_type(obj)
 get_attr(obj)
 
 \S4method{get_attr}{chunker}(obj)
-
-\S4method{show}{chunker}(object)
 }
 \arguments{
 \item{obj}{object of class chunker}

@@ -168,19 +168,19 @@ setMethod("get_attr", "chunker", function(obj) {
 })
 
 #' @aliases print,chunker-methods
-#' @rdname chunker-methods
+#' @keywords internal
 
-setMethod("show", "chunker", function(obj) {
-  total_lines <- get_total(obj)
-  completed_lines <- get_completed(obj)
-  cat("\n>---- chunkR object ---->\n\n")
-  cat("Path: ", obj@attr$path, "\n")
-  cat("Chunk size: ", obj@attr$chunksize, "| Sep: ", deparse(obj@attr$sep), "| Quoted: ", obj@attr$quoted, "\n")
-  cat("Colnames: ", obj@attr$has_colnames, "| Rownames: ", obj@attr$has_rownames, "\n")
-  cat("Data imported as: ", obj@attr$data_format, "\n")
-  cat("Total lines in file: ", ifelse (obj@attr$data_format == "data.frame", total_lines, "unknown"), "\n")
+setMethod("show", "chunker", function(object) {
+  total_lines <- get_total(object)
+  completed_lines <- get_completed(object)
+  cat("\n>---- chunker object ---->\n\n")
+  cat("Path: ", object@attr$path, "\n")
+  cat("Chunk size: ", object@attr$chunksize, "| Sep: ", deparse(object@attr$sep), "| Quoted: ", object@attr$quoted, "\n")
+  cat("Colnames: ", object@attr$has_colnames, "| Rownames: ", object@attr$has_rownames, "\n")
+  cat("Data imported as: ", object@attr$data_format, "\n")
+  cat("Total lines in file: ", ifelse (object@attr$data_format == "data.frame", total_lines, "unknown"), "\n")
   cat("Lines completed: ", completed_lines)
-  cat(" ", ifelse (obj@attr$data_format == "data.frame", paste0("(", round(100 * completed_lines/total_lines), "%)\n"), "\n"))
+  cat(" ", ifelse (object@attr$data_format == "data.frame", paste0("(", round(100 * completed_lines/total_lines), "%)\n"), "\n"))
   cat("Additional information: use the function 'get_attr' with this object", "\n\n")
 })
 
