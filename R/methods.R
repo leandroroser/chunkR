@@ -119,6 +119,21 @@ setMethod("get_completed", "chunker", function(obj) {
   chunker__get_completed(obj@pointer)
 })
 
+#' get_total
+#' @name get_total
+#' @description NULL
+#' @rdname chunker-methods
+
+setGeneric("get_total", function(obj) standardGeneric("get_total"))
+
+
+#' @aliases get_total,chunker-methods
+#' @rdname chunker-methods
+
+setMethod("get_total", "chunker", function(obj) {
+  chunker__get_total(obj@pointer)
+})
+
 
 #' get_type
 #' @name get_type
@@ -134,6 +149,39 @@ setGeneric("get_type", function(obj) standardGeneric("get_type"))
 
 setMethod("get_type", "chunker", function(obj) {
   chunker__get_type(obj@pointer)
+})
+
+#' get_attr
+#' @name get_attr
+#' @description NULL
+#' @rdname chunker-methods
+#' @export
+
+setGeneric("get_attr", function(obj) standardGeneric("get_attr"))
+
+
+#' @aliases get_attr,chunker-methods
+#' @rdname chunker-methods
+
+setMethod("get_attr", "chunker", function(obj) {
+  obj@attr
+})
+
+#' @aliases print,chunker-methods
+#' @rdname chunker-methods
+
+setMethod("show", "chunker", function(obj) {
+  total_lines <- get_total(obj)
+  completed_lines <- get_completed(obj)
+  cat("\n>---- chunkR object ---->\n\n")
+  cat("Path: ", obj@attr$path, "\n")
+  cat("Chunk size: ", obj@attr$chunksize, "| Sep: ", deparse(obj@attr$sep), "| Quoted: ", obj@attr$quoted, "\n")
+  cat("Colnames: ", obj@attr$has_colnames, "| Rownames: ", obj@attr$has_rownames, "\n")
+  cat("Data imported as: ", obj@attr$data_format, "\n")
+  cat("Total lines in file: ", ifelse (obj@attr$data_format == "data.frame", total_lines, "unknown"), "\n")
+  cat("Lines completed: ", completed_lines)
+  cat(" ", ifelse (obj@attr$data_format == "data.frame", paste0("(", round(100 * completed_lines/total_lines), "%)\n"), "\n"))
+  cat("Additional information: use the function 'get_attr' with this object", "\n\n")
 })
 
 

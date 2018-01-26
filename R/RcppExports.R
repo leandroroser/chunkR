@@ -64,6 +64,10 @@ NULL
 #' @keywords internal
 NULL
 
+#' chunker__get_completed
+#' @keywords internal
+NULL
+
 #' chunker__get_type
 #' @keywords internal
 NULL
@@ -98,6 +102,10 @@ chunker__get_dataframe <- function(ptr) {
 
 chunker__get_colnames <- function(ptr) {
     .Call(`_chunkR_chunker__get_colnames`, ptr)
+}
+
+chunker__get_total <- function(ptr) {
+    .Call(`_chunkR_chunker__get_total`, ptr)
 }
 
 chunker__get_completed <- function(ptr) {

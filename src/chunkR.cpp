@@ -421,7 +421,9 @@ std::vector<std::string> chunker::set_generic_rownames(std::string what, size_t 
 //' set_generic_colnames
 //' @keywords internal
 
-std::vector<std::string> chunker::set_generic_colnames(std::string what,  size_t start_from, size_t colnumber) {
+std::vector<std::string> chunker::set_generic_colnames(std::string what,  
+                                                       size_t start_from,
+                                                       size_t colnumber) {
   std::ostringstream os;
   std::vector<std::string> output;
   output.reserve(colnumber);
@@ -477,6 +479,13 @@ StringVector chunker::get_colnames() {
 
 size_t chunker::get_completed() {
   return lines_completed;
+}
+
+//' chunker__get_completed
+//' @keywords internal
+
+size_t chunker::get_total() {
+  return n_lines;
 }
 
 //' chunker__get_type

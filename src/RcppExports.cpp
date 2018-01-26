@@ -107,6 +107,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// chunker__get_total
+RcppExport SEXP chunker__get_total(SEXP ptr);
+RcppExport SEXP _chunkR_chunker__get_total(SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(chunker__get_total(ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
 // chunker__get_completed
 RcppExport SEXP chunker__get_completed(SEXP ptr);
 RcppExport SEXP _chunkR_chunker__get_completed(SEXP ptrSEXP) {
@@ -153,6 +164,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_chunkR_chunker__get_matrix", (DL_FUNC) &_chunkR_chunker__get_matrix, 1},
     {"_chunkR_chunker__get_dataframe", (DL_FUNC) &_chunkR_chunker__get_dataframe, 1},
     {"_chunkR_chunker__get_colnames", (DL_FUNC) &_chunkR_chunker__get_colnames, 1},
+    {"_chunkR_chunker__get_total", (DL_FUNC) &_chunkR_chunker__get_total, 1},
     {"_chunkR_chunker__get_completed", (DL_FUNC) &_chunkR_chunker__get_completed, 1},
     {"_chunkR_chunker__get_type", (DL_FUNC) &_chunkR_chunker__get_type, 1},
     {"_chunkR_RcppExport_registerCCallable", (DL_FUNC) &_chunkR_RcppExport_registerCCallable, 0},

@@ -37,6 +37,7 @@ public:
 	StringMatrix get_matrix();
 	DataFrame get_dataframe();
 	StringVector get_colnames();
+	size_t get_total();
 	size_t get_completed();
 	const std::string get_type();	
 	

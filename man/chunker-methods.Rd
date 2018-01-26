@@ -15,9 +15,17 @@
 \alias{get_completed}
 \alias{get_completed,chunker-method}
 \alias{get_completed,chunker-methods}
+\alias{get_total}
+\alias{get_total,chunker-method}
+\alias{get_total,chunker-methods}
 \alias{get_type}
 \alias{get_type,chunker-method}
 \alias{get_type,chunker-methods}
+\alias{get_attr}
+\alias{get_attr,chunker-method}
+\alias{get_attr,chunker-methods}
+\alias{show,chunker-method}
+\alias{print,chunker-methods}
 \title{Manipulation methods for chunker objects}
 \usage{
 next_chunk(obj)
@@ -36,9 +44,19 @@ get_completed(obj)
 
 \S4method{get_completed}{chunker}(obj)
 
+get_total(obj)
+
+\S4method{get_total}{chunker}(obj)
+
 get_type(obj)
 
 \S4method{get_type}{chunker}(obj)
+
+get_attr(obj)
+
+\S4method{get_attr}{chunker}(obj)
+
+\S4method{show}{chunker}(object)
 }
 \arguments{
 \item{obj}{object of class chunker}

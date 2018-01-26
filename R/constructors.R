@@ -213,6 +213,11 @@ setGeneric("chunker", function(path, sep = " ", quoted = FALSE,
     columns_classes <- unname(unlist(x))
   }
 
-  new("chunker", path, sep, quoted, has_colnames, 
+  out <- new("chunker", path, sep, quoted, has_colnames, 
       has_rownames, chunksize, data_format, columns_classes)
+  out@attr <- list(path = path, sep = sep, quoted = quoted,
+                   has_colnames = has_colnames, has_rownames  = has_rownames,
+                   chunksize = chunksize, data_format = data_format,
+                   columns_classes = columns_classes, call = match.call())
+ out
 })

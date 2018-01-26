@@ -72,6 +72,13 @@ RcppExport SEXP chunker__get_colnames(SEXP ptr) {
   return data->get_colnames();
 }
 
+
+// [[Rcpp::export]]
+RcppExport SEXP chunker__get_total(SEXP ptr) {
+  Rcpp::XPtr < chunker > data(ptr);
+  return wrap(data->get_total());
+}
+
 // [[Rcpp::export]]
 RcppExport SEXP chunker__get_completed(SEXP ptr) {
 	Rcpp::XPtr < chunker > data(ptr);
