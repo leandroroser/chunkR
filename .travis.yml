@@ -98,7 +98,7 @@ matrix:
       compiler: "gcc-6"
       env: BUILD='Release' CC=gcc-6 CXX=g++-6
       addons: *gcc6
-      - os: osx
+    - os: osx
 #    - os: osx
 #      osx_image: xcode6.4
     - os: osx
