@@ -98,30 +98,21 @@ matrix:
       compiler: "gcc-6"
       env: BUILD='Release' CC=gcc-6 CXX=g++-6
       addons: *gcc6
-    - os: osx
-      osx_image: xcode6.4
-      compiler: clang
-      env: BUILD='Debug'
+      - os: osx
+#    - os: osx
+#      osx_image: xcode6.4
     - os: osx
       osx_image: xcode7.3
-      compiler: clang
-      env: BUILD='Debug'
     - os: osx
       osx_image: xcode8
-      compiler: clang
-      env: BUILD='Debug'
+    - os: osx
+      osx_image: xcode8.1
     - os: osx
       osx_image: xcode8.3
-      compiler: clang
-      env: BUILD='Debug'
     - os: osx
       osx_image: xcode9.1
-      compiler: clang
-      env: BUILD='Debug'
     - os: osx
-      osx_image: xcode9.1
-      compiler: clang
-      env: BUILD='Release'
+      osx_image: xcode9.3beta
 
 
 r_github_packages:
