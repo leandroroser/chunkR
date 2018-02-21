@@ -6,7 +6,7 @@
  Read Tables in Chunks
 }
 \description{
-  Read text tables chunk by chunk using a C++ backend and a simple R interface.
+  Read tables chunk by chunk using a C++ backend and a simple R interface.
 }
 
 \details{
