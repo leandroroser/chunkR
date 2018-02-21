@@ -24,21 +24,21 @@ chunker(path, sep = " ", quoted = FALSE, has_colnames = TRUE,
 
 \item{data_format}{Format of input data: "data.frame" (default) or "matrix".}
 
-\item{columns_classes}{Vector with columns classes: "character", "numeric" (aka "double"), 
+\item{columns_classes}{Vector with the class of each column: "character", "numeric" (aka "double"), 
 "integer" or "logical".}
 
 \item{autodetect}{Use auto-detection of columns classes? Default TRUE.}
 
-\item{scan_rows}{How many rows to scan for auto-detection of columns classes. Default 10. Note
-that this value shoud be increased when columns present all NA values in the first scan_rows ranger of rows.
-Checking is perfomed via a call to read.table with the scan_rows value passed to the nrows parameter,
-and the posterior extraction of the corresponding classes detected in this call.}
+\item{scan_rows}{How many rows to scan for auto-detection of columns classes. 
+Default is 10. Note that this value shoud be increased when columns only have NA values 
+in the scanned rows. Columns classes are detected via a call to read.table 
+with the scan_rows value passed to the nrows parameter.}
 }
 \description{
 The objects of class "chunker" are the central elements of the
 chunkR package. These objects can store a data chunk and other 
 information required for the process of reading a file in pieces.
-A chunker object is created with the chunker() function, 
+A "chunker" object is created with the chunker() function, 
 that requires the path to a file, and other arguments, as the size of the chunk 
 and the data type ("data.frame" or "matrix").
 Two basic methods are defined to manipulate the object: 
@@ -87,7 +87,7 @@ tmp_path_csv <- file.path(tempdir(),"iris.csv")
 
 write.table(iris, tmp_path_csv, quote = FALSE, sep = ",")
 
-# read the csv indicating the value of the sep parameter
+# read the csv indicating the value of the 'sep' parameter
 my_chunker_object2 <- chunker(tmp_path_csv, chunksize = 30, sep = ",")
 # the file can  then be processed as with tab delimiters
 

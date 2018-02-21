@@ -64,7 +64,7 @@ chunker objects can be manipulated with the following methods:
 \item{\bold{get_table}}{: retrieve the current data chunk contained in the object}
 }
 
-In addition, this information can be retrieved from chunker objects:
+In addition, the following information can be retrieved from chunker objects:
 \enumerate{
 \item{\bold{get_completed}}{: get the number of rows already read}
 \item{\bold{get_colnames}}{: get column names of the chunker object}

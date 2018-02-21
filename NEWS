@@ -1,4 +1,4 @@
-chunkR 1.1.1 (devel)
+chunkR 1.1.1 (Release date: 2018-02-21)
 ==============
 Changes:
 * Added detection of end of line character for cross platform compatibility.
